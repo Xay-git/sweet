@@ -14,9 +14,17 @@
     <name>sweet</name>
     <description>Demo project for Spring Boot</description>
 
+    <packaging>jar</packaging>
+
     <properties>
         <java.version>1.8</java.version>
+        <mysql-connector-java.version>8.0.11</mysql-connector-java.version>
+        <lombok.version>1.16.10</lombok.version>
+        <mybatisplus.version>3.1.1</mybatisplus.version>
+        <druid.version>1.0.11</druid.version>
+
     </properties>
+
 
     <dependencies>
         <dependency>
@@ -29,6 +37,51 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!--myql数据库驱动,可根据自己需要自行删减-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
+        </dependency>
+
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+
+        <!-- alibaba的druid数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <!-- mybatis-plus -->
+
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatisplus.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.28</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

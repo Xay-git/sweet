@@ -21,8 +21,10 @@
         <mysql-connector-java.version>8.0.11</mysql-connector-java.version>
         <lombok.version>1.16.10</lombok.version>
         <mybatisplus.version>3.1.1</mybatisplus.version>
+        <mybatisplusgenerator.version>3.1.1</mybatisplusgenerator.version>
         <druid.version>1.0.11</druid.version>
-
+        <swagger2.version>2.6.1</swagger2.version>
+        <beetl.version>3.0.3.RELEASE</beetl.version>
     </properties>
 
 
@@ -61,24 +63,36 @@
         </dependency>
 
         <!-- mybatis-plus -->
-
-
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatisplus.version}</version>
         </dependency>
-
+        <!-- mybatis-plus代码生成 -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.1.1</version>
+            <version>${mybatisplusgenerator.version}</version>
+        </dependency>
+
+        <!-- beetl模板 -->
+        <dependency>
+            <groupId>com.ibeetl</groupId>
+            <artifactId>beetl</artifactId>
+            <version>${beetl.version}</version>
+        </dependency>
+
+        <!-- swagger2 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger2.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.28</version>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger2.version}</version>
         </dependency>
 
 

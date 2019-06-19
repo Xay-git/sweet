@@ -22,7 +22,7 @@
         <lombok.version>1.16.10</lombok.version>
         <mybatisplus.version>3.1.1</mybatisplus.version>
         <mybatisplusgenerator.version>3.1.1</mybatisplusgenerator.version>
-        <druid.version>1.0.11</druid.version>
+        <druid.version>1.1.13</druid.version>
         <swagger2.version>2.6.1</swagger2.version>
         <beetl.version>3.0.3.RELEASE</beetl.version>
     </properties>
@@ -58,7 +58,7 @@
         <!-- alibaba的druid数据库连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
+            <artifactId>druid-spring-boot-starter</artifactId>
             <version>${druid.version}</version>
         </dependency>
 
@@ -105,6 +105,25 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <!--指定资源的位置-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.yml</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
 </project>

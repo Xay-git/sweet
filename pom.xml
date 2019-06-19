@@ -24,7 +24,8 @@
         <mybatisplusgenerator.version>3.1.1</mybatisplusgenerator.version>
         <druid.version>1.1.13</druid.version>
         <swagger2.version>2.6.1</swagger2.version>
-        <beetl.version>3.0.3.RELEASE</beetl.version>
+        <beetl.version>3.0.5.RELEASE</beetl.version>
+        <shiro.version>1.4.0</shiro.version>
     </properties>
 
 
@@ -95,6 +96,13 @@
             <version>${swagger2.version}</version>
         </dependency>
 
+        <!-- shiro-spring -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -110,6 +118,7 @@
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
+                    <include>**</include>
                     <include>**/*.xml</include>
                 </includes>
                 <filtering>true</filtering>
@@ -118,6 +127,7 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
+                    <include>**</include>
                     <include>**/*.yml</include>
                     <include>**/*.xml</include>
                 </includes>

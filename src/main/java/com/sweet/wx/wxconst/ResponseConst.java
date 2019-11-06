@@ -16,6 +16,9 @@ public class ResponseConst {
     public static final String NOT_FOUND_ANY = "没有找到任何文章，换一组吧！\uD83D\uDE25";
 
 
+    public static final String STORY = "耳说故事";
+
+
 
 
 }

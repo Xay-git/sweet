@@ -103,6 +103,13 @@
             <version>${shiro.version}</version>
         </dependency>
 
+        <!-- wx-tools -->
+        <dependency>
+            <groupId>com.soecode.wx-tools</groupId>
+            <artifactId>wx-tools</artifactId>
+            <version>2.1.4-RELEASE</version>
+        </dependency>
+
 
     </dependencies>
 

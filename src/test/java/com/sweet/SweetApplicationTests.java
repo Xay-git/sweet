@@ -1,5 +1,6 @@
 package com.sweet;
 
+import com.soecode.wxtools.bean.WxNewsInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.Banner;
@@ -13,7 +14,7 @@ public class SweetApplicationTests {
 
     @Test
     public void contextLoads() {
-
+        WxNewsInfo news1 = new WxNewsInfo();
 
     }
 

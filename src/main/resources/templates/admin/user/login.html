@@ -105,7 +105,11 @@
     console.log(layui.setter);
     //提交
     form.on('submit(LAY-user-login-submit)', function(obj){
+      obj.field.remember=='on'?obj.field.remember=true:obj.field.remember=false;
+
       console.log(obj);
+      console.log(JSON.stringify(obj.field));
+
 
       //请求登入接口
       admin.req({
@@ -121,13 +125,13 @@
           // });
           //
           // //登入成功的提示与跳转
-          // layer.msg('登入成功', {
-          //   offset: '15px'
-          //   ,icon: 1
-          //   ,time: 1000
-          // }, function(){
-          //   location.href = '/'; //后台主页
-          // });
+          layer.msg('登入成功', {
+            offset: '15px'
+            ,icon: 1
+            ,time: 1000
+          }, function(){
+            location.href = '/admin'; //后台主页
+          });
         }
       });
       

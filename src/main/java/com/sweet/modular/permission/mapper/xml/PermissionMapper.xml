@@ -13,4 +13,13 @@
         ID, NAME, URL
     </sql>
 
+    <select id="findByUserName" resultMap="BaseResultMap">
+        select p.id,p.url,p.name from t_role r
+        left join t_user_role ur on(r.id = ur.rid)
+        left join t_user u on(u.id = ur.uid)
+        left join t_role_permission rp on(rp.rid = r.id)
+        left join t_permission p on(p.id = rp.pid )
+        where u.user_name = #{userName}
+    </select>
+
 </mapper>

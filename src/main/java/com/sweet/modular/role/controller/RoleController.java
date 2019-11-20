@@ -3,7 +3,7 @@ package com.sweet.modular.role.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 
 /**
  * <p>
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author wxl
  * @since 2019-11-20
  */
-@RestController
+@Controller
 @RequestMapping("/role/role")
 public class RoleController {
 

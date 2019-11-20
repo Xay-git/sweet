@@ -15,4 +15,8 @@
         ID, USER_NAME, PASSWORD, BIRTHDAY, ACCOUNT_STATUS
     </sql>
 
+    <select id="findByUserName" resultMap="BaseResultMap">
+        select * from t_user where user_name = #{userName}
+    </select>
+
 </mapper>

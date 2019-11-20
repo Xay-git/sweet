@@ -13,4 +13,11 @@
         ID, NAME, MEMO
     </sql>
 
+    <select id="findByUserName" resultMap="BaseResultMap">
+        select r.id,r.name,r.memo from t_role r
+        left join t_user_role ur on(r.id = ur.rid)
+        left join t_user u on(u.id = ur.uid)
+        where u.user_name = #{userName}
+    </select>
+
 </mapper>

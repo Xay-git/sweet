@@ -1,0 +1,1 @@
+package com.sweet.core.shiro.session;import com.sweet.core.shiro.UserOnline;import java.util.List;public interface SessionService {    List<UserOnline> list();    boolean forceLogout(String sessionId);}

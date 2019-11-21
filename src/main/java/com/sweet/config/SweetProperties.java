@@ -1,1 +1,0 @@
-package com.sweet.config;public interface SweetProperties {    public static final String WELCOMETIP = "Hello World!";}

@@ -1,0 +1,1 @@
+package com.sweet.modular.wx.matcher;import com.soecode.wxtools.api.WxMessageMatcher;import com.soecode.wxtools.bean.WxXmlMessage;public class WhoAmIMatcher implements WxMessageMatcher {    @Override    public boolean match(WxXmlMessage message) {        return false;    }}

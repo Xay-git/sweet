@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.5.RELEASE</version>
+        <version>2.1.9.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.sweet</groupId>
@@ -14,16 +14,18 @@
     <name>sweet</name>
     <description>Demo project for Spring Boot</description>
 
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <mysql-connector-java.version>8.0.11</mysql-connector-java.version>
         <lombok.version>1.16.10</lombok.version>
         <mybatisplus.version>3.1.1</mybatisplus.version>
         <mybatisplusgenerator.version>3.1.1</mybatisplusgenerator.version>
         <druid.version>1.1.13</druid.version>
-        <swagger2.version>2.6.1</swagger2.version>
+        <swagger2.version>2.9.2</swagger2.version>
         <beetl.version>3.0.5.RELEASE</beetl.version>
         <shiro.version>1.4.0</shiro.version>
         <shiroredis.version>2.4.2.1-RELEASE</shiroredis.version>
@@ -41,6 +43,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- aop依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!--        war-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!--myql数据库驱动,可根据自己需要自行删减-->
@@ -119,7 +134,6 @@
             <version>${wxtools.version}</version>
         </dependency>
 
-
     </dependencies>
 
     <build>
@@ -132,6 +146,9 @@
 
         <resources>
             <resource>
+                <directory>src/main/webapp</directory>
+            </resource>
+            <resource>
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
@@ -142,6 +159,12 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
+
+
+        <finalName>sweet</finalName>
     </build>
+
+
+
 
 </project>

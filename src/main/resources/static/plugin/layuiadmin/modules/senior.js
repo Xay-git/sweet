@@ -798,7 +798,7 @@ layui.define(function(exports){
         title: {
           x: 'center',
           text: 'ECharts例子个数统计',
-          subtext: 'Rainbow bar example',
+          subtext: 'Rainbow bar sweet',
           link: 'http://echarts.baidu.com/doc/example.html'
         },
         tooltip: {

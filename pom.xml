@@ -26,7 +26,7 @@
         <mybatisplusgenerator.version>3.1.1</mybatisplusgenerator.version>
         <druid.version>1.1.13</druid.version>
         <swagger2.version>2.9.2</swagger2.version>
-        <beetl.version>3.0.5.RELEASE</beetl.version>
+        <beetl.version>3.0.11.RELEASE</beetl.version>
         <shiro.version>1.4.0</shiro.version>
         <shiroredis.version>2.4.2.1-RELEASE</shiroredis.version>
         <wxtools.version>2.1.4-RELEASE</wxtools.version>

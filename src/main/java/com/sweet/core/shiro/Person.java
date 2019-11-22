@@ -1,0 +1,1 @@
+package com.sweet.core.shiro;import lombok.Data;import lombok.experimental.Accessors;@Data@Accessors(chain = true)public class Person {    private String name;    private int age;    public Person(String name, int age) {        this.name = name;        this.age = age;    }}

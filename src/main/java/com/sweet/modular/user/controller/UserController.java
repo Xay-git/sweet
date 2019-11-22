@@ -24,21 +24,21 @@ public class UserController {
     @RequestMapping("list")
     public String userList(Model model) {
         model.addAttribute("value", "获取用户信息");
-        return "/admin/user/user/list";
+        return "/admin/user/list";
     }
 
     @RequiresPermissions("user:add")
     @RequestMapping("add")
     public String userAdd(Model model) {
         model.addAttribute("value", "新增用户");
-        return "/admin/user/user/list";
+        return "/admin/user/list";
     }
 
     @RequiresPermissions("user:delete")
     @RequestMapping("delete")
     public String userDelete(Model model) {
         model.addAttribute("value", "删除用户");
-        return "/admin/user/user/list";
+        return "/admin/user/list";
     }
 
 }

@@ -93,23 +93,6 @@
                 <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu"
                     lay-filter="layadmin-system-side-menu">
 
-                    <li data-name="home" class="layui-nav-item layui-nav-itemed">
-                        <a href="javascript:;" lay-tips="主页" lay-direction="2">
-                            <i class="layui-icon layui-icon-home"></i>
-                            <cite>用户管理</cite>
-                        </a>
-                        <dl class="layui-nav-child">
-                            <dd data-name="console" class="layui-this">
-                                <a lay-href="/user/list">获取用户信息</a>
-                            </dd>
-                            <dd data-name="console">
-                                <a lay-href="/user/add">新增用户</a>
-                            </dd>
-                            <dd data-name="console">
-                                <a lay-href="/user/delete">删除用户</a>
-                            </dd>
-                        </dl>
-                    </li>
 
                 </ul>
             </div>
@@ -158,7 +141,47 @@
         base: '/plugin/layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use('index');
+    }).use(['index', 'common'], function(){//需要显式use common模块
+        var data = {
+            "code": 0,
+            "msg": "",
+            "data": [{
+                "title": "一级",
+                "icon": "layui-icon-auz",
+                "url": "//www.layui.com/admin/#get"
+            },{
+                "title": "二级默认展开",
+                "spread": true,
+                "icon": "layui-icon-home",
+                "list": [{
+                    "title": "默认展开",
+                    "spread": true,
+                    "url": "home/console.html"
+                }, {
+                    "title": "二级",
+                    "url": "home/homepage1.html"
+                }]
+            },{
+                "title": "三级",
+                "icon": "layui-icon-home",
+                "list": [{
+                    "title": "三级",
+                    "list":[{
+                        "title":"三级菜单",
+                        "url":"http://www.baidu.com"
+                    },{
+                        "title":"三级菜单",
+                        "url":"home/homepage2.html"
+                    }]
+                }, {
+                    "title": "不是三级",
+                    "url": "home/homepage2.html"
+                }]
+            }]
+        }
+        layui.admin.events.refreshLeftMenu(data);//如果在子页面想要刷新左侧菜单则使用top.layui.admin.events.refreshLeftMenu（前面加top.）
+        // layui.admin.events.refreshLeftMenu(url,'home/homepage1.html');//第二个参数为默认打开的标签
+    });
 </script>
 
 <!-- 百度统计 -->
@@ -170,6 +193,49 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
+</script>
+
+
+<script type="text/html" id="leftMenuTpl">
+    {{#
+    var dataName = layui.setter.response.dataName ? layui.setter.response.dataName : 'data';
+    layui.each(d[dataName], function(index,item){
+    }}
+    <li data-name="{{ item.name || '' }}" class="layui-nav-item {{ item.spread ? typeof item.list === 'object' && item.list.length > 0 ? 'layui-nav-itemed' : 'layui-this': '' }}" myDir = "1">
+        {{# if(item.url){ }}
+        <a lay-href="{{ item.url }}" lay-tips="{{ item.title }}" lay-direction="2">
+            {{# }else{ }}
+            <a href="javascript:;" lay-tips="{{ item.title }}" lay-direction="2">
+                {{# } }}
+                {{# if(item.icon){ }}
+                <i class="layui-icon {{ item.icon }}"></i>
+                {{# } }}
+                <cite>{{ item.title }}</cite>
+            </a>
+            {{#
+            var itemListFun = function(itemList, myDir){
+            myDir = myDir || 2;
+            if(typeof itemList === 'object' && itemList.length > 0){ }}
+            <dl class="layui-nav-child">
+                {{# layui.each(itemList, function(index2, item2){ }}
+                <dd data-name="{{ item2.name || '' }}" class="{{ item2.spread ? (typeof item2.list === 'object' && item2.list.length > 0 ? 'layui-nav-itemed' : 'layui-this' ) : ''}}" myDir="{{ myDir }}">
+                    {{# if(item2.icon){ }}
+                    <i class="layui-icon {{ item.icon }}"></i>
+                    {{# } }}
+                    {{# if(item2.url){ }}
+                    <a lay-href="{{ item2.url }}">{{ item2.title }}</a>
+                    {{# }else{ }}
+                    <a href="javascript:;">{{ item2.title }}</a>
+                    {{# } }}
+                    {{# itemListFun(item2.list,myDir+1);}}
+                </dd>
+                {{# }) }}
+            </dl>
+            {{#  } }}
+            {{#  };
+            itemListFun(item.list); }}
+    </li>
+    {{# }) }}
 </script>
 </body>
 </html>

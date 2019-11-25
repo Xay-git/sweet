@@ -14,11 +14,12 @@ import org.springframework.stereotype.Controller;
  * @since 2019-11-22
  */
 @Controller
-@RequestMapping("/admin/menu")
+@RequestMapping("/admin")
 public class MenuController {
 
+    @RequestMapping("/menu")
     public String menu(){
-        return "/admin/menu";
+        return "/admin/menu/menu";
     }
 
 }

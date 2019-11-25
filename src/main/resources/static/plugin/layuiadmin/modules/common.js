@@ -47,7 +47,7 @@ layui.define(function(exports){
           view.innerHTML = html;
 
           //默认打开的标签逻辑start，如不需要可整段删除
-          var defaultElem = defaultPage ? $('#'+id+' a[lay-href="'+defaultPage+'"]') : {};
+          var defaultElem = {};
           if (defaultElem.length) {
             for (var i = 1; i < defaultElem.parent().attr('myDir'); i++) {
               defaultElem.parents('[myDir="'+i+'"]').addClass('layui-nav-itemed');

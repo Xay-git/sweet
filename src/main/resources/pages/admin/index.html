@@ -35,11 +35,8 @@
     </div>
 </div>
 
-<script src="/plugin/layuiadmin/layui/layui.js"></script>
-<script src="/common/js/common.js"></script>
-
 <script type="text/javascript">
-    var Sweet = {
+    var Sweet  = {
         ctxPath: "",
         addCtx: function (ctx) {
             if (this.ctxPath === "") {
@@ -49,6 +46,11 @@
     };
     Sweet.addCtx("${ctxPath}");
 </script>
+
+<script src="/plugin/layuiadmin/layui/layui.js"></script>
+<script src="/plugin/vue/vue.min.js"></script>
+<script src="/common/js/common.js"></script>
+
 
 <script>
     layui.config({
@@ -60,9 +62,9 @@
             "code": 0,
             "msg": "",
             "data": [{
-                "title": "一级",
+                "title": "菜单",
                 "icon": "layui-icon-auz",
-                "url": "//www.layui.com/admin/#get"
+                "url": "/admin/menu"
             },{
                 "title": "二级默认展开",
                 "spread": true,
@@ -93,7 +95,7 @@
                 }]
             }]
         }
-        layui.admin.events.refreshLeftMenu(data);//如果在子页面想要刷新左侧菜单则使用top.layui.admin.events.refreshLeftMenu（前面加top.）
+        layui.admin.events.refreshLeftMenu(data,'/admin/menu');//如果在子页面想要刷新左侧菜单则使用top.layui.admin.events.refreshLeftMenu（前面加top.）
     });
 </script>
 

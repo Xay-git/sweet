@@ -1,0 +1,1 @@
+package com.sweet.core.model.system;import lombok.Data;import lombok.experimental.Accessors;import java.util.List;@Data@Accessors(chain = true)public class layMenu {    public String title;    public String icon;    public String url;    public boolean spread;    public List<layMenu> list;}

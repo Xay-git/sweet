@@ -37,7 +37,7 @@ layui.define(function(exports){
   };
 
   //刷新左侧菜单
-  admin.events.refreshLeftMenu = function(data){
+  admin.events.refreshLeftMenu = function(data,defaultPage){
     var id = 'LAY-system-side-menu',
         getTpl = document.getElementById('leftMenuTpl').innerHTML
         ,view = document.getElementById(id);
@@ -47,7 +47,7 @@ layui.define(function(exports){
           view.innerHTML = html;
 
           //默认打开的标签逻辑start，如不需要可整段删除
-          var defaultElem = {};
+          var defaultElem = defaultPage ? $('#'+id+' a[lay-href="'+defaultPage+'"]') : {};
           if (defaultElem.length) {
             for (var i = 1; i < defaultElem.parent().attr('myDir'); i++) {
               defaultElem.parents('[myDir="'+i+'"]').addClass('layui-nav-itemed');

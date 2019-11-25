@@ -21,13 +21,13 @@ public class ResultBean<T> implements Serializable {
 	@ApiModelProperty("返回的状态码")
 	private int code;
 	@ApiModelProperty("返回的信息")
-	private String msg;
+	private String message;
 	@ApiModelProperty("返回的数据")
 	private T data;
 
 
-	public ResultBean( int code, String msg,T data) {
-		this.msg = msg;
+	public ResultBean( int code, String message,T data) {
+		this.message = message;
 		this.code = code;
 		this.data = data;
 	}

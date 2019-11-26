@@ -1,0 +1,1 @@
+layui.config({    base: '/plugin/module/'}).extend({    treeTable: 'treeTable/treeTable'});

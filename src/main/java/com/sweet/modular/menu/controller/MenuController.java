@@ -39,6 +39,11 @@ public class MenuController {
         return "/admin/menu/menu";
     }
 
+    @RequestMapping("menu_add")
+    public String menu_add(){
+        return "/admin/menu/menu_add";
+    }
+
     @RequestMapping("/addMenu")
     @ResponseBody
     public ResultBean addMenu(String menuId){

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,108 +8,33 @@
     <link rel="stylesheet" href="/common/libs/layui/css/layui.css"/>
     <link rel="stylesheet" href="/plugin/module/admin.css   "/>
     <script src="/plugin/vue/vue.min.js"></script>
+    <script src="/plugin/vue/axios.min.js"></script>
+    <script src="/plugin/vue/qs.min.js"></script>
+    <script src="/common/js/request.js"></script>
+    <script src="/modular/js/api.js"></script>
+
 </head>
 <body class="layui-layout-body">
-<div class="layui-layout layui-layout-admin" id="app">
-    <!-- 头部 -->
-    <div class="layui-header">
-        <div class="layui-logo">
-            <img src="https://demo.easyweb.vip/iframe/assets/images/logo.png"/>
-            <cite>&nbsp;EasyWeb Iframe</cite>
-        </div>
-        <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item" lay-unselect>
-                <a ew-event="flexible" title="侧边伸缩"><i class="layui-icon layui-icon-shrink-right"></i></a>
-            </li>
-            <li class="layui-nav-item" lay-unselect>
-                <a ew-event="refresh" title="刷新"><i class="layui-icon layui-icon-refresh-3"></i></a>
-            </li>
-        </ul>
-        <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item" lay-unselect>
-                <a ew-event="message" title="消息">
-                    <i class="layui-icon layui-icon-notice"></i>
-                    <span class="layui-badge-dot"></span><!--小红点-->
-                </a>
-            </li>
-            <li class="layui-nav-item" lay-unselect>
-                <a ew-event="note" title="便签"><i class="layui-icon layui-icon-note"></i></a>
-            </li>
-            <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                <a ew-event="fullScreen" title="全屏"><i class="layui-icon layui-icon-screen-full"></i></a>
-            </li>
-            <li class="layui-nav-item" lay-unselect>
-                <a>
-                    <img src="https://demo.easyweb.vip/iframe/assets/images/logo.png" class="layui-nav-img">
-                    <cite>管理员</cite>
-                </a>
-                <dl class="layui-nav-child">
-                    <dd lay-unselect>
-                        <a ew-href="page/template/user-info.html">个人中心</a>
-                    </dd>
-                    <dd lay-unselect>
-                        <a ew-event="psw">修改密码</a>
-                    </dd>
-                    <hr>
-                    <dd lay-unselect>
-                        <a ew-event="logout" data-url="page/template/login.html">退出</a>
-                    </dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item" lay-unselect>
-                <a ew-event="theme" title="主题"><i class="layui-icon layui-icon-more-vertical"></i></a>
-            </li>
-        </ul>
+
+    <div class="layui-layout layui-layout-admin" id="app">
+
+        <!-- _header -->
+        <% include("/common/_header.html"){} %>
+
+        <!-- _left -->
+        <% include("/common/_left.html"){} %>
+
+        <!-- 主体部分 -->
+        <div class="layui-body"></div>
+
+        <!-- _footer -->
+        <% include("/common/_footer.html"){} %>
+
     </div>
 
-    <!-- 侧边栏 -->
-    <div class="layui-side">
-        <div class="layui-side-scroll">
-            <ul id="LAY-system-side-menu" class="layui-nav layui-nav-tree arrow2" lay-filter="admin-side-nav" lay-accordion="true"
-                style="margin-top: 15px;">
+<!-- loading -->
+<% include("/common/loading.html"){} %>
 
-                <li class="layui-nav-item" v-for="item in tree" :class="item.spread?'layui-nav-itemed':''">
-                    <a :lay-href="item.url">
-                        <i class="layui-icon" :class="item.icon"></i>&emsp;
-                        <cite>{{item.title}}</cite>
-                    </a>
-
-                    <dl class="layui-nav-child" v-if="item.list&&item.list.length>0" :style="item.spread?'display:block':''">
-                        <dd v-for="child0 in item.list" :class="child0.spread?'layui-nav-itemed':''">
-                            <a :lay-href="child0.url">{{child0.title}}</a>
-                            <dl class="layui-nav-child" v-if="child0.list&&child0.list.length>0">
-                                <dd v-for="child1 in child0.list" :class="child1.spread?'layui-nav-itemed':''">
-                                    <a :lay-href="child1.url">{{child1.title}}</a>
-                                    <dl class="layui-nav-child" v-if="child1.list&&child1.list.length>0">
-                                        <dd v-for="child2 in child1.list" :class="child2.spread?'layui-nav-itemed':''">
-                                            <a :lay-href="child2.url">{{child2.title}}</a>
-                                        </dd>
-                                    </dl>
-                                </dd>
-                            </dl>
-                        </dd>
-                    </dl>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-
-    <!-- 主体部分 -->
-    <div class="layui-body"></div>
-    <!-- 底部 -->
-    <div class="layui-footer">
-        copyright © 2019 <a href="http://easyweb.vip" target="_blank">easyweb.vip</a> all rights reserved.
-        <span class="pull-right">Version 3.1.5</span>
-    </div>
-</div>
-
-<!-- 加载动画 -->
-<div class="page-loading">
-    <div class="ball-loader">
-        <span></span><span></span><span></span><span></span>
-    </div>
-</div>
 
 <!-- js部分 -->
 <script type="text/javascript" src="/common/libs/layui/layui.js"></script>
@@ -159,10 +83,11 @@
         },
         mounted:async function() {
             vm = this;
-            layui.use(['index','laytpl'], function () {
-                var $ = layui.jquery;
+            var data = (await api.getTableTree()).data;
+
+            console.log(data);
+            layui.use(['index'], function () {
                 var index = layui.index;
-                var laytpl = layui.laytpl;
                 // 默认加载主页
                 index.loadHome({
                     menuPath: '/admin/menu',

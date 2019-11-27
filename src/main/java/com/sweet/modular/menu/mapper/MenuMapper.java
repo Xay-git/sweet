@@ -26,4 +26,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
     @Select("select * from t_menu")
     public ArrayList<MenuResult> getMenuTree();
 
+    @Select("select MENU_ID id,MENU_NAME title where type = 0")
+    public ArrayList<layMenu> Tree();
+
 }

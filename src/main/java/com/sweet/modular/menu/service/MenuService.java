@@ -3,6 +3,7 @@ package com.sweet.modular.menu.service;
 import com.sweet.core.model.system.layTree;
 import com.sweet.modular.menu.entity.Menu;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.sweet.modular.menu.model.MenuResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,8 @@ import java.util.List;
 public interface MenuService extends IService<Menu> {
 
     public ArrayList<layTree> getParentMenu();
+
+    public ArrayList<MenuResult> getMenuTree();
 
     public Menu addMenu(String menuId);
 

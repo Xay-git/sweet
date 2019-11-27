@@ -4,6 +4,7 @@ import com.sweet.core.model.system.layTree;
 import com.sweet.core.sweetConst;
 import com.sweet.modular.menu.entity.Menu;
 import com.sweet.modular.menu.mapper.MenuMapper;
+import com.sweet.modular.menu.model.MenuResult;
 import com.sweet.modular.menu.service.MenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     @Override
     public ArrayList<layTree> getParentMenu() {
         return baseMapper.getParentMenu();
+    }
+
+    @Override
+    public ArrayList<MenuResult> getMenuTree() {
+        return baseMapper.getMenuTree();
     }
 
     @Override

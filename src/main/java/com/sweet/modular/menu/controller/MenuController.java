@@ -6,6 +6,7 @@ import com.sweet.core.exception.UserNotExistException;
 import com.sweet.core.model.ResultBean;
 import com.sweet.core.model.system.layTree;
 import com.sweet.modular.menu.entity.Menu;
+import com.sweet.modular.menu.model.MenuResult;
 import com.sweet.modular.menu.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,6 +61,49 @@ public class MenuController {
         }
 
         return ResultBean.success(newtrees);
+    }
+
+
+    @RequestMapping("/tableTree")
+    @ResponseBody
+    public ResultBean tableTree(){
+        ArrayList<MenuResult> trees = (ArrayList<MenuResult>) menuService.getMenuTree();
+        ArrayList<MenuResult> cloneTree = (ArrayList<MenuResult>) trees.clone();
+        ArrayList<MenuResult> newtrees = new ArrayList<MenuResult>();
+        System.out.println(trees);
+        if(cloneTree.size()>0){
+            for(MenuResult menu:cloneTree){
+                if(menu.getParentId().equals("0")){
+                    newtrees.add(menu);
+                }
+            }
+            newtrees = coverMenu(newtrees,cloneTree);
+        }
+
+
+
+        return ResultBean.success(newtrees);
+    }
+
+    public  ArrayList<MenuResult> coverMenu(ArrayList<MenuResult> trees, ArrayList<MenuResult> tempTrees){
+        if(trees.size()==0)return trees;
+        if(tempTrees.size()==0)return tempTrees;
+        ArrayList<MenuResult> layTrees = new ArrayList<MenuResult>();
+        ArrayList<MenuResult> tempLayTrees = (ArrayList<MenuResult>) tempTrees.clone();
+        for(MenuResult node:trees){
+            for(MenuResult temp:tempTrees){
+                if(temp.getParentId().equals(node.getMenuId())){
+                    if(node.getChildren()==null){
+                        node.setChildren(new ArrayList<MenuResult>());
+                    }
+                    node.getChildren().add(temp);
+                    layTrees.add(temp);
+                    tempLayTrees.remove(temp);
+                }
+            }
+        }
+        coverMenu(layTrees,tempLayTrees);
+        return trees;
     }
 
 

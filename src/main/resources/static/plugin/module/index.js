@@ -17,8 +17,8 @@ layui.define(['layer', 'element', 'admin'], function (exports) {
     var homeUrl;  // 主页地址，主页不参与Tab记忆
 
     var index = {
-        pageTabs: false,  // 是否开启多标签
-        cacheTab: true,   // 是否记忆打开的选项卡
+        pageTabs: true,  // 是否开启多标签
+        cacheTab: false,   // 是否记忆打开的选项卡
         openTabCtxMenu: true,  // 是否开启Tab右键菜单
         maxTabNum: 20,  // 最多打开多少个tab
         mTabList: [], // 当前打开的Tab

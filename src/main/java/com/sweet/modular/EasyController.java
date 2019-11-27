@@ -1,0 +1,1 @@
+package com.sweet.modular;public class EasyController {}

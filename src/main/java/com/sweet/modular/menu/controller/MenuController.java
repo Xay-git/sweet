@@ -5,6 +5,7 @@ import com.sweet.core.exception.ServiceException;
 import com.sweet.core.exception.UserNotExistException;
 import com.sweet.core.model.ResultBean;
 import com.sweet.core.model.system.layTree;
+import com.sweet.core.util.StringUtil;
 import com.sweet.modular.menu.entity.Menu;
 import com.sweet.modular.menu.model.MenuResult;
 import com.sweet.modular.menu.service.MenuService;
@@ -39,9 +40,21 @@ public class MenuController {
         return "/admin/menu/menu";
     }
 
-    @RequestMapping("menu_add")
+    @RequestMapping("/menu_add")
     public String menu_add(){
         return "/admin/menu/menu_add";
+    }
+
+    @RequestMapping("/menu_edit")
+    public String menu_edit(String menuId){
+        return "/admin/menu/menu_edit";
+    }
+
+    @RequestMapping("/menulist")
+    @ResponseBody
+    public ResultBean menulist(){
+        ArrayList<layTree> list = menuService.getParentMenu();
+        return ResultBean.success(list);
     }
 
     @RequestMapping("/addMenu")
@@ -50,6 +63,26 @@ public class MenuController {
         Menu menu = menuService.addMenu(menuId);
         return ResultBean.success(menu);
     }
+
+    @RequestMapping("/editMenu")
+    @ResponseBody
+    public ResultBean editMenu(Menu menu){
+        if(StringUtil.isEmpty(menu.getMenuId())){
+            menuService.save(menu);
+        }else{
+            menuService.updateById(menu);
+        }
+        return ResultBean.success(menu);
+    }
+
+    @RequestMapping("/getMenu")
+    @ResponseBody
+    public ResultBean getMenu(String menuId){
+        Menu menu = menuService.getById(menuId);
+        return ResultBean.success(menu);
+    }
+
+
 
     @RequestMapping("/tree")
     @ResponseBody
@@ -84,9 +117,6 @@ public class MenuController {
             }
             newtrees = coverMenu(newtrees,cloneTree);
         }
-
-
-
         return ResultBean.success(newtrees);
     }
 

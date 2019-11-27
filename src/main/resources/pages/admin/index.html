@@ -36,12 +36,23 @@
 <% include("/common/loading.html"){} %>
 
 
+<script type="text/javascript">
+    var app = {
+        ctxPath: "",
+        addCtx: function (ctx) {
+            if (this.ctxPath === "") {
+                this.ctxPath = ctx;
+            }
+        }
+    };
+    app.addCtx("${ctxPath}");
+</script>
 <!-- js部分 -->
 <script type="text/javascript" src="/common/libs/layui/layui.js"></script>
 <script type="text/javascript" src="/common/js/common.js"></script>
 <script>
 
-
+    var $ ;
     var vm = new Vue({
         el: '#app',
         data: {
@@ -50,14 +61,13 @@
             tree:[{
                 "title": "菜单",
                 "icon": "layui-icon-auz",
-                "url": "/admin/menu"
+                "url": "/admin/menu",
+                "spread": true,
             },{
                 "title": "二级默认展开",
-                "spread": true,
                 "icon": "layui-icon-home",
                 "list": [{
                     "title": "默认展开",
-                    "spread": true,
                     "url": "/"
                 }, {
                     "title": "二级",
@@ -83,15 +93,16 @@
         },
         mounted:async function() {
             vm = this;
-            var data = (await api.getTableTree()).data;
+            var data = await api.getTableTree();
 
             console.log(data);
-            layui.use(['index'], function () {
+            layui.use(['index','jquery'], function () {
+                $ = layui.jquery;
                 var index = layui.index;
                 // 默认加载主页
                 index.loadHome({
-                    menuPath: '/admin/menu',
-                    menuName: '菜单'
+                    menuPath: '/admin/console',
+                    menuName: '主页'
                 });
 
             });
@@ -101,6 +112,15 @@
     })
 
 
+    function getParentIframe(){
+        var iframe = $(".layui-show").find("iframe");
+        return iframe[0].contentWindow;
+    }
+
+    function getParentIframeWindow(){
+        var iframe = $(".layui-show").find("iframe");
+        return iframe;
+    }
 
 </script>
 

@@ -142,6 +142,7 @@ layui.define(['layer'], function (exports) {
                     admin.showLoading(layero, 2);
                     $(layero).children('.layui-layer-content').load(param.url, function () {
                         sCallBack ? sCallBack(layero, index) : '';
+                        //自适应
                         admin.removeLoading(layero, false);
                     });
                 };

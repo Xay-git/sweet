@@ -20,13 +20,13 @@ import java.util.List;
  */
 public interface MenuMapper extends BaseMapper<Menu> {
 
-    @Select("select MENU_ID id,MENU_NAME title,PARENT_ID pid from t_menu")
+    @Select("select MENU_ID id,MENU_NAME title,PARENT_ID pid from t_menu order by ORDER_NUM asc")
     public ArrayList<layTree> getParentMenu();
 
-    @Select("select * from t_menu")
+    @Select("select * from t_menu order by ORDER_NUM asc")
     public ArrayList<MenuResult> getMenuTree();
 
-    @Select("select MENU_ID id,MENU_NAME title where type = 0")
+    @Select("select MENU_ID id,MENU_NAME title from t_menu where type = 0 order by ORDER_NUM asc")
     public ArrayList<layMenu> Tree();
 
 }

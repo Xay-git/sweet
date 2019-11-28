@@ -14,11 +14,21 @@
     </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        ID, USER_NAME, PASSWORD, BIRTHDAY, ACCOUNT_STATUS
+        ID, USER_NAME, PASSWORD, BIRTHDAY, ACCOUNT_STATUS ,DEPT_ID,CREATE_TIME
     </sql>
 
     <select id="findByUserName" resultMap="BaseResultMap">
         select * from t_user where user_name = #{userName}
+    </select>
+
+    <select id="customPageList" resultType="com.sweet.modular.user.entity.User" parameterType="com.sweet.modular.user.entity.User">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        <if test="param.deptId != null and param.deptId != ''">
+            where  dept_id = #{param.deptId}
+        </if>
+        order by create_time asc
     </select>
 
 </mapper>

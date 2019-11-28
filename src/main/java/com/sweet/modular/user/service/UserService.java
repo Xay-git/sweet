@@ -1,5 +1,7 @@
 package com.sweet.modular.user.service;
 
+import com.sweet.core.model.system.LayuiPageInfo;
+import com.sweet.modular.dept.entity.Dept;
 import com.sweet.modular.user.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.apache.ibatis.annotations.Param;
@@ -15,5 +17,8 @@ import org.apache.ibatis.annotations.Param;
 public interface UserService extends IService<User> {
 
     User findByUserName(String userName);
+
+    public LayuiPageInfo findPageBySpec(User user);
+
 
 }

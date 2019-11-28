@@ -18,9 +18,9 @@ layui.define(['layer', 'element', 'admin'], function (exports) {
 
     var index = {
         pageTabs: true,  // 是否开启多标签
-        cacheTab: false,   // 是否记忆打开的选项卡
+        cacheTab: true,   // 是否记忆打开的选项卡
         openTabCtxMenu: true,  // 是否开启Tab右键菜单
-        maxTabNum: 20,  // 最多打开多少个tab
+        maxTabNum: 30,  // 最多打开多少个tab
         mTabList: [], // 当前打开的Tab
         mTabPosition: undefined, // 当前选中的Tab
         /* 加载主体部分 */

@@ -1,0 +1,1 @@
+package com.sweet.modular.dept.service;import com.sweet.modular.dept.entity.Dept;import com.baomidou.mybatisplus.extension.service.IService;/** * <p> * 部门表 服务类 * </p> * * @author wxl * @since 2019-11-28 */public interface DeptService extends IService<Dept> {}

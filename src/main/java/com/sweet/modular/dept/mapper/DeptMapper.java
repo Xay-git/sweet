@@ -1,0 +1,1 @@
+package com.sweet.modular.dept.mapper;import com.sweet.modular.dept.entity.Dept;import com.baomidou.mybatisplus.core.mapper.BaseMapper;/** * <p> * 部门表 Mapper 接口 * </p> * * @author wxl * @since 2019-11-28 */public interface DeptMapper extends BaseMapper<Dept> {}

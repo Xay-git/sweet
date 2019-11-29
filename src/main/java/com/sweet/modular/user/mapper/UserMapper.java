@@ -22,4 +22,5 @@ public interface UserMapper extends BaseMapper<User> {
     Page<User> customPageList(Page page, @Param("param") User dept);
 
 
+
 }

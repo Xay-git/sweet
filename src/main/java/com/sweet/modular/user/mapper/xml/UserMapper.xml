@@ -21,14 +21,17 @@
         select * from t_user where user_name = #{userName}
     </select>
 
-    <select id="customPageList" resultType="com.sweet.modular.user.entity.User" parameterType="com.sweet.modular.user.entity.User">
+    <select id="customPageList" resultType="com.sweet.modular.user.model.UserDto" parameterType="com.sweet.modular.user.entity.User">
         select
-        <include refid="Base_Column_List"/>
-        from t_user
+        u.id,u.user_name,u.birthday,u.dept_id,u.account_status,d.dept_name
+        from t_user as u left join t_dept as d on u.dept_id = d.dept_id where 1 = 1
         <if test="param.deptId != null and param.deptId != ''">
-            where  dept_id = #{param.deptId}
+            and  u.dept_id = #{param.deptId}
+            or u.dept_id in
+            (select dept_id from t_dept where
+             parent_ids like concat('%',#{param.deptId} , '%'))
         </if>
-        order by create_time asc
+        order by u.create_time asc
     </select>
 
 </mapper>

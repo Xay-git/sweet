@@ -18,7 +18,10 @@ public interface UserService extends IService<User> {
 
     User findByUserName(String userName);
 
-    public LayuiPageInfo findPageBySpec(User user);
+    LayuiPageInfo findPageBySpec(User user);
+
+    User findUserById(String id);
+
 
 
 }

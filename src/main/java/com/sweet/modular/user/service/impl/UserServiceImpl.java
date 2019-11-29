@@ -38,6 +38,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return LayuiPageFactory.createPageInfo(page);
     }
 
+    @Override
+    public User findUserById(String id) {
+        User user = baseMapper.selectById(id);
+        user.setPassword(null);
+        return user;
+    }
+
     private Page getPageContext() {
         return LayuiPageFactory.defaultPage();
     }

@@ -4,7 +4,7 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.sweet.modular.system.entity.User">
-        <id column="ID" property="id" />
+        <id column="USER_ID" property="userId" />
         <result column="USER_NAME" property="userName" />
         <result column="PASSWORD" property="password" />
         <result column="BIRTHDAY" property="birthday" />
@@ -14,7 +14,7 @@
     </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        ID, USER_NAME, PASSWORD, BIRTHDAY, ACCOUNT_STATUS ,DEPT_ID,CREATE_TIME
+        USER_ID, USER_NAME, PASSWORD, BIRTHDAY, ACCOUNT_STATUS ,DEPT_ID,CREATE_TIME
     </sql>
 
     <select id="findByUserName" resultMap="BaseResultMap">
@@ -23,7 +23,7 @@
 
     <select id="customPageList" resultType="com.sweet.modular.system.model.UserDto" parameterType="com.sweet.modular.system.entity.User">
         select
-        u.id,u.user_name,u.birthday,u.dept_id,u.account_status,d.dept_name
+        u.user_id,u.user_name,u.birthday,u.dept_id,u.account_status,d.dept_name
         from t_user as u left join t_dept as d on u.dept_id = d.dept_id where 1 = 1
         <if test="param.deptId != null and param.deptId != ''">
             and  u.dept_id = #{param.deptId}

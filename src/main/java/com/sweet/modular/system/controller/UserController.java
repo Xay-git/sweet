@@ -57,7 +57,7 @@ public class UserController {
     @RequestMapping("/addUser")
     @ResponseBody
     public ResultBean addUser(User user){
-        if(StringUtil.isEmpty(user.getId())){
+        if(StringUtil.isEmpty(user.getUserId())){
             user.setPassword(MD5Utils.encrypt(user.getUserName().toLowerCase(), User.DEFAULT_PASSWORD));
             userService.save(user);
         }else{
@@ -73,8 +73,8 @@ public class UserController {
      */
     @RequestMapping("/getUser")
     @ResponseBody
-    public ResultBean getUser(String id){
-       User user = userService.findUserById(id);
+    public ResultBean getUser(String userId){
+       User user = userService.findUserById(userId);
        return ResultBean.success(user);
     }
 

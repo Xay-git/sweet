@@ -4,6 +4,7 @@ package com.sweet.modular.user.controller;
 import com.sweet.core.model.ResultBean;
 import com.sweet.core.model.system.LayuiPageInfo;
 import com.sweet.core.model.system.layTree;
+import com.sweet.core.util.MD5Utils;
 import com.sweet.core.util.StringUtil;
 import com.sweet.modular.base.BaseService;
 import com.sweet.modular.dept.service.DeptService;
@@ -55,6 +56,7 @@ public class UserController {
     @ResponseBody
     public ResultBean addUser(User user){
         if(StringUtil.isEmpty(user.getId())){
+            user.setPassword(MD5Utils.encrypt(user.getUserName(), User.DEFAULT_PASSWORD));
             userService.save(user);
         }else{
             userService.updateById(user);
@@ -68,9 +70,10 @@ public class UserController {
         ArrayList<layTree> trees = deptService.deptTree();
         ArrayList<layTree> cloneTree = (ArrayList<layTree>) trees.clone();
         ArrayList<layTree> newtrees = new ArrayList<layTree>();
-
-        if(cloneTree.size()>0){
-            for(layTree layTree:cloneTree){
+        System.out.println(cloneTree);
+        if(trees.size()>0){
+            for (int i= 0;i<trees.size();i++){
+                layTree layTree = trees.get(i);
                 if(layTree.getPid().equals("0")){
                     newtrees.add(layTree);
                     cloneTree.remove(layTree);

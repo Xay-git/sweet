@@ -109,10 +109,13 @@ public class MenuController {
         ArrayList<MenuResult> cloneTree = (ArrayList<MenuResult>) trees.clone();
         ArrayList<MenuResult> newtrees = new ArrayList<MenuResult>();
         System.out.println(trees);
-        if(cloneTree.size()>0){
-            for(MenuResult menu:cloneTree){
+
+        if(trees.size()>0){
+            for (int i= 0;i<trees.size();i++){
+                MenuResult menu = trees.get(i);
                 if(menu.getParentId().equals("0")){
                     newtrees.add(menu);
+                    cloneTree.remove(menu);
                 }
             }
             newtrees = coverMenu(newtrees,cloneTree);

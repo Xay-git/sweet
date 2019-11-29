@@ -77,7 +77,6 @@ public class UserController {
         ArrayList<layTree> trees = deptService.deptTree();
         ArrayList<layTree> cloneTree = (ArrayList<layTree>) trees.clone();
         ArrayList<layTree> newtrees = new ArrayList<layTree>();
-        System.out.println(cloneTree);
         if(trees.size()>0){
             for (int i= 0;i<trees.size();i++){
                 layTree layTree = trees.get(i);
@@ -87,9 +86,9 @@ public class UserController {
                 }
             }
             newtrees = baseService.coverLayuiTree(newtrees,cloneTree);
+            //默认展开第一个
+            newtrees.get(0).setSpread(true);
         }
-        //默认展开第一个
-        newtrees.get(0).setSpread(true);
         return ResultBean.success(newtrees);
     }
 

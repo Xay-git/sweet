@@ -1,0 +1,1 @@
+package com.sweet.core.properties;import lombok.Data;import lombok.experimental.Accessors;import org.springframework.boot.context.properties.ConfigurationProperties;import org.springframework.stereotype.Component;@Component@ConfigurationProperties(prefix = "system")@Data@Accessors(chain = true)public class SystemProperties {    private long sessionTimeout;}

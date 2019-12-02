@@ -29,6 +29,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         return LayuiPageFactory.createPageInfo(page);
     }
 
+    @Override
+    public Integer deleteRolesById(String roleId) {
+        return baseMapper.deleteRolesById(roleId);
+    }
+
+
     private Page getPageContext() {
         return LayuiPageFactory.defaultPage();
     }

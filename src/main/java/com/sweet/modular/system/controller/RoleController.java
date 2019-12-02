@@ -45,7 +45,9 @@ public class RoleController {
 
     @RequestMapping("/setAuthority")
     @ResponseBody
-    public ResultBean setAuthority(String roleId,String[] menuIds){
+    public ResultBean setAuthority(String roleId,@RequestParam(value = "menuIds[]")String[] menuIds){
+        roleService.deleteRolesById(roleId);
+
         System.out.println(roleId);
         System.out.println(menuIds);
         for(String menuId:menuIds){

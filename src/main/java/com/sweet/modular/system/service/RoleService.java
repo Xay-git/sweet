@@ -17,5 +17,8 @@ public interface RoleService extends IService<Role> {
 
     LayuiPageInfo findPageBySpec(Role role);
 
+    Integer deleteRolesById(String roleId);
+
+
 
 }

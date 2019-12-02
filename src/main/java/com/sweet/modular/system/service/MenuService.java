@@ -17,10 +17,12 @@ import java.util.ArrayList;
  */
 public interface MenuService extends IService<Menu> {
 
-    public ArrayList<layTree> getParentMenu();
+    public ArrayList<layTree> getMenuList();
 
     public ArrayList<MenuResult> getMenuTree();
 
     public Menu addMenu(String menuId);
+
+    public ArrayList<layTree> getParentMenu();
 
 }

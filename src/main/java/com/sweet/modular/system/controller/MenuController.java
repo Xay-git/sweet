@@ -82,7 +82,7 @@ public class MenuController {
     @RequestMapping("/tree")
     @ResponseBody
     public ResultBean tree(){
-        ArrayList<layTree> trees = menuService.getParentMenu();
+        ArrayList<layTree> trees = menuService.getMenuList();
         ArrayList<layTree> cloneTree = (ArrayList<layTree>) trees.clone();
         ArrayList<layTree> newtrees = new ArrayList<layTree>();
 
@@ -103,7 +103,6 @@ public class MenuController {
         ArrayList<MenuResult> trees = (ArrayList<MenuResult>) menuService.getMenuTree();
         ArrayList<MenuResult> cloneTree = (ArrayList<MenuResult>) trees.clone();
         ArrayList<MenuResult> newtrees = new ArrayList<MenuResult>();
-        System.out.println(trees);
 
         if(trees.size()>0){
             for (int i= 0;i<trees.size();i++){
@@ -113,7 +112,9 @@ public class MenuController {
                     cloneTree.remove(menu);
                 }
             }
-            newtrees = coverMenu(newtrees,cloneTree);
+            if(cloneTree.size()>0){
+                newtrees = coverMenu(newtrees,cloneTree);
+            }
         }
         return ResultBean.success(newtrees);
     }
@@ -150,6 +151,9 @@ public class MenuController {
                 if(temp.getPid().equals(node.getId())){
                    if(node.getChildren()==null){
                        node.setChildren(new ArrayList<layTree>());
+                   }
+                   if(temp.getPid().equals("0")){
+                       temp.setSpread(true);
                    }
                     node.getChildren().add(temp);
                     layTrees.add(temp);

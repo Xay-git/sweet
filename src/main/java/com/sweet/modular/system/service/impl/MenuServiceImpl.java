@@ -25,8 +25,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 
 
     @Override
-    public ArrayList<layTree> getParentMenu() {
-        return baseMapper.getParentMenu();
+    public ArrayList<layTree> getMenuList() {
+        return baseMapper.getMenuList();
     }
 
     @Override
@@ -42,5 +42,10 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         menu.setType(sweetConst.MENU);
         this.save(menu);
         return menu;
+    }
+
+    @Override
+    public ArrayList<layTree> getParentMenu() {
+        return baseMapper.getParentMenu();
     }
 }

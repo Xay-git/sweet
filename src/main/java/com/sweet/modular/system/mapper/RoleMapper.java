@@ -1,7 +1,9 @@
-package com.sweet.modular.role.mapper;
+package com.sweet.modular.system.mapper;
 
-import com.sweet.modular.role.entity.Role;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sweet.modular.system.entity.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.sweet.modular.system.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -17,5 +19,8 @@ import java.util.List;
 public interface RoleMapper extends BaseMapper<Role> {
 
     List<Role> findByUserName(@Param("userName") String userName);
+
+    Page<Role> customPageList(Page page, @Param("param") Role role);
+
 
 }

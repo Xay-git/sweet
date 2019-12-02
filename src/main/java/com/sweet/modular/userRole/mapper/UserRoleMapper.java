@@ -1,11 +1,7 @@
 package com.sweet.modular.userRole.mapper;
 
-import com.sweet.modular.role.entity.Role;
 import com.sweet.modular.userRole.entity.UserRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Select;
-
-import java.util.List;
 
 /**
  * <p>

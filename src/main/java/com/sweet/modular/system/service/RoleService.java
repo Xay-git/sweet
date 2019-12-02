@@ -3,7 +3,11 @@ package com.sweet.modular.system.service;
 import com.sweet.core.model.system.LayuiPageInfo;
 import com.sweet.modular.system.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.sweet.modular.system.entity.RoleMenu;
 import com.sweet.modular.system.entity.User;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -18,6 +22,9 @@ public interface RoleService extends IService<Role> {
     LayuiPageInfo findPageBySpec(Role role);
 
     Integer deleteRolesById(String roleId);
+
+    List<String> getMenusByRoleId(String roleId);
+
 
 
 

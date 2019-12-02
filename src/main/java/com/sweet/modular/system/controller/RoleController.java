@@ -4,6 +4,8 @@ package com.sweet.modular.system.controller;
 import com.sweet.core.model.ResultBean;
 import com.sweet.core.model.system.LayuiPageInfo;
 import com.sweet.modular.system.entity.Role;
+import com.sweet.modular.system.entity.RoleMenu;
+import com.sweet.modular.system.service.RoleMenuService;
 import com.sweet.modular.system.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * <p>
@@ -25,7 +29,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RoleController {
 
     @Autowired
-    private RoleService roleService;
+    RoleService roleService;
+
+    @Autowired
+    RoleMenuService roleMenuService;
 
     @RequestMapping("")
     public String roleList(){
@@ -40,7 +47,15 @@ public class RoleController {
     @RequestMapping("/getRoleList")
     @ResponseBody
     public LayuiPageInfo getRoleList(Role role){
+        System.out.println(roleService);
         return roleService.findPageBySpec(role);
+    }
+
+    @RequestMapping("/getAuthority")
+    @ResponseBody
+    public ResultBean getAuthority(String roleId){
+        List<String> list = roleService.getMenusByRoleId(roleId);
+        return ResultBean.success(list);
     }
 
     @RequestMapping("/setAuthority")
@@ -48,11 +63,15 @@ public class RoleController {
     public ResultBean setAuthority(String roleId,@RequestParam(value = "menuIds[]")String[] menuIds){
         roleService.deleteRolesById(roleId);
 
-        System.out.println(roleId);
-        System.out.println(menuIds);
-        for(String menuId:menuIds){
-            System.out.println(menuId);
+        if(menuIds.length>0){
+            for(String menuId:menuIds){
+                RoleMenu roleMenu = new RoleMenu();
+                roleMenu.setRid(roleId);
+                roleMenu.setMid(menuId);
+                roleMenuService.save(roleMenu);
+            }
         }
+
         return ResultBean.success();
     }
 

@@ -5,11 +5,14 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sweet.core.model.system.LayuiPageFactory;
 import com.sweet.core.model.system.LayuiPageInfo;
 import com.sweet.modular.system.entity.Role;
+import com.sweet.modular.system.entity.RoleMenu;
 import com.sweet.modular.system.entity.User;
 import com.sweet.modular.system.mapper.RoleMapper;
 import com.sweet.modular.system.service.RoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -32,6 +35,11 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     @Override
     public Integer deleteRolesById(String roleId) {
         return baseMapper.deleteRolesById(roleId);
+    }
+
+    @Override
+    public List<String> getMenusByRoleId(String roleId) {
+        return baseMapper.getMenusByRoleId(roleId);
     }
 
 

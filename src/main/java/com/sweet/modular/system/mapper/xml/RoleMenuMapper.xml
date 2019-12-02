@@ -3,10 +3,10 @@
 <mapper namespace="com.sweet.modular.rolePermission.mapper.RolePermissionMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.sweet.modular.rolePermission.entity.RolePermission">
+    <resultMap id="BaseResultMap" type="com.sweet.modular.system.entity.RoleMenu">
         <id column="ID" property="id" />
         <result column="RID" property="rid" />
-        <result column="PID" property="pid" />
+        <result column="MID" property="mid" />
     </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">

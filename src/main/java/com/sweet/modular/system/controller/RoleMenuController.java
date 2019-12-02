@@ -1,4 +1,4 @@
-package com.sweet.modular.rolePermission.controller;
+package com.sweet.modular.system.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/rolePermission/role-permission")
-public class RolePermissionController {
+public class RoleMenuController {
 
 }

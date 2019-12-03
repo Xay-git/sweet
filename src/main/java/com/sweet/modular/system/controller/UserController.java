@@ -55,17 +55,19 @@ public class UserController {
      * @param user
      * @return
      */
-    @RequestMapping("/addUser")
+    @RequestMapping("/editUser")
     @ResponseBody
     @Transactional
-    public ResultBean addUser(User user,String roleAssign){
+    public ResultBean editUser(User user,String roleAssign){
         if(StringUtil.isEmpty(user.getUserId())){
             user.setPassword(MD5Utils.encrypt(user.getUserName().toLowerCase(), User.DEFAULT_PASSWORD));
             userService.save(user);
         }else{
             userService.updateById(user);
         }
-        userService.setRoleAssign(user.getUserId(),roleAssign);
+        if(!StringUtil.isEmpty(roleAssign)){
+            userService.setRoleAssign(user.getUserId(),roleAssign);
+        }
         return ResultBean.success(user);
     }
 
@@ -85,30 +87,6 @@ public class UserController {
     @ResponseBody
     public ResultBean getUserRole(String userId){
         return ResultBean.success(userService.getRole(userId));
-    }
-
-    /**
-     * 获得机构
-     * @return
-     */
-    @RequestMapping("/deptTree")
-    @ResponseBody
-    public ResultBean tree(){
-        ArrayList<layTree> trees = deptService.deptTree();
-        ArrayList<layTree> cloneTree = (ArrayList<layTree>) trees.clone();
-        ArrayList<layTree> newtrees = new ArrayList<layTree>();
-        if(trees.size()>0){
-            for (int i= 0;i<trees.size();i++){
-                layTree layTree = trees.get(i);
-                if(layTree.getPid().equals("0")){
-                    newtrees.add(layTree);
-                    cloneTree.remove(layTree);
-                }
-            }
-            newtrees = baseService.coverLayuiTree(newtrees,cloneTree);
-            //默认展开第一个
-        }
-        return ResultBean.success(newtrees);
     }
 
     /**

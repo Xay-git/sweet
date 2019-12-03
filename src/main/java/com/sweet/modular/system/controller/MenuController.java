@@ -35,11 +35,6 @@ public class MenuController {
         return "/admin/menu/menu";
     }
 
-    @RequestMapping("/menu_add")
-    public String menu_add(){
-        return "/admin/menu/menu_add";
-    }
-
     @RequestMapping("/menu_edit")
     public String menu_edit(String menuId){
         return "/admin/menu/menu_edit";

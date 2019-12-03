@@ -5,6 +5,7 @@ import com.sweet.core.model.ResultBean;
 import com.sweet.core.model.system.LayuiPageInfo;
 import com.sweet.modular.system.entity.Role;
 import com.sweet.modular.system.entity.RoleMenu;
+import com.sweet.modular.system.model.XmSelect;
 import com.sweet.modular.system.service.RoleMenuService;
 import com.sweet.modular.system.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,6 @@ public class RoleController {
     @RequestMapping("/getRoleList")
     @ResponseBody
     public LayuiPageInfo getRoleList(Role role){
-        System.out.println(roleService);
         return roleService.findPageBySpec(role);
     }
 
@@ -71,8 +71,14 @@ public class RoleController {
                 roleMenuService.save(roleMenu);
             }
         }
-
         return ResultBean.success();
+    }
+
+    @RequestMapping("/getXmSelect")
+    @ResponseBody
+    public ResultBean getXmSelect(){
+        List<XmSelect> list = roleService.getXmSelect();
+        return ResultBean.success(list);
     }
 
 

@@ -1,4 +1,4 @@
-package com.sweet.modular.userRole.controller;
+package com.sweet.modular.system.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

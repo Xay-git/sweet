@@ -1,8 +1,8 @@
-package com.sweet.modular.userRole.service.impl;
+package com.sweet.modular.system.service.impl;
 
-import com.sweet.modular.userRole.entity.UserRole;
-import com.sweet.modular.userRole.mapper.UserRoleMapper;
-import com.sweet.modular.userRole.service.UserRoleService;
+import com.sweet.modular.system.entity.UserRole;
+import com.sweet.modular.system.mapper.UserRoleMapper;
+import com.sweet.modular.system.service.UserRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

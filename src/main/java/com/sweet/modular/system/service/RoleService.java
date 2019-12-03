@@ -5,6 +5,7 @@ import com.sweet.modular.system.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sweet.modular.system.entity.RoleMenu;
 import com.sweet.modular.system.entity.User;
+import com.sweet.modular.system.model.XmSelect;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -24,6 +25,9 @@ public interface RoleService extends IService<Role> {
     Integer deleteRolesById(String roleId);
 
     List<String> getMenusByRoleId(String roleId);
+
+    List<XmSelect> getXmSelect();
+
 
 
 

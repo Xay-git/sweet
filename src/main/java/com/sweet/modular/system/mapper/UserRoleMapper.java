@@ -1,6 +1,6 @@
-package com.sweet.modular.userRole.mapper;
+package com.sweet.modular.system.mapper;
 
-import com.sweet.modular.userRole.entity.UserRole;
+import com.sweet.modular.system.entity.UserRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

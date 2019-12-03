@@ -5,6 +5,7 @@ import com.sweet.modular.system.entity.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sweet.modular.system.entity.RoleMenu;
 import com.sweet.modular.system.entity.User;
+import com.sweet.modular.system.model.XmSelect;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -30,6 +31,9 @@ public interface RoleMapper extends BaseMapper<Role> {
 
     @Select("select a.mid from t_role_menu a left join t_menu b on a.mid = b.menu_id where rid = #{roleId} and b.parent_id != '0'")
     List<String> getMenusByRoleId(@Param("roleId") String roleId);
+
+    @Select("select roleId value,name from t_role order by create_time asc")
+    List<XmSelect> getXmSelect();
 
 
 }

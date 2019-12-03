@@ -8,6 +8,7 @@ import com.sweet.modular.system.entity.Role;
 import com.sweet.modular.system.entity.RoleMenu;
 import com.sweet.modular.system.entity.User;
 import com.sweet.modular.system.mapper.RoleMapper;
+import com.sweet.modular.system.model.XmSelect;
 import com.sweet.modular.system.service.RoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,11 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     @Override
     public List<String> getMenusByRoleId(String roleId) {
         return baseMapper.getMenusByRoleId(roleId);
+    }
+
+    @Override
+    public List<XmSelect> getXmSelect() {
+        return baseMapper.getXmSelect();
     }
 
 

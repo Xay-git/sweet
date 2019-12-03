@@ -1,6 +1,6 @@
-package com.sweet.modular.userRole.service;
+package com.sweet.modular.system.service;
 
-import com.sweet.modular.userRole.entity.UserRole;
+import com.sweet.modular.system.entity.UserRole;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

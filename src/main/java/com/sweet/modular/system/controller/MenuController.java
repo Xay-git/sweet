@@ -45,6 +45,10 @@ public class MenuController {
         return "/admin/menu/menu_edit";
     }
 
+    /**
+     * 获得顶级菜单列表
+     * @return
+     */
     @RequestMapping("/menulist")
     @ResponseBody
     public ResultBean menulist(){
@@ -52,13 +56,11 @@ public class MenuController {
         return ResultBean.success(list);
     }
 
-    @RequestMapping("/addMenu")
-    @ResponseBody
-    public ResultBean addMenu(String menuId){
-        Menu menu = menuService.addMenu(menuId);
-        return ResultBean.success(menu);
-    }
-
+    /**
+     * 添加修改菜单
+      * @param menu
+     * @return
+     */
     @RequestMapping("/editMenu")
     @ResponseBody
     public ResultBean editMenu(Menu menu){
@@ -66,6 +68,11 @@ public class MenuController {
         return ResultBean.success(menu);
     }
 
+    /**
+     * 获得菜单详情
+     * @param menu
+     * @return
+     */
     @RequestMapping("/getMenuDetail")
     @ResponseBody
     public ResultBean getMenu(String menuId){
@@ -73,26 +80,10 @@ public class MenuController {
         return ResultBean.success(menu);
     }
 
-
-
-    @RequestMapping("/tree")
-    @ResponseBody
-    public ResultBean tree(){
-        ArrayList<layTree> trees = menuService.getMenuList();
-        ArrayList<layTree> cloneTree = (ArrayList<layTree>) trees.clone();
-        ArrayList<layTree> newtrees = new ArrayList<layTree>();
-
-        //创建父级节点
-        newtrees.add(new layTree().createParent());
-
-        if(cloneTree.size()>0){
-            newtrees = coverLayuiTree(newtrees,cloneTree);
-        }
-
-        return ResultBean.success(newtrees);
-    }
-
-
+    /**
+     * 获得菜单树
+     * @return
+     */
     @RequestMapping("/tableTree")
     @ResponseBody
     public ResultBean tableTree(){
@@ -133,32 +124,6 @@ public class MenuController {
             }
         }
         coverMenu(layTrees,tempLayTrees);
-        return trees;
-    }
-
-
-    public  ArrayList<layTree> coverLayuiTree(ArrayList<layTree> trees, ArrayList<layTree> tempTrees){
-        if(trees.size()==0)return trees;
-        if(tempTrees.size()==0)return tempTrees;
-        ArrayList<layTree> layTrees = new ArrayList<layTree>();
-        ArrayList<layTree> tempLayTrees = (ArrayList<layTree>) tempTrees.clone();
-        for(layTree node:trees){
-            for(layTree temp:tempTrees){
-                if(temp.getPid().equals(node.getId())){
-                   if(node.getChildren()==null){
-                       node.setChildren(new ArrayList<layTree>());
-                   }
-                   if(temp.getPid().equals("0")){
-                       temp.setSpread(true);
-                   }
-                    node.getChildren().add(temp);
-                    layTrees.add(temp);
-                    tempLayTrees.remove(temp);
-                }
-            }
-        }
-
-        coverLayuiTree(layTrees,tempLayTrees);
         return trees;
     }
 

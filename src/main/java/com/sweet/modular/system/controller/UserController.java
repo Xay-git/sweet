@@ -81,6 +81,12 @@ public class UserController {
        return ResultBean.success(user);
     }
 
+    @RequestMapping("/getUserRole")
+    @ResponseBody
+    public ResultBean getUserRole(String userId){
+        return ResultBean.success(userService.getRole(userId));
+    }
+
     /**
      * 获得机构
      * @return

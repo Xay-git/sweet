@@ -62,15 +62,11 @@ public class MenuController {
     @RequestMapping("/editMenu")
     @ResponseBody
     public ResultBean editMenu(Menu menu){
-        if(StringUtil.isEmpty(menu.getMenuId())){
-            menuService.save(menu);
-        }else{
-            menuService.updateById(menu);
-        }
+        menuService.saveOrUpdate(menu);
         return ResultBean.success(menu);
     }
 
-    @RequestMapping("/getMenu")
+    @RequestMapping("/getMenuDetail")
     @ResponseBody
     public ResultBean getMenu(String menuId){
         Menu menu = menuService.getById(menuId);

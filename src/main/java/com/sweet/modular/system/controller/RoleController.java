@@ -41,9 +41,28 @@ public class RoleController {
         return "/admin/role/role";
     }
 
+    @RequestMapping("/role_edit")
+    public String role_edit(){
+        return "/admin/role/role_edit";
+    }
+
     @RequestMapping("/role_menu")
     public String role_menu(){
         return "/admin/role/role_menu";
+    }
+
+    @RequestMapping("/getRoleDetail")
+    @ResponseBody
+    public ResultBean getRoleDetail(String roleId){
+        Role role = roleService.getById(roleId);
+        return ResultBean.success(role);
+    }
+
+    @RequestMapping("/addRole")
+    @ResponseBody
+    public ResultBean addRole(Role role){
+        roleService.saveOrUpdate(role);
+        return ResultBean.success(role);
     }
 
     @RequestMapping("/getRoleList")

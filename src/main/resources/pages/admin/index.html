@@ -85,9 +85,7 @@
         },
         mounted:async function() {
             vm = this;
-            var data = await api.getTableTree();
 
-            console.log(data);
             layui.use(['index','jquery'], function () {
                 $ = layui.jquery;
                 var index = layui.index;

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-11-20
  */
 @RestController
-@RequestMapping("/userRole")
+@RequestMapping("/admin/userRole")
 public class UserRoleController {
 
 

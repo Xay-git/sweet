@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-11-20
  */
 @RestController
-@RequestMapping("/rolePermission/role-permission")
+@RequestMapping("/admin/rolePermission")
 public class RoleMenuController {
 
 }

@@ -32,7 +32,7 @@ public interface RoleMapper extends BaseMapper<Role> {
     @Select("select a.mid from t_role_menu a left join t_menu b on a.mid = b.menu_id where rid = #{roleId} and b.parent_id != '0'")
     List<String> getMenusByRoleId(@Param("roleId") String roleId);
 
-    @Select("select roleId value,name from t_role order by create_time asc")
+    @Select("select role_id value,name from t_role order by create_time asc")
     List<XmSelect> getXmSelect();
 
 

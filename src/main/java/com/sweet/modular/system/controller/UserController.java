@@ -12,6 +12,7 @@ import com.sweet.modular.system.entity.User;
 import com.sweet.modular.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -56,13 +57,15 @@ public class UserController {
      */
     @RequestMapping("/addUser")
     @ResponseBody
-    public ResultBean addUser(User user){
+    @Transactional
+    public ResultBean addUser(User user,String roleAssign){
         if(StringUtil.isEmpty(user.getUserId())){
             user.setPassword(MD5Utils.encrypt(user.getUserName().toLowerCase(), User.DEFAULT_PASSWORD));
             userService.save(user);
         }else{
             userService.updateById(user);
         }
+        userService.setRoleAssign(user.getUserId(),roleAssign);
         return ResultBean.success(user);
     }
 

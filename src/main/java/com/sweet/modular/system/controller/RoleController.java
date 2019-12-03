@@ -9,6 +9,7 @@ import com.sweet.modular.system.model.XmSelect;
 import com.sweet.modular.system.service.RoleMenuService;
 import com.sweet.modular.system.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -60,6 +61,7 @@ public class RoleController {
 
     @RequestMapping("/setAuthority")
     @ResponseBody
+    @Transactional
     public ResultBean setAuthority(String roleId,@RequestParam(value = "menuIds[]")String[] menuIds){
         roleService.deleteRolesById(roleId);
 

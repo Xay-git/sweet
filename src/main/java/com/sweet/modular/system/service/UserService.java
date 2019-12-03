@@ -4,6 +4,8 @@ import com.sweet.core.model.system.LayuiPageInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sweet.modular.system.entity.User;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -19,6 +21,10 @@ public interface UserService extends IService<User> {
     LayuiPageInfo findPageBySpec(User user);
 
     User findUserById(String id);
+
+    void setRoleAssign(String userId,String roleIds);
+
+    List<String> getRole(String userId);
 
 
 

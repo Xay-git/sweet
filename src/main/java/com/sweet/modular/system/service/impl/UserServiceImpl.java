@@ -5,11 +5,16 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sweet.core.model.system.LayuiPageFactory;
 import com.sweet.core.model.system.LayuiPageInfo;
 import com.sweet.modular.system.entity.User;
+import com.sweet.modular.system.entity.UserRole;
 import com.sweet.modular.system.mapper.UserMapper;
+import com.sweet.modular.system.mapper.UserRoleMapper;
+import com.sweet.modular.system.service.UserRoleService;
 import com.sweet.modular.system.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -24,6 +29,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    UserRoleService userRoleService;
 
     @Override
     public User findByUserName(String userName) {
@@ -42,6 +50,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = baseMapper.selectById(id);
         user.setPassword(null);
         return user;
+    }
+
+    @Override
+    public void setRoleAssign(String userId, String roleIds) {
+        baseMapper.deleteRoleAssignById(userId);
+        String[] ids = roleIds.split(",");
+        for(String roleId:ids){
+            UserRole userRole = new UserRole();
+            userRole.setUid(userId);
+            userRole.setRid(roleId);
+            userRoleService.save(userRole);
+        }
+    }
+
+    @Override
+    public List<String> getRole(String userId) {
+        return baseMapper.getRole(userId);
     }
 
     private Page getPageContext() {

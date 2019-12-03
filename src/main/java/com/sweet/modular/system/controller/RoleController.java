@@ -58,9 +58,9 @@ public class RoleController {
         return ResultBean.success(role);
     }
 
-    @RequestMapping("/addRole")
+    @RequestMapping("/editRole")
     @ResponseBody
-    public ResultBean addRole(Role role){
+    public ResultBean editRole(Role role){
         roleService.saveOrUpdate(role);
         return ResultBean.success(role);
     }

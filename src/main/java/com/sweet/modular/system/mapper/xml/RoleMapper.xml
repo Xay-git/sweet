@@ -14,7 +14,7 @@
         ID, NAME, MEMO
     </sql>
 
-    <select id="findByUserName" resultMap="BaseResultMap">
+    <select id="findRoleByUserName" resultMap="BaseResultMap">
         select r.role_id,r.name,r.memo from t_role r
         left join t_user_role ur on(r.role_id = ur.rid)
         left join t_user u on(u.user_id = ur.uid)
@@ -24,4 +24,5 @@
     <select id="customPageList" resultType="com.sweet.modular.system.entity.Role" parameterType="com.sweet.modular.system.entity.Role">
         select * from t_role
     </select>
+
 </mapper>

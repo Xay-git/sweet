@@ -20,4 +20,15 @@
         MENU_ID, PARENT_ID, MENU_NAME, URL, PERMS, ICON, TYPE, ORDER_NUM, CREATE_TIME, MODIFY_TIME
     </sql>
 
+
+    <select id="findMenuByUserName" resultMap="BaseResultMap">
+        select m.menu_id,m.menu_name,m.url from t_role r
+        left join t_user_role ur on(r.role_id = ur.rid)
+        left join t_user u on(u.user_id = ur.uid)
+        left join t_role_menu rm on(rm.rid = r.role_id)
+        left join t_menu m on(m.menu_id = rm.mid )
+        where u.user_name = #{userName}
+    </select>
+
+
 </mapper>

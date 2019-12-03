@@ -22,7 +22,7 @@ import java.util.List;
  */
 public interface RoleMapper extends BaseMapper<Role> {
 
-    List<Role> findByUserName(@Param("userName") String userName);
+    List<Role> findRoleByUserName(@Param("userName") String userName);
 
     Page<Role> customPageList(Page page, @Param("param") Role role);
 

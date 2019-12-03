@@ -1,1 +1,0 @@
-package com.sweet.modular.base;import com.sweet.core.model.system.layTree;import java.util.ArrayList;public interface BaseService {    public ArrayList<layTree> coverLayuiTree(ArrayList<layTree> trees, ArrayList<layTree> tempTrees);}

@@ -3,10 +3,9 @@ package com.sweet.modular.system.controller;
 
 import com.sweet.core.model.ResultBean;
 import com.sweet.core.model.system.LayuiPageInfo;
-import com.sweet.core.model.system.layTree;
 import com.sweet.core.util.MD5Utils;
 import com.sweet.core.util.StringUtil;
-import com.sweet.modular.base.BaseService;
+import com.sweet.modular.system.service.BaseService;
 import com.sweet.modular.system.service.DeptService;
 import com.sweet.modular.system.entity.User;
 import com.sweet.modular.system.service.UserService;
@@ -16,8 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.ArrayList;
 
 /**
  * <p>

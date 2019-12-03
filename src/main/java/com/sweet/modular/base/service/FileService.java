@@ -1,1 +1,0 @@
-package com.sweet.modular.base.service;import org.apache.tomcat.jni.FileInfo;import org.springframework.web.multipart.MultipartFile;public interface FileService {    public FileInfo uploadFile(MultipartFile file);}

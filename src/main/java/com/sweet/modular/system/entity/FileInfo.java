@@ -1,4 +1,4 @@
-package com.sweet.modular.base.entity;
+package com.sweet.modular.system.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;

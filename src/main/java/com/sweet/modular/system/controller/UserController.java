@@ -3,8 +3,11 @@ package com.sweet.modular.system.controller;
 
 import com.sweet.core.model.ResultBean;
 import com.sweet.core.model.system.LayuiPageInfo;
+import com.sweet.core.model.system.layMenu;
+import com.sweet.core.shiro.ShiroKit;
 import com.sweet.core.util.MD5Utils;
 import com.sweet.core.util.StringUtil;
+import com.sweet.modular.system.entity.Menu;
 import com.sweet.modular.system.service.BaseService;
 import com.sweet.modular.system.service.DeptService;
 import com.sweet.modular.system.entity.User;
@@ -15,6 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -84,6 +90,14 @@ public class UserController {
     @ResponseBody
     public ResultBean getUserRole(String userId){
         return ResultBean.success(userService.getRole(userId));
+    }
+
+    @RequestMapping("/navTree")
+    @ResponseBody
+    public ResultBean navTree(){
+        User user = ShiroKit.getUser();
+        List<layMenu> list= userService.findNavByUserName(user.getUserName());
+        return ResultBean.success(list);
     }
 
     /**

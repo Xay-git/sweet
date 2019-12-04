@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sweet.core.model.system.LayuiPageFactory;
 import com.sweet.core.model.system.LayuiPageInfo;
+import com.sweet.core.model.system.layMenu;
 import com.sweet.core.shiro.ShiroKit;
 import com.sweet.core.util.RedisUtil;
 import com.sweet.modular.system.entity.Menu;
@@ -14,6 +15,7 @@ import com.sweet.modular.system.mapper.MenuMapper;
 import com.sweet.modular.system.mapper.RoleMapper;
 import com.sweet.modular.system.mapper.UserMapper;
 import com.sweet.modular.system.mapper.UserRoleMapper;
+import com.sweet.modular.system.model.MenuResult;
 import com.sweet.modular.system.service.UserRoleService;
 import com.sweet.modular.system.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -22,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -115,6 +118,54 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             System.out.println("redis:------"+"userMenu:"+userName+menuSet);
         }
         return menuSet;
+    }
+
+    @Override
+    public List<layMenu> findNavByUserName(String userName) {
+        List<layMenu> list = menuMapper.findNavByUserName(userName);
+
+
+
+        ArrayList<layMenu> trees = (ArrayList<layMenu>) list.stream().distinct().collect(Collectors.toList());
+        ArrayList<layMenu> cloneTree = (ArrayList<layMenu>) trees.clone();
+        ArrayList<layMenu> newtrees = new ArrayList<layMenu>();
+
+        if(trees.size()>0){
+            for (int i= 0;i<trees.size();i++){
+                layMenu menu = trees.get(i);
+                if(menu.getParentId().equals("0")){
+                    newtrees.add(menu);
+                    cloneTree.remove(menu);
+                }
+            }
+            if(cloneTree.size()>0){
+                newtrees = coverMenu(newtrees,cloneTree);
+            }
+        }
+        return newtrees;
+    }
+
+
+
+    public ArrayList<layMenu> coverMenu(ArrayList<layMenu> trees, ArrayList<layMenu> tempTrees){
+        if(trees.size()==0)return trees;
+        if(tempTrees.size()==0)return tempTrees;
+        ArrayList<layMenu> layTrees = new ArrayList<layMenu>();
+        ArrayList<layMenu> tempLayTrees = (ArrayList<layMenu>) tempTrees.clone();
+        for(layMenu node:trees){
+            for(layMenu temp:tempTrees){
+                if(temp.getParentId().equals(node.getMenuId())){
+                    if(node.getList()==null){
+                        node.setList(new ArrayList<layMenu>());
+                    }
+                    node.getList().add(temp);
+                    layTrees.add(temp);
+                    tempLayTrees.remove(temp);
+                }
+            }
+        }
+        coverMenu(layTrees,tempLayTrees);
+        return trees;
     }
 
     private Page getPageContext() {

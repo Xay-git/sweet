@@ -30,5 +30,14 @@
         where u.user_name = #{userName}
     </select>
 
+    <select id="findNavByUserName" resultType="com.sweet.core.model.system.layMenu">
+        select m.menu_id,m.menu_name title,m.url,m.icon,m.parent_id  from t_role r
+        left join t_user_role ur on(r.role_id = ur.rid)
+        left join t_user u on(u.user_id = ur.uid)
+        left join t_role_menu rm on(rm.rid = r.role_id)
+        left join t_menu m on(m.menu_id = rm.mid )
+        where u.user_name = #{userName} and m.type = '0'
+    </select>
+
 
 </mapper>

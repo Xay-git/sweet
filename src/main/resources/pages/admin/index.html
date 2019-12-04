@@ -58,34 +58,14 @@
         data: {
             msg: 'Hello World!',
             info:'',
-            tree:[{
-                "title": "菜单",
-                "icon": "layui-icon-auz",
-                "url": "/admin/menu",
-                "spread": true,
-            },{
-                "title": "部门",
-                "icon": "layui-icon-auz",
-                "url": "/admin/dept",
-                "spread": true,
-            },{
-                "title": "用户管理",
-                "icon": "layui-icon-auz",
-                "url": "/admin/user",
-                "spread": true,
-            },{
-                "title": "角色管理",
-                "icon": "layui-icon-auz",
-                "url": "/admin/role",
-                "spread": true,
-            }]
+            tree:[]
         },
         methods: {
 
         },
         mounted:async function() {
             vm = this;
-
+            vm.tree = await api.getNav();
             layui.use(['index','jquery'], function () {
                 $ = layui.jquery;
                 var index = layui.index;

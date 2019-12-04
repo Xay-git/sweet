@@ -35,6 +35,9 @@ public interface MenuMapper extends BaseMapper<Menu> {
     @Select("select MENU_ID id,MENU_NAME title,PARENT_ID pid from t_menu where PARENT_ID = '0' order by create_time asc")
     public ArrayList<layTree> getParentMenu();
 
+    //根据用户名查询左侧菜单
+    List<layMenu> findNavByUserName(@Param("userName") String userName);
+
 
 
 

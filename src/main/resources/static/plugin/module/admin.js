@@ -665,7 +665,7 @@ layui.define(['layer'], function (exports) {
             admin.strToWin($(this).data('window')).layui.admin.popupRight({
                 id: 'layer-theme',
                 type: 2,
-                content: url ? url : Feng.ctxPath + '/system/theme'
+                content: url ? url :'/system/theme'
             });
         },
         /* 打开便签 */
@@ -685,7 +685,7 @@ layui.define(['layer'], function (exports) {
             admin.strToWin($(this).data('window')).layui.admin.popupRight({
                 id: 'layer-notice',
                 type: 2,
-                content: url ? url : Feng.ctxPath + '/system/message'
+                content: url ? url :'/system/message'
             });
         },
         /* 打开修改密码弹窗 */

@@ -4,6 +4,7 @@ package com.sweet.demo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sweet.core.util.RedisUtil;
 import com.sweet.modular.sysLog.entity.SysLog;
 import com.sweet.modular.sysLog.mapper.SysLogMapper;
 import com.sweet.modular.sysLog.service.SysLogService;
@@ -27,6 +28,9 @@ public class SweetApplicationTests {
 	@Autowired
 	RoleService roleService;
 
+	@Autowired
+	RedisUtil redisUtil;
+
 	@Test
 	public void test() {
 		QueryWrapper<SysLog> queryWrapper =  new QueryWrapper<>();
@@ -40,6 +44,14 @@ public class SweetApplicationTests {
 	public void test1() {
 		List<String> list = roleService.getMenusByRoleId("1");
 		System.out.println(list);
+	}
+
+
+	@Test
+	public void redis(){
+		redisUtil.set("hello","redis");
+
+		System.out.println(redisUtil.get("hello"));
 	}
 
 

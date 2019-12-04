@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.sweet.modular.system.entity.User;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -25,6 +26,10 @@ public interface UserService extends IService<User> {
     void setRoleAssign(String userId,String roleIds);
 
     List<String> getRole(String userId);
+
+    Set<String> getUserRole(String userName);
+
+    Set<String> getUserMenu(String userName);
 
 
 

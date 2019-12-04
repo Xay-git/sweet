@@ -4,17 +4,27 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sweet.core.model.system.LayuiPageFactory;
 import com.sweet.core.model.system.LayuiPageInfo;
+import com.sweet.core.shiro.ShiroKit;
+import com.sweet.core.util.RedisUtil;
+import com.sweet.modular.system.entity.Menu;
+import com.sweet.modular.system.entity.Role;
 import com.sweet.modular.system.entity.User;
 import com.sweet.modular.system.entity.UserRole;
+import com.sweet.modular.system.mapper.MenuMapper;
+import com.sweet.modular.system.mapper.RoleMapper;
 import com.sweet.modular.system.mapper.UserMapper;
 import com.sweet.modular.system.mapper.UserRoleMapper;
 import com.sweet.modular.system.service.UserRoleService;
 import com.sweet.modular.system.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -32,6 +42,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     UserRoleService userRoleService;
+
+    @Autowired
+    MenuMapper menuMapper;
+
+    @Autowired
+    RoleMapper roleMapper;
+
+    @Autowired
+    RedisUtil redisUtil;
 
     @Override
     public User findByUserName(String userName) {
@@ -67,6 +86,35 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public List<String> getRole(String userId) {
         return baseMapper.getRole(userId);
+    }
+
+    @Override
+    public Set<String> getUserRole(String userName) {
+        User user = ShiroKit.getUser();
+        Set<String> roleSet = (Set<String>) redisUtil.get("userRole:"+userName);
+        if(roleSet==null){
+            List<Role> roleList = roleMapper.findRoleByUserName(userName);
+            roleSet = roleList.stream().map(Role::getName).collect(Collectors.toSet());
+            redisUtil.set("userRole:"+userName,roleSet);
+        }else{
+            System.out.println("redis:------"+"userRole:"+userName+roleSet);
+        }
+        return roleSet;
+    }
+
+    @Override
+    public Set<String> getUserMenu(String userName) {
+        User user = ShiroKit.getUser();
+        Set<String> menuSet = (Set<String>) redisUtil.get("userMenu:"+userName);
+        if(menuSet==null){
+            // 获取用户菜单url集合
+            List<Menu> menuList = menuMapper.findMenuByUserName(userName);
+            menuSet = menuList.stream().map(Menu::getUrl).collect(Collectors.toSet());
+            redisUtil.set("userRole:"+userName,menuSet);
+        }else{
+            System.out.println("redis:------"+"userMenu:"+userName+menuSet);
+        }
+        return menuSet;
     }
 
     private Page getPageContext() {

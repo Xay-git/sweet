@@ -27,7 +27,7 @@
         left join t_user u on(u.user_id = ur.uid)
         left join t_role_menu rm on(rm.rid = r.role_id)
         left join t_menu m on(m.menu_id = rm.mid )
-        where u.user_name = #{userName}
+        where u.user_name = #{userName} and m.url is not null
     </select>
 
     <select id="findNavByUserName" resultType="com.sweet.core.model.system.layMenu">
@@ -36,7 +36,7 @@
         left join t_user u on(u.user_id = ur.uid)
         left join t_role_menu rm on(rm.rid = r.role_id)
         left join t_menu m on(m.menu_id = rm.mid )
-        where u.user_name = #{userName} and m.type = '0'
+        where u.user_name = #{userName} and m.type = '0' order by m.order_num asc
     </select>
 
 

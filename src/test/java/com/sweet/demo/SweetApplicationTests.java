@@ -1,9 +1,13 @@
 package com.sweet.demo;
 
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sweet.core.util.HttpClientUtil;
 import com.sweet.core.util.RedisUtil;
 import com.sweet.modular.sysLog.entity.SysLog;
 import com.sweet.modular.sysLog.mapper.SysLogMapper;
@@ -17,6 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -49,9 +54,7 @@ public class SweetApplicationTests {
 
 	@Test
 	public void redis(){
-		redisUtil.set("hello","redis");
 
-		System.out.println(redisUtil.get("hello"));
 	}
 
 

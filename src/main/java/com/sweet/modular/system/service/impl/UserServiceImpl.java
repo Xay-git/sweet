@@ -113,7 +113,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             // 获取用户菜单url集合
             List<Menu> menuList = menuMapper.findMenuByUserName(userName);
             menuSet = menuList.stream().map(Menu::getUrl).collect(Collectors.toSet());
-            redisUtil.set("userRole:"+userName,menuSet);
+            redisUtil.set("userMenu:"+userName,menuSet);
         }else{
             System.out.println("redis:------"+"userMenu:"+userName+menuSet);
         }

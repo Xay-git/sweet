@@ -22,7 +22,7 @@
     </select>
 
     <select id="customPageList" resultType="com.sweet.modular.system.entity.Role" parameterType="com.sweet.modular.system.entity.Role">
-        select * from t_role
+        select * from t_role order by create_time asc
     </select>
 
 </mapper>

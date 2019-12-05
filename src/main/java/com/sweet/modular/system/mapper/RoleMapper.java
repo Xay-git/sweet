@@ -31,7 +31,7 @@ public interface RoleMapper extends BaseMapper<Role> {
     @Delete("delete from t_user_role where rid = #{roleId}")
     Integer deleteUserRolesById(@Param("roleId") String roleId);
     //通过角色Id查询菜单
-    @Select("select a.mid from t_role_menu a left join t_menu b on a.mid = b.menu_id where rid = #{roleId} and b.parent_id != '0'")
+    @Select("select a.mid from t_role_menu a left join t_menu b on a.mid = b.menu_id where rid = #{roleId} and b.parent_id != '0' order by create_time asc")
     List<String> getMenusByRoleId(@Param("roleId") String roleId);
     //获得权限多选下拉框数据
     @Select("select role_id value,name from t_role order by create_time asc")

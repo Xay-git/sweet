@@ -127,17 +127,7 @@ public class RoleController {
         }
         return ResultBean.success();
     }
-    /**
-     * 获得角色多选
-     * @param menu
-     * @return
-     */
-    @RequestMapping("/getXmSelect")
-    @ResponseBody
-    public ResultBean getXmSelect(){
-        List<XmSelect> list = roleService.getXmSelect();
-        return ResultBean.success(list);
-    }
+
 
 
 

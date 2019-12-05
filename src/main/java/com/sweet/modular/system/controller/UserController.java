@@ -8,9 +8,11 @@ import com.sweet.core.shiro.ShiroKit;
 import com.sweet.core.util.MD5Utils;
 import com.sweet.core.util.StringUtil;
 import com.sweet.modular.system.entity.Menu;
+import com.sweet.modular.system.model.XmSelect;
 import com.sweet.modular.system.service.BaseService;
 import com.sweet.modular.system.service.DeptService;
 import com.sweet.modular.system.entity.User;
+import com.sweet.modular.system.service.RoleService;
 import com.sweet.modular.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +44,9 @@ public class UserController {
 
     @Autowired
     private BaseService baseService;
+
+    @Autowired
+    private RoleService roleService;
 
     @RequestMapping("")
     public String userList() {
@@ -110,6 +115,18 @@ public class UserController {
     public LayuiPageInfo getUserList(User user){
         LayuiPageInfo layuiPageInfo = userService.findPageBySpec(user);
         return layuiPageInfo;
+    }
+
+    /**
+     * 获得角色多选
+     * @param menu
+     * @return
+     */
+    @RequestMapping("/getXmSelect")
+    @ResponseBody
+    public ResultBean getXmSelect(){
+        List<XmSelect> list = roleService.getXmSelect();
+        return ResultBean.success(list);
     }
 
 

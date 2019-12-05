@@ -12,6 +12,7 @@ import com.sweet.modular.system.model.XmSelect;
 import com.sweet.modular.system.service.RoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,8 +35,16 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     }
 
     @Override
-    public Integer deleteRolesById(String roleId) {
+    public Integer deleteRoleMenuById(String roleId) {
         return baseMapper.deleteRolesById(roleId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteRole(Role role) {
+        deleteRoleMenuById(role.getRoleId());
+        baseMapper.deleteUserRolesById(role.getRoleId());
+        removeById(role);
     }
 
     @Override

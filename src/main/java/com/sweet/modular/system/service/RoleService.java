@@ -22,11 +22,15 @@ public interface RoleService extends IService<Role> {
 
     LayuiPageInfo findPageBySpec(Role role);
 
-    Integer deleteRolesById(String roleId);
+    Integer deleteRoleMenuById(String roleId);
+
+    void deleteRole(Role role);
 
     List<String> getMenusByRoleId(String roleId);
 
     List<XmSelect> getXmSelect();
+
+
 
 
 

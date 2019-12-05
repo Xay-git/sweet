@@ -45,19 +45,32 @@ public class RoleController {
     public String role_edit(){
         return "/admin/role/role_edit";
     }
-
+    /**
+     * 配置角色页面
+     * @param role
+     * @return
+     */
     @RequestMapping("/role_menu")
     public String role_menu(){
         return "/admin/role/role_menu";
     }
 
+    /**
+     * 获得角色数据
+     * @param role
+     * @return
+     */
     @RequestMapping("/getRoleDetail")
     @ResponseBody
     public ResultBean getRoleDetail(String roleId){
         Role role = roleService.getById(roleId);
         return ResultBean.success(role);
     }
-
+    /**
+     * 修改角色数据
+     * @param role
+     * @return
+     */
     @RequestMapping("/editRole")
     @ResponseBody
     public ResultBean editRole(Role role){
@@ -65,24 +78,44 @@ public class RoleController {
         return ResultBean.success(role);
     }
 
+    @RequestMapping("/delRole")
+    @ResponseBody
+    public ResultBean delRole(Role role){
+        roleService.deleteRole(role);
+        return ResultBean.success(role);
+    }
+
+    /**
+     * 获得角色分页数据
+     * @param role
+     * @return
+     */
     @RequestMapping("/getRoleList")
     @ResponseBody
     public LayuiPageInfo getRoleList(Role role){
         return roleService.findPageBySpec(role);
     }
-
+    /**
+     * 获得角色对应的菜单
+     * @param role
+     * @return
+     */
     @RequestMapping("/getAuthority")
     @ResponseBody
     public ResultBean getAuthority(String roleId){
         List<String> list = roleService.getMenusByRoleId(roleId);
         return ResultBean.success(list);
     }
-
+    /**
+     * 设置角色对应的菜单
+     * @param role
+     * @return
+     */
     @RequestMapping("/setAuthority")
     @ResponseBody
     @Transactional
     public ResultBean setAuthority(String roleId,@RequestParam(value = "menuIds[]")String[] menuIds){
-        roleService.deleteRolesById(roleId);
+        roleService.deleteRoleMenuById(roleId);
 
         if(menuIds.length>0){
             for(String menuId:menuIds){

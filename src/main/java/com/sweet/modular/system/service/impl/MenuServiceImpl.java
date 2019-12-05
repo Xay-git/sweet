@@ -130,4 +130,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
          baseMapper.delRoleMenuByMenuId(menu.getMenuId());
          removeById(menu);
     }
+
+    @Override
+    public Integer getMenuChildrenCount(String menuId) {
+        return baseMapper.getMenuChildrenCount(menuId);
+    }
 }

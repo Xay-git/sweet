@@ -1,6 +1,7 @@
 package com.sweet.modular.system.controller;
 
 
+import com.sweet.core.exception.ServiceException;
 import com.sweet.core.model.ResultBean;
 import com.sweet.core.model.system.layTree;
 import com.sweet.core.util.StringUtil;
@@ -73,7 +74,12 @@ public class MenuController {
     @ResponseBody
     @Transactional
     public ResultBean delMenu(Menu menu){
-        menuService.deleteMenu(menu);
+        Integer i = menuService.getMenuChildrenCount(menu.getMenuId());
+        if(i>0){
+            throw new ServiceException(500,"该菜单下级有子节点，请删除后重试！");
+        }else{
+            menuService.deleteMenu(menu);
+        }
         return ResultBean.success(menu);
     }
 

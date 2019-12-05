@@ -27,4 +27,6 @@ public interface MenuService extends IService<Menu> {
 
     public void deleteMenu(Menu menu);
 
+    public Integer getMenuChildrenCount(String menuId);
+
 }

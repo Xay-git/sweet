@@ -37,6 +37,9 @@ public interface MenuMapper extends BaseMapper<Menu> {
     //删除菜单角色表中关联的的数据
     @Delete("delete from t_role_menu where mid = #{menuId}")
     Integer delRoleMenuByMenuId(@Param("menuId") String menuId);
+    //删除菜单下面的子菜单
+    @Select("select count(1) from t_menu where menu_id = #{menuId}")
+    Integer getMenuChildrenCount(@Param("menuId") String menuId);
 
 
 

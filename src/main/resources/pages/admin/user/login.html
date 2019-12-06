@@ -69,13 +69,14 @@ layout("/common/_container.html"){
     },
     mounted:async function() {
       vm = this;
+
       form.on('submit(login-submit)', function(obj){
         obj.field.remember=='on'?obj.field.remember=true:obj.field.remember=false;
         api.login(obj.field).then(res=>{
           layer.msg('登入成功', {
             offset: '15px'
             ,icon: 1
-            ,time: 1000
+            ,time: 500
           }, function(){
             location.href = '/admin'; //后台主页
           });

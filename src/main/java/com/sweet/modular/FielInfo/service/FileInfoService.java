@@ -1,0 +1,1 @@
+package com.sweet.modular.FielInfo.service;import com.sweet.modular.FielInfo.entity.FileInfo;import com.baomidou.mybatisplus.extension.service.IService;/** * <p> * 文件信息表 服务类 * </p> * * @author wxl * @since 2019-12-06 */public interface FileInfoService extends IService<FileInfo> {}

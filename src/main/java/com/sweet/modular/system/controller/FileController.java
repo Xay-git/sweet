@@ -1,1 +1,0 @@
-package com.sweet.modular.system.controller;import org.springframework.stereotype.Controller;import org.springframework.web.bind.annotation.RequestMapping;@Controller@RequestMapping("/admin/file")public class FileController {    @RequestMapping("")    public String file(){        return "/admin/file/file";    }}

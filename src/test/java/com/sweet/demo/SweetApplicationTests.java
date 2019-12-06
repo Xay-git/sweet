@@ -9,9 +9,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sweet.core.util.HttpClientUtil;
 import com.sweet.core.util.RedisUtil;
-import com.sweet.modular.sysLog.entity.SysLog;
-import com.sweet.modular.sysLog.mapper.SysLogMapper;
-import com.sweet.modular.sysLog.service.SysLogService;
+
 import com.sweet.modular.system.entity.RoleMenu;
 import com.sweet.modular.system.service.RoleService;
 import org.junit.Test;
@@ -28,22 +26,11 @@ import java.util.Map;
 public class SweetApplicationTests {
 
 	@Autowired
-	SysLogMapper sysLogMapper;
-
-	@Autowired
 	RoleService roleService;
 
 	@Autowired
 	RedisUtil redisUtil;
 
-	@Test
-	public void test() {
-		QueryWrapper<SysLog> queryWrapper =  new QueryWrapper<>();
-
-		Page<SysLog> list = new Page<>(0,5);
-		IPage<SysLog> iPage =  sysLogMapper.selectPage(list,queryWrapper);
-		System.out.println(iPage.getRecords());
-	}
 
 	@Test
 	public void test1() {

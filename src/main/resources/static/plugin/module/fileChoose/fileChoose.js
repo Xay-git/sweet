@@ -315,7 +315,7 @@ layui.define(['jquery', 'layer', 'form', 'upload', 'util'], function (exports) {
         var response = param.response ? param.response : {};  // 返回数据格式
         var urlName = response.url;  // url名称
         var smUrlName = response.smUrl;  // 缩略图名称
-        var isDirName = response.isDir;  // 是否是文件夹名称
+        var isDirName = response.dir;  // 是否是文件夹名称
         var titleName = response.name;  // 文件名称字段名
 
         (fileUrl == undefined) && (fileUrl = '');
@@ -323,7 +323,7 @@ layui.define(['jquery', 'layer', 'form', 'upload', 'util'], function (exports) {
         (multi == undefined) && (multi = false);
         urlName || (urlName = 'url');
         smUrlName || (smUrlName = 'smUrl');
-        isDirName || (isDirName = 'isDir');
+        isDirName || (isDirName = 'dir');
         titleName || (titleName = 'name');
 
         var html = '';
@@ -332,7 +332,7 @@ layui.define(['jquery', 'layer', 'form', 'upload', 'util'], function (exports) {
         } else {
             for (var i = 0; i < dataList.length; i++) {
                 var item = dataList[i];
-                html += '<div class="file-choose-list-item" data-index="' + i + '">';
+                html += '<div class="file-choose-list-item" data-index="' + i + '" data-id="'+dataList[i].id+'">';
                 var imgUrl = fileUrl + item[smUrlName], fileImgIcon = '';
                 if (!item[smUrlName]) {
                     fileImgIcon = ' img-icon';

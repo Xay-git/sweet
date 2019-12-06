@@ -7,6 +7,7 @@ import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sweet.core.shiro.session.SessionService;
 import com.sweet.core.util.HttpClientUtil;
 import com.sweet.core.util.RedisUtil;
 
@@ -31,6 +32,9 @@ public class SweetApplicationTests {
 	@Autowired
 	RedisUtil redisUtil;
 
+	@Autowired
+	SessionService sessionService;
+
 
 	@Test
 	public void test1() {
@@ -38,11 +42,11 @@ public class SweetApplicationTests {
 		System.out.println(list);
 	}
 
-
 	@Test
-	public void redis(){
-
+	public void redis() {
+		redisUtil.set("aa","aa");
+		sessionService.list();
+		System.out.println(redisUtil.get("aa"));
 	}
-
 
 }

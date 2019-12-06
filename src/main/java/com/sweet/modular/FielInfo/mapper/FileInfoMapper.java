@@ -1,1 +1,0 @@
-package com.sweet.modular.FielInfo.mapper;import com.sweet.modular.FielInfo.entity.FileInfo;import com.baomidou.mybatisplus.core.mapper.BaseMapper;/** * <p> * 文件信息表 Mapper 接口 * </p> * * @author wxl * @since 2019-12-06 */public interface FileInfoMapper extends BaseMapper<FileInfo> {}

@@ -1,0 +1,1 @@
+package com.sweet.core.model.system;import lombok.Data;@Datapublic class LayuiForm {    private String columnName;    private String columnComment;    private String type;    private String dic;    private String verify;    private String hidden;    private String checkboxJson;}

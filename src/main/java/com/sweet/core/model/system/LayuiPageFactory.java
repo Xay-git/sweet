@@ -23,7 +23,7 @@ public class LayuiPageFactory {
      */
     public static Page defaultPage() {
         HttpServletRequest request = HttpContext.getRequest();
-        //每页多少条数据
+      //第几页
         int page;
         String pg = request.getParameter("page");
         if(StringUtils.isEmpty(pg)){
@@ -32,21 +32,14 @@ public class LayuiPageFactory {
             page= Integer.valueOf(pg);
 
         }
-
-        //第几页
-
+       //每页显示多少条数据
         int limit;
         String lim  = request.getParameter("limit");
         if(StringUtils.isEmpty(lim)){
-            limit = 10;
+            limit = 99999999;
         }else{
             limit = Integer.valueOf(lim);
         }
-
-
-
-
-
 
         return new Page(page, limit);
     }

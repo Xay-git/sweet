@@ -7,7 +7,6 @@ import com.sweet.core.model.system.layMenu;
 import com.sweet.core.shiro.ShiroKit;
 import com.sweet.core.util.MD5Utils;
 import com.sweet.core.util.StringUtil;
-import com.sweet.modular.system.entity.Menu;
 import com.sweet.modular.system.model.XmSelect;
 import com.sweet.modular.system.service.BaseService;
 import com.sweet.modular.system.service.DeptService;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * <p>

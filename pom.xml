@@ -24,14 +24,12 @@
         <lombok.version>1.16.10</lombok.version>
         <mybatisplus.version>3.1.1</mybatisplus.version>
         <mybatisplusgenerator.version>3.1.1</mybatisplusgenerator.version>
-        <druid.version>1.1.13</druid.version>
         <swagger2.version>2.9.2</swagger2.version>
         <beetl.version>3.0.11.RELEASE</beetl.version>
         <shiro.version>1.4.0</shiro.version>
         <shiroredis.version>2.4.2.1-RELEASE</shiroredis.version>
         <wxtools.version>2.1.4-RELEASE</wxtools.version>
     </properties>
-
 
     <dependencies>
         <dependency>
@@ -43,6 +41,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- processor -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- spring-boot redis -->
@@ -78,20 +83,13 @@
             <version>${lombok.version}</version>
         </dependency>
 
-
-        <!-- alibaba的druid数据库连接池 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
-        </dependency>
-
         <!-- mybatis-plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatisplus.version}</version>
         </dependency>
+
         <!-- mybatis-plus代码生成 -->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -146,18 +144,20 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.9</version>
         </dependency>
+
         <!-- 工具集 -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.0.6</version>
         </dependency>
-        <!-- processor -->
+
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.7.0</version>
         </dependency>
+
     </dependencies>
 
     <build>

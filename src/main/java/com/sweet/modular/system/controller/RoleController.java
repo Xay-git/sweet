@@ -5,7 +5,6 @@ import com.sweet.core.model.ResultBean;
 import com.sweet.core.model.system.LayuiPageInfo;
 import com.sweet.modular.system.entity.Role;
 import com.sweet.modular.system.entity.RoleMenu;
-import com.sweet.modular.system.model.XmSelect;
 import com.sweet.modular.system.service.RoleMenuService;
 import com.sweet.modular.system.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;

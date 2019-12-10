@@ -4,7 +4,6 @@ package com.sweet.modular.system.controller;
 import com.sweet.core.exception.ServiceException;
 import com.sweet.core.model.ResultBean;
 import com.sweet.core.model.system.layTree;
-import com.sweet.core.util.StringUtil;
 import com.sweet.modular.system.entity.Menu;
 import com.sweet.modular.system.model.MenuResult;
 import com.sweet.modular.system.service.MenuService;

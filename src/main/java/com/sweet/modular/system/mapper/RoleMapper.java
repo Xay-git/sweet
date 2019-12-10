@@ -3,8 +3,6 @@ package com.sweet.modular.system.mapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sweet.modular.system.entity.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.sweet.modular.system.entity.RoleMenu;
-import com.sweet.modular.system.entity.User;
 import com.sweet.modular.system.model.XmSelect;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;

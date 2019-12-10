@@ -14,14 +14,10 @@ import com.sweet.modular.system.entity.UserRole;
 import com.sweet.modular.system.mapper.MenuMapper;
 import com.sweet.modular.system.mapper.RoleMapper;
 import com.sweet.modular.system.mapper.UserMapper;
-import com.sweet.modular.system.mapper.UserRoleMapper;
-import com.sweet.modular.system.model.MenuResult;
 import com.sweet.modular.system.service.UserRoleService;
 import com.sweet.modular.system.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

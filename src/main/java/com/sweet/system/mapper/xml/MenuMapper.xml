@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sweet.system.mapper.MenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sweet.system.entity.Menu">
+        <id column="MENU_ID" property="menuId" />
+        <result column="PARENT_ID" property="parentId" />
+        <result column="MENU_NAME" property="menuName" />
+        <result column="URL" property="url" />
+        <result column="PERMS" property="perms" />
+        <result column="ICON" property="icon" />
+        <result column="TYPE" property="type" />
+        <result column="ORDER_NUM" property="orderNum" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="MODIFY_TIME" property="modifyTime" />
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        MENU_ID, PARENT_ID, MENU_NAME, URL, PERMS, ICON, TYPE, ORDER_NUM, CREATE_TIME, MODIFY_TIME
+    </sql>
+
+
+    <select id="findMenuByUserName" resultMap="BaseResultMap">
+        select m.menu_id,m.menu_name,m.url from t_role r
+        left join t_user_role ur on(r.role_id = ur.rid)
+        left join t_user u on(u.user_id = ur.uid)
+        left join t_role_menu rm on(rm.rid = r.role_id)
+        left join t_menu m on(m.menu_id = rm.mid )
+        where u.user_name = #{userName} and m.url is not null
+    </select>
+
+    <select id="findNavByUserName" resultType="com.sweet.core.model.system.layMenu">
+        select m.menu_id,m.menu_name title,m.url,m.icon,m.parent_id  from t_role r
+        left join t_user_role ur on(r.role_id = ur.rid)
+        left join t_user u on(u.user_id = ur.uid)
+        left join t_role_menu rm on(rm.rid = r.role_id)
+        left join t_menu m on(m.menu_id = rm.mid )
+        where u.user_name = #{userName} and m.type = '0' order by m.order_num asc
+    </select>
+
+
+</mapper>

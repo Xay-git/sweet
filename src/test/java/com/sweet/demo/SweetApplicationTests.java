@@ -4,7 +4,7 @@ package com.sweet.demo;
 import com.sweet.core.shiro.session.SessionService;
 import com.sweet.core.util.RedisUtil;
 
-import com.sweet.modular.system.service.RoleService;
+import com.sweet.system.service.RoleService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

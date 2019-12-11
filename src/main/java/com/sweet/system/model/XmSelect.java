@@ -1,0 +1,1 @@
+package com.sweet.system.model;import lombok.Data;import lombok.experimental.Accessors;@Data@Accessors(chain = true)public class XmSelect {    private String value;    private String name;    private boolean selected = false;    private boolean disabled = false;}

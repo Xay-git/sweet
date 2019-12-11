@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sweet.system.mapper.RoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sweet.system.entity.Role">
+        <id column="ID" property="id" />
+        <result column="NAME" property="name" />
+        <result column="MEMO" property="memo" />
+        <result column="CREATE_TIME" property="createTime" />
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, NAME, MEMO
+    </sql>
+
+    <select id="findRoleByUserName" resultMap="BaseResultMap">
+        select r.role_id,r.name,r.memo from t_role r
+        left join t_user_role ur on(r.role_id = ur.rid)
+        left join t_user u on(u.user_id = ur.uid)
+        where u.user_name = #{userName}
+    </select>
+
+    <select id="customPageList" resultType="com.sweet.system.entity.Role" parameterType="com.sweet.system.entity.Role">
+        select * from t_role order by create_time asc
+    </select>
+
+</mapper>

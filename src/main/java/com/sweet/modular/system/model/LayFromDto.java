@@ -1,1 +1,0 @@
-package com.sweet.modular.system.model;import com.sweet.core.model.system.LayuiForm;import lombok.Data;import java.util.List;@Datapublic class LayFromDto {    private List<LayuiForm> LayuiForm;}

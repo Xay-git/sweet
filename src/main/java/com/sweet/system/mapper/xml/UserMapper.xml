@@ -10,11 +10,12 @@
         <result column="BIRTHDAY" property="birthday" />
         <result column="ACCOUNT_STATUS" property="accountStatus" />
         <result column="DEPT_ID" property="deptId" />
+        <result column="AVATAR" property="avatar" />
         <result column="CREATE_TIME" property="createTime" />
     </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        USER_ID, USER_NAME, PASSWORD, BIRTHDAY, ACCOUNT_STATUS ,DEPT_ID,CREATE_TIME
+        USER_ID, USER_NAME, PASSWORD, BIRTHDAY, ACCOUNT_STATUS ,DEPT_ID,AVATAR,CREATE_TIME
     </sql>
 
     <select id="findByUserName" resultMap="BaseResultMap">

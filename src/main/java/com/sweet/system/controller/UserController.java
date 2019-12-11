@@ -56,6 +56,11 @@ public class UserController {
         return "/system/user/user_edit";
     }
 
+    @RequestMapping("/user_info")
+    public String user_info() {
+        return "/system/user/user_info";
+    }
+
     /**
      * 创建用户
      * @param user

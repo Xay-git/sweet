@@ -48,12 +48,12 @@ public class UserController {
 
     @RequestMapping("")
     public String userList() {
-        return "/admin/user/user";
+        return "/system/user/user";
     }
 
     @RequestMapping("/user_edit")
     public String user_edit() {
-        return "/admin/user/user_edit";
+        return "/system/user/user_edit";
     }
 
     /**
@@ -66,7 +66,8 @@ public class UserController {
     @Transactional
     public ResultBean editUser(User user,String roleAssign){
         if(StringUtil.isEmpty(user.getUserId())){
-            user.setPassword(MD5Utils.encrypt(user.getUserName().toLowerCase(), User.DEFAULT_PASSWORD));
+            user.setUserName(user.getUserName().toLowerCase());
+            user.setPassword(MD5Utils.encrypt(user.getUserName(), User.DEFAULT_PASSWORD));
             userService.save(user);
         }else{
             userService.updateById(user);
@@ -126,7 +127,5 @@ public class UserController {
         List<XmSelect> list = roleService.getXmSelect();
         return ResultBean.success(list);
     }
-
-
 
 }

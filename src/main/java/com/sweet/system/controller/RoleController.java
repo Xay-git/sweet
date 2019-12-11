@@ -37,12 +37,12 @@ public class RoleController {
 
     @RequestMapping("")
     public String roleList(){
-        return "/admin/role/role";
+        return "/system/role/role";
     }
 
     @RequestMapping("/role_edit")
     public String role_edit(){
-        return "/admin/role/role_edit";
+        return "/system/role/role_edit";
     }
     /**
      * 配置角色页面
@@ -51,7 +51,7 @@ public class RoleController {
      */
     @RequestMapping("/role_menu")
     public String role_menu(){
-        return "/admin/role/role_menu";
+        return "/system/role/role_menu";
     }
 
     /**
@@ -126,8 +126,5 @@ public class RoleController {
         }
         return ResultBean.success();
     }
-
-
-
 
 }

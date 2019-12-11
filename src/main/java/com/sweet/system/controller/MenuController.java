@@ -34,12 +34,12 @@ public class MenuController {
 
     @RequestMapping("")
     public String menu(){
-        return "/admin/menu/menu";
+        return "/system/menu/menu";
     }
 
     @RequestMapping("/menu_edit")
     public String menu_edit(String menuId){
-        return "/admin/menu/menu_edit";
+        return "/system/menu/menu_edit";
     }
 
     /**

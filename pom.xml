@@ -27,8 +27,11 @@
         <swagger2.version>2.9.2</swagger2.version>
         <beetl.version>3.0.11.RELEASE</beetl.version>
         <shiro.version>1.4.0</shiro.version>
-        <shiroredis.version>2.4.2.1-RELEASE</shiroredis.version>
+        <shiroredis.version>3.2.3</shiroredis.version>
         <wxtools.version>2.1.4-RELEASE</wxtools.version>
+        <hutool.version>5.0.6</hutool.version>
+        <p6spy.version>3.7.0</p6spy.version>
+        <ip2region.version>1.7</ip2region.version>
     </properties>
 
     <dependencies>
@@ -121,7 +124,7 @@
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
-            <version>${shiro.version}</version>
+            <version>${shiro.version}</version>u
         </dependency>
 
         <!-- shiro-redis -->
@@ -149,13 +152,20 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.0.6</version>
+            <version>${hutool.version}</version>
         </dependency>
 
         <dependency>
             <groupId>p6spy</groupId>
             <artifactId>p6spy</artifactId>
-            <version>3.7.0</version>
+            <version>${p6spy.version}</version>
+        </dependency>
+
+        <!-- IP定位插件 -->
+        <dependency>
+            <groupId>org.lionsoul</groupId>
+            <artifactId>ip2region</artifactId>
+            <version>${ip2region.version}</version>
         </dependency>
 
     </dependencies>

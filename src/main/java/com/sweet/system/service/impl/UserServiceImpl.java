@@ -95,8 +95,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             List<Role> roleList = roleMapper.findRoleByUserName(userName);
             roleSet = roleList.stream().map(Role::getName).collect(Collectors.toSet());
             redisUtil.set("userRole:"+userName,roleSet);
-        }else{
-            System.out.println("redis:------"+"userRole:"+userName+roleSet);
         }
         return roleSet;
     }
@@ -110,8 +108,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             List<Menu> menuList = menuMapper.findMenuByUserName(userName);
             menuSet = menuList.stream().map(Menu::getUrl).collect(Collectors.toSet());
             redisUtil.set("userMenu:"+userName,menuSet);
-        }else{
-            System.out.println("redis:------"+"userMenu:"+userName+menuSet);
         }
         return menuSet;
     }
@@ -119,9 +115,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public List<layMenu> findNavByUserName(String userName) {
         List<layMenu> list = menuMapper.findNavByUserName(userName);
-
-
-
         ArrayList<layMenu> trees = (ArrayList<layMenu>) list.stream().distinct().collect(Collectors.toList());
         ArrayList<layMenu> cloneTree = (ArrayList<layMenu>) trees.clone();
         ArrayList<layMenu> newtrees = new ArrayList<layMenu>();

@@ -25,6 +25,10 @@
         select
         u.user_id,u.user_name,u.birthday,u.dept_id,u.account_status,d.dept_name
         from t_user as u left join t_dept as d on u.dept_id = d.dept_id where 1 = 1
+        <if test="param.userName != null and param.userName != ''">
+            and  u.user_name = #{param.deptId}
+        </if>
+
         <if test="param.deptId != null and param.deptId != ''">
             and  u.dept_id = #{param.deptId}
             or u.dept_id in

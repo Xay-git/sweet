@@ -22,7 +22,12 @@
     </select>
 
     <select id="customPageList" resultType="com.sweet.system.entity.Role" parameterType="com.sweet.system.entity.Role">
-        select * from t_role order by create_time asc
+        select * from t_role where 1=1
+        <if test="param.name != null and param.name != ''">
+            and  name = #{param.name}
+        </if>
+        order by create_time asc
+
     </select>
 
 </mapper>

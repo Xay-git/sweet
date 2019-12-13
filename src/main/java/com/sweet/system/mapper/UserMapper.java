@@ -19,6 +19,8 @@ import java.util.List;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+    User findByUserId(@Param("userId") String userId);
+
     User findByUserName(@Param("userName") String userName);
 
     Page<User> customPageList(Page page, @Param("param") User dept);

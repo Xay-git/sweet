@@ -6,7 +6,9 @@ import com.sweet.core.model.system.LayuiPageFactory;
 import com.sweet.core.model.system.LayuiPageInfo;
 import com.sweet.core.model.system.layMenu;
 import com.sweet.core.shiro.ShiroKit;
+import com.sweet.core.sweetConst;
 import com.sweet.core.util.RedisUtil;
+import com.sweet.core.util.StringUtil;
 import com.sweet.system.entity.Menu;
 import com.sweet.system.entity.Role;
 import com.sweet.system.entity.User;
@@ -14,6 +16,7 @@ import com.sweet.system.entity.UserRole;
 import com.sweet.system.mapper.MenuMapper;
 import com.sweet.system.mapper.RoleMapper;
 import com.sweet.system.mapper.UserMapper;
+import com.sweet.system.service.FileInfoService;
 import com.sweet.system.service.UserRoleService;
 import com.sweet.system.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -51,6 +54,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     RedisUtil redisUtil;
 
+    @Autowired
+    FileInfoService fileInfoService;
+
     @Override
     public User findByUserName(String userName) {
         return userMapper.findByUserName(userName);
@@ -65,7 +71,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User findUserById(String id) {
-        User user = baseMapper.selectById(id);
+        User user = baseMapper.findByUserId(id);
+        if(StringUtil.isEmpty(user.getAvatar())){
+            user.setAvatarPath(sweetConst.DEFALT_AVATAR);
+        }
         user.setPassword(null);
         return user;
     }
@@ -133,6 +142,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         return newtrees;
     }
+
 
 
 

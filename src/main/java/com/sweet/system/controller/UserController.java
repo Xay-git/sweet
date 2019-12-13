@@ -16,6 +16,7 @@ import com.sweet.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -57,7 +58,8 @@ public class UserController {
     }
 
     @RequestMapping("/user_info")
-    public String user_info() {
+    public String user_info(Model model) {
+        model.addAttribute("shiroUser",ShiroKit.getUser());
         return "/system/user/user_info";
     }
 
@@ -75,7 +77,9 @@ public class UserController {
             user.setPassword(MD5Utils.encrypt(user.getUserName(), User.DEFAULT_PASSWORD));
             userService.save(user);
         }else{
+            user.setAvatar("");
             userService.updateById(user);
+            ShiroKit.updateUser(user);
         }
         if(!StringUtil.isEmpty(roleAssign)){
             userService.setRoleAssign(user.getUserId(),roleAssign);

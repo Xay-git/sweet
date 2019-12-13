@@ -92,6 +92,11 @@
         return iframe;
     }
 
+    function updateAvatar(filePath){
+        if(app.isEmpty(filePath)) { filePath='/common/images/avatar/default.png' }
+        $('.layui-layout-right .layui-nav-img').attr("src",filePath);
+    }
+
 </script>
 
 

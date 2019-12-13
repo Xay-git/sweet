@@ -1,1 +1,1 @@
-package com.sweet.core;public interface sweetConst {    public final Integer MENU = 0;    public final Integer PERMISSION = 1;}
+package com.sweet.core;public interface sweetConst {    public final Integer MENU = 0;    public final Integer PERMISSION = 1;    String DEFALT_AVATAR = "/common/images/avatar/default.png";}

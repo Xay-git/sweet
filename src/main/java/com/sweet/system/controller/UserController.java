@@ -1,12 +1,14 @@
 package com.sweet.system.controller;
 
 
+import com.sweet.core.exception.ServiceException;
 import com.sweet.core.model.ResultBean;
 import com.sweet.core.model.system.LayuiPageInfo;
 import com.sweet.core.model.system.layMenu;
 import com.sweet.core.shiro.ShiroKit;
 import com.sweet.core.util.MD5Utils;
 import com.sweet.core.util.StringUtil;
+import com.sweet.system.mapper.UserMapper;
 import com.sweet.system.model.XmSelect;
 import com.sweet.system.service.BaseService;
 import com.sweet.system.service.DeptService;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,6 +40,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Autowired
     private DeptService deptService;
@@ -63,6 +69,29 @@ public class UserController {
         return "/system/user/user_info";
     }
 
+    @RequestMapping("/user_password")
+    public String user_password() {
+        return "/system/user/user_password";
+    }
+
+    @RequestMapping("/editPassword")
+    @ResponseBody
+    public ResultBean editPassword(String userId,String oldPsw,String newPsw){
+        User user = userMapper.selectById(userId);
+        String userName = user.getUserName();
+        String psw = user.getPassword();
+        System.out.println(psw);
+        oldPsw = MD5Utils.encrypt(userName, oldPsw);
+        System.out.println(oldPsw);
+        if(!psw.equals(oldPsw)){
+            throw new ServiceException("您输入的密码不正确！");
+        }else{
+            user.setPassword(MD5Utils.encrypt(userName, newPsw));
+        }
+        userService.updateById(user);
+        return ResultBean.success();
+    }
+
     /**
      * 创建用户
      * @param user
@@ -77,13 +106,28 @@ public class UserController {
             user.setPassword(MD5Utils.encrypt(user.getUserName(), User.DEFAULT_PASSWORD));
             userService.save(user);
         }else{
-            user.setAvatar("");
             userService.updateById(user);
-            ShiroKit.updateUser(user);
+            if(user.getUserId().equals(ShiroKit.getUser().getUserId())){
+                ShiroKit.updateUser(user);
+            }
         }
         if(!StringUtil.isEmpty(roleAssign)){
             userService.setRoleAssign(user.getUserId(),roleAssign);
         }
+        return ResultBean.success(user);
+    }
+
+    /**
+     * 充值密码
+     * @param userId
+     * @return
+     */
+    @RequestMapping("/resetPassword")
+    @ResponseBody
+    public ResultBean resetPassword(User user){
+        String password = MD5Utils.encrypt(user.getUserName(), User.DEFAULT_PASSWORD);
+        user.setPassword(password);
+        userService.updateById(user);
         return ResultBean.success(user);
     }
 
@@ -96,14 +140,10 @@ public class UserController {
     @ResponseBody
     public ResultBean getUser(String userId){
        User user = userService.findUserById(userId);
+       user.setRoleIds(userService.getRoleByUserId(userId));
        return ResultBean.success(user);
     }
 
-    @RequestMapping("/getUserRole")
-    @ResponseBody
-    public ResultBean getUserRole(String userId){
-        return ResultBean.success(userService.getRole(userId));
-    }
 
     @RequestMapping("/navTree")
     @ResponseBody

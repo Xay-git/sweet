@@ -92,7 +92,9 @@
         return iframe;
     }
 
-    function updateAvatar(filePath){
+    function updateAvatar(filePath,userId){
+
+        if('${shiroUser.userId}' != userId){ return ;}
         if(app.isEmpty(filePath)) { filePath='/common/images/avatar/default.png' }
         $('.layui-layout-right .layui-nav-img').attr("src",filePath);
     }

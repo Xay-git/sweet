@@ -26,7 +26,7 @@ public interface UserService extends IService<User> {
 
     void setRoleAssign(String userId,String roleIds);
 
-    List<String> getRole(String userId);
+    List<String> getRoleByUserId(String userId);
 
     Set<String> getUserRole(String userName);
 

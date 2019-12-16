@@ -75,7 +75,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if(StringUtil.isEmpty(user.getAvatar())){
             user.setAvatarPath(sweetConst.DEFALT_AVATAR);
         }
-        user.setPassword(null);
+            user.setPassword(null);
         return user;
     }
 
@@ -92,8 +92,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public List<String> getRole(String userId) {
-        return baseMapper.getRole(userId);
+    public List<String> getRoleByUserId(String userId) {
+        return baseMapper.getRoleByUserId(userId);
     }
 
     @Override

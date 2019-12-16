@@ -55,10 +55,7 @@ public class String2DateConfig {
     public class StringConverter implements Converter<String, String> {
         @Override
         public String convert(String str) {
-
             String method = request.getMethod();
-
-            System.out.println(str);
             if(str.equals("")&&method.equals("POST")){
                 str = " ";
             }

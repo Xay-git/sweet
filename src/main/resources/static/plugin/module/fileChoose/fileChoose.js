@@ -370,8 +370,8 @@ layui.define(['jquery', 'layer', 'form', 'upload', 'util'], function (exports) {
         icon || (icon = 'layui-icon-face-surprised');
         var html = '';
         html += '<div class="file-choose-empty">';
-        html += '   <i class="layui-icon ' + icon + '"></i>';
-        html += '   <p>' + msg + '</p>';
+        html += '   <i class="layui-icon ' + icon + '" ></i>';
+        html += '   <p style="margin-top: 30px;">' + msg + '</p>';
         html += '</div>';
         return html;
     };

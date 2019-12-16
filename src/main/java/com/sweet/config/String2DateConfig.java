@@ -25,9 +25,6 @@ public class String2DateConfig {
     @Autowired
     private RequestMappingHandlerAdapter handlerAdapter;
 
-    @Autowired
-    HttpServletRequest request;
-
     /**
      * 默认时间转化器
      */
@@ -37,7 +34,6 @@ public class String2DateConfig {
         if ((initializer != null ? initializer.getConversionService() : null) != null) {
             GenericConversionService genericConversionService = (GenericConversionService) initializer.getConversionService();
             genericConversionService.addConverter(new StringToDateConverter());
-            genericConversionService.addConverter(new StringConverter());
 
         }
     }
@@ -49,17 +45,6 @@ public class String2DateConfig {
                 return null;
             }
             return DateUtil.parse(dateString);
-        }
-    }
-
-    public class StringConverter implements Converter<String, String> {
-        @Override
-        public String convert(String str) {
-            String method = request.getMethod();
-            if(str.equals("")&&method.equals("POST")){
-                str = " ";
-            }
-            return str;
         }
     }
 

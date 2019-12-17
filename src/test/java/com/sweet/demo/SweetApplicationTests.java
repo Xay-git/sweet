@@ -35,9 +35,8 @@ public class SweetApplicationTests {
 
 	@Test
 	public void redis() {
-		redisUtil.set("aa","aa");
-		sessionService.list();
-		System.out.println(redisUtil.get("aa"));
+
+		System.out.println(redisUtil.getExpire("userRole:admin"));
 	}
 
 }

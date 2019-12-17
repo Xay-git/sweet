@@ -114,9 +114,46 @@ public class StringUtil {
 		return UUID.randomUUID().toString().replaceAll("-", "");
 	}
 
-	public static void main(String[] args) {
-		System.out.println(HumpToUnderline("dictType"));
+	public static int findUpperCount(String str){
+		int upperCaseCount=0;
+		for(int i=0;i<str.length();i++){
+			char c=str.charAt(i);
+			if(Character.isUpperCase(c)){
+				//大写字母
+				upperCaseCount=upperCaseCount+1;
+			}
+		}
+		return upperCaseCount;
 	}
+
+	public static void main(String[] args) {
+
+		String string="TestStu";
+		int numberCount=0;
+		int upperCaseCount=0;
+		int lowerCaseCount=0;
+		for(int i=0;i<string.length();i++){
+			char c=string.charAt(i);
+			if(Character.isDigit(c)){
+				//数字
+				numberCount=numberCount+1;
+			}
+			else if(Character.isUpperCase(c)){
+				//大写字母
+				upperCaseCount=upperCaseCount+1;
+			}
+			else if(Character.isLowerCase(c)){
+				//小写字母
+				lowerCaseCount=lowerCaseCount+1;
+			}
+
+		}
+		System.out.println("大写字母数量"+upperCaseCount);
+		System.out.println("小写字母数量"+lowerCaseCount);
+		System.out.println("数字数量"+numberCount);
+
+	}
+
 
 	/***
 	 * 驼峰命名转为下划线命名

@@ -34,6 +34,4 @@ public interface UserService extends IService<User> {
 
     List<layMenu> findNavByUserName(String userName);
 
-
-
 }

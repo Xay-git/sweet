@@ -99,11 +99,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Set<String> getUserRole(String userName) {
         User user = ShiroKit.getUser();
-        Set<String> roleSet = (Set<String>) redisUtil.get("userRole:"+userName);
+        Set<String> roleSet = (Set<String>) redisUtil.get("user_role:"+userName);
         if(roleSet==null){
             List<Role> roleList = roleMapper.findRoleByUserName(userName);
             roleSet = roleList.stream().map(Role::getName).collect(Collectors.toSet());
-            redisUtil.set("userRole:"+userName,roleSet);
+            redisUtil.set("user_role:"+userName,roleSet);
         }
         return roleSet;
     }
@@ -111,12 +111,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Set<String> getUserMenu(String userName) {
         User user = ShiroKit.getUser();
-        Set<String> menuSet = (Set<String>) redisUtil.get("userMenu:"+userName);
+        Set<String> menuSet = (Set<String>) redisUtil.get("user_menuy:"+userName);
         if(menuSet==null){
             // 获取用户菜单url集合
             List<Menu> menuList = menuMapper.findMenuByUserName(userName);
             menuSet = menuList.stream().map(Menu::getUrl).collect(Collectors.toSet());
-            redisUtil.set("userMenu:"+userName,menuSet);
+            redisUtil.set("user_menu:"+userName,menuSet);
         }
         return menuSet;
     }

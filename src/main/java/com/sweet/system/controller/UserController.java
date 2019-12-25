@@ -80,9 +80,7 @@ public class UserController {
         User user = userMapper.selectById(userId);
         String userName = user.getUserName();
         String psw = user.getPassword();
-        System.out.println(psw);
         oldPsw = MD5Utils.encrypt(userName, oldPsw);
-        System.out.println(oldPsw);
         if(!psw.equals(oldPsw)){
             throw new ServiceException("您输入的密码不正确！");
         }else{
@@ -101,11 +99,15 @@ public class UserController {
     @ResponseBody
     @Transactional
     public ResultBean editUser(User user,String roleAssign){
+        String username = user.getUserName();
         if(StringUtil.isEmpty(user.getUserId())){
-            user.setUserName(user.getUserName().toLowerCase());
+            user.setUserName(username.toLowerCase());
             user.setPassword(MD5Utils.encrypt(user.getUserName(), User.DEFAULT_PASSWORD));
             userService.save(user);
         }else{
+            if((user.getAccountStatus()==0)&&ShiroKit.hasRole("admin")){
+                throw new ServiceException("不可以冻结管理员！");
+            }
             userService.updateById(user);
             if(user.getUserId().equals(ShiroKit.getUser().getUserId())){
                 ShiroKit.updateUser(user);

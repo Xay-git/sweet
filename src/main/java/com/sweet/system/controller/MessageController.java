@@ -1,0 +1,1 @@
+package com.sweet.system.controller;import org.springframework.stereotype.Controller;import org.springframework.web.bind.annotation.RequestMapping;@Controller@RequestMapping("/admin/message")public class MessageController {    @RequestMapping("")    public String message(){        return "/system/message/message";    }}

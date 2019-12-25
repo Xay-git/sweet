@@ -685,7 +685,7 @@ layui.define(['layer'], function (exports) {
             admin.strToWin($(this).data('window')).layui.admin.popupRight({
                 id: 'layer-notice',
                 type: 2,
-                content: url ? url :'/system/message'
+                content: url ? url : '/system/message'
             });
         },
         /* 打开修改密码弹窗 */

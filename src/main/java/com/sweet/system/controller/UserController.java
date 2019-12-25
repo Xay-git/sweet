@@ -140,6 +140,7 @@ public class UserController {
     @ResponseBody
     public ResultBean getUser(String userId){
        User user = userService.findUserById(userId);
+       user.setPassword(null);
        user.setRoleIds(userService.getRoleByUserId(userId));
        return ResultBean.success(user);
     }

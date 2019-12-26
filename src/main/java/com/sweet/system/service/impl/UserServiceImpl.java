@@ -2,11 +2,13 @@ package com.sweet.system.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sweet.core.exception.ServiceException;
 import com.sweet.core.model.system.LayuiPageFactory;
 import com.sweet.core.model.system.LayuiPageInfo;
 import com.sweet.core.model.system.layMenu;
 import com.sweet.core.shiro.ShiroKit;
 import com.sweet.core.sweetConst;
+import com.sweet.core.util.MD5Utils;
 import com.sweet.core.util.RedisUtil;
 import com.sweet.core.util.StringUtil;
 import com.sweet.system.entity.Menu;
@@ -56,6 +58,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     FileInfoService fileInfoService;
+
+    @Override
+    public User addUser(User user) {
+        String username = user.getUserName();
+        User tempUser = findByUserName(username);
+        if(tempUser!=null){
+            throw new ServiceException("该用户名已被占用");
+        }
+        user.setUserName(username.toLowerCase());
+        user.setPassword(MD5Utils.encrypt(username, User.DEFAULT_PASSWORD));
+        save(user);
+        return user;
+    }
 
     @Override
     public User findByUserName(String userName) {

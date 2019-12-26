@@ -101,9 +101,7 @@ public class UserController {
     public ResultBean editUser(User user,String roleAssign){
         String username = user.getUserName();
         if(StringUtil.isEmpty(user.getUserId())){
-            user.setUserName(username.toLowerCase());
-            user.setPassword(MD5Utils.encrypt(user.getUserName(), User.DEFAULT_PASSWORD));
-            userService.save(user);
+            userService.addUser(user);
         }else{
             if((user.getAccountStatus()==0)&&ShiroKit.hasRole("admin")){
                 throw new ServiceException("不可以冻结管理员！");

@@ -18,6 +18,8 @@ import java.util.Set;
  */
 public interface UserService extends IService<User> {
 
+    User addUser(User user);
+
     User findByUserName(String userName);
 
     LayuiPageInfo findPageBySpec(User user);

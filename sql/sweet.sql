@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50710
 File Encoding         : 65001
 
-Date: 2019-12-25 17:32:49
+Date: 2019-12-27 11:07:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,7 +33,7 @@ CREATE TABLE `t_dept` (
 -- ----------------------------
 -- Records of t_dept
 -- ----------------------------
-INSERT INTO `t_dept` VALUES ('24c43877d7cc4e1a4b7957a4324843a3', '0', '默认机构', '1', '2019-11-29 16:42:51', '2019-12-25 08:43:32', '0');
+INSERT INTO `t_dept` VALUES ('24c43877d7cc4e1a4b7957a4324843a3', '0', '默认机构', '1', '2019-11-29 16:42:51', '2019-12-26 06:37:25', '0');
 
 -- ----------------------------
 -- Table structure for t_dict
@@ -216,6 +216,8 @@ CREATE TABLE `t_user` (
 -- Records of t_user
 -- ----------------------------
 INSERT INTO `t_user` VALUES ('1', 'admin', 'c7242b2bc2435c1ead6b89f85d9e6a96', '2019-12-02 16:00:00', '1', '', '2019-12-03 15:14:39', '24c43877d7cc4e1a4b7957a4324843a3');
+INSERT INTO `t_user` VALUES ('2c8037a40909a06a69ee97820d53c00d', 'kobe', 'e283671f405c40d88b9017e5d07f3a97', null, '0', null, '2019-12-26 06:46:10', null);
+INSERT INTO `t_user` VALUES ('774f9eb6b64eb67c9545dfa1aeb8a0fd', 'kobe1', '79efeab25c588f856172a4538d325a79', null, '0', null, '2019-12-26 06:47:55', null);
 
 -- ----------------------------
 -- Table structure for t_user_role

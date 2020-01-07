@@ -68,6 +68,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         user.setUserName(username.toLowerCase());
         user.setPassword(MD5Utils.encrypt(username, User.DEFAULT_PASSWORD));
+        user.setAccountStatus(sweetConst.USER_NORMAL);
         save(user);
         return user;
     }

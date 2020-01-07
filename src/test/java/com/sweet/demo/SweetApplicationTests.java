@@ -17,26 +17,5 @@ import java.util.List;
 @SpringBootTest
 public class SweetApplicationTests {
 
-	@Autowired
-	RoleService roleService;
-
-	@Autowired
-	RedisUtil redisUtil;
-
-	@Autowired
-	SessionService sessionService;
-
-
-	@Test
-	public void test1() {
-		List<String> list = roleService.getMenusByRoleId("1");
-		System.out.println(list);
-	}
-
-	@Test
-	public void redis() {
-
-		System.out.println(redisUtil.getExpire("userRole:admin"));
-	}
 
 }

@@ -178,4 +178,11 @@ public class UserController {
         return ResultBean.success(list);
     }
 
+    @RequestMapping("/delUser")
+    @ResponseBody
+    public ResultBean delUser(User user){
+        userService.removeById(user);
+        return ResultBean.success();
+    }
+
 }

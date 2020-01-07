@@ -36,7 +36,7 @@ public class LayuiPageFactory {
         int limit;
         String lim  = request.getParameter("limit");
         if(StringUtils.isEmpty(lim)){
-            limit = 99999999;
+            limit = 99999;
         }else{
             limit = Integer.valueOf(lim);
         }

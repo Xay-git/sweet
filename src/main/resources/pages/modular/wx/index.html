@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="/plugin/layui/css/layui.css" media="all">
     <link href="/plugin/wx/css/bootstrap.min.css" rel="stylesheet">
     <link href="/plugin/wx/css/menu.css" rel="stylesheet">
+
+    <script src="/plugin/layui/layui.all.js"></script>
+    <script src="/plugin/vue/axios.min.js"></script>
+    <script src="/plugin/vue/qs.min.js"></script>
+    <script src="/common/js/request.js?v=${version}"></script>
+    <script src="/common/js/common.js?v=${version}"></script>
 </head>
 <body>
         <div class="content" style="width:900px;margin:60px auto 0px;">
             <div id="app-menu">
 
-                {{selectedMenuIndex}}
                 <!-- 预览窗 -->
                 <div class="weixin-preview">
                     <div class="weixin-hd">
@@ -275,6 +281,7 @@
             var newsListTotal=0;
             var materialListTotal=0;
 
+            var util = app;
             //Vue
             var app = new Vue({
                 el: '#app-menu',
@@ -381,23 +388,55 @@
                     },
                     //添加菜单
                     addMenu:function(level){
+
                         if(level==1&&this.menu.button.length<3){
-                            this.menu.button.push({
+                            var buttonIndex;
+                            if(util.isEmpty(this.menu.button)){
+                                buttonIndex=0
+                            }else{
+                                buttonIndex = this.menu.button.length;
+                            }
+                            var button = {
                                 "type": "view",
                                 "name": "菜单名称",
-                                "sub_button": [],
-                                "url":""
+                                "url":"",
+                                "tier":level,
+                                "buttonIndex":buttonIndex
+                            }
+
+                            request.post("/admin/wxmenu/editWxmenu",button,'json').then(res=>{
+                                console.log(JSON.stringify(res));
+                                this.menu.button.push(res);
+                                this.selectedMenuIndex=this.menu.button.length-1;
+                                this.selectedSubMenuIndex='';
                             })
-                            this.selectedMenuIndex=this.menu.button.length-1
-                            this.selectedSubMenuIndex=''
+
                         }
                         if(level==2&&this.menu.button[this.selectedMenuIndex].sub_button.length<5){
-                            this.menu.button[this.selectedMenuIndex].sub_button.push({
+                            var buttonIndex;
+                            if(util.isEmpty(this.menu.button[this.selectedMenuIndex].sub_button)){
+                                buttonIndex = 0
+                            }else{
+                                buttonIndex = this.menu.button[this.selectedMenuIndex].sub_button.length;
+                            }
+
+
+                            var button = {
                                 "type": "view",
                                 "name": "子菜单名称",
-                                "url":""
+                                "url":"",
+                                "tier":level,
+                                "buttonIndex":buttonIndex,
+                                "parentId":this.menu.button[this.selectedMenuIndex].buttonId
+                            }
+
+                            request.post("/admin/wxmenu/editWxmenu",button,'json').then(res=>{
+                                console.log(JSON.stringify(res));
+                                this.menu.button[this.selectedMenuIndex].sub_button.push(res)
+                                this.selectedSubMenuIndex=this.menu.button[this.selectedMenuIndex].sub_button.length-1
                             })
-                            this.selectedSubMenuIndex=this.menu.button[this.selectedMenuIndex].sub_button.length-1
+
+
                         }
                     },
                     //删除菜单

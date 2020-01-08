@@ -1,0 +1,1 @@
+package com.sweet.modular.demo;import org.springframework.stereotype.Controller;import org.springframework.web.bind.annotation.RequestMapping;@Controller@RequestMapping("/admin/demo")public class DemoController {    @RequestMapping("/card")    public String card(){        return "/modular/demo/card";    }}

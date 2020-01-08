@@ -2,7 +2,7 @@ package com.sweet.wx.wxconst;
 
 public class ResponseConst {
 
-    public static final String DEFAULE_TEXT = "欢迎关注城那科技！\uD83D\uDC4D";
+    public static final String DEFAULE_TEXT = "欢迎关注我！\uD83D\uDC4D";
     public static final String DUPLICATE_REQUEST = "操作太快啦！稍等再试试哦！\t\uD83D\uDD50";
     public static final String SET_CONFIG_SUCCESS = "设置成功！棒笛真棒！\uD83D\uDE1D\n";
     public static final String SET_ORIGINAL_CONFIG_FAILURE = "⛔设置指令不正确哦！指令如下:\n\n原创：是\n原创：否\n";

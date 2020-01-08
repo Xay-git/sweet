@@ -32,7 +32,7 @@
                                 <ul class="weixin-sub-menu" v-show="selectedMenuIndex===i">
                                     <li v-for="(sub,i2) in btn.sub_button" class="menu-sub-item" :class="{current:selectedSubMenuIndex===i2&&selectedMenuLevel()==2}"  @click.stop="selectedSubMenu(i2,$event)">
                                         <div class="menu-item-title">
-                                            <span>{{sub.name}}{{sub.buttonIndex}}</span>
+                                            <span>{{sub.name}}</span>
                                         </div>
                                     </li>
                                     <li v-if="btn.sub_button.length<5" class="menu-sub-item" @click.stop="addMenu(2)">
@@ -52,7 +52,7 @@
                 <div class="weixin-menu-detail" v-if="selectedMenuLevel()==1">
                     <div class="menu-input-group" style="border-bottom: 2px #e8e8e8 solid;">
                         <div class="menu-name">{{menu.button[selectedMenuIndex].name}}</div>
-                        <div class="menu-del" @click="delMenu">删除菜单</div>
+                        <div class="menu-del" @click="delMenu(menu.button[selectedMenuIndex].buttonId,1)">删除菜单</div>
                     </div>
                     <div class="menu-input-group">
                         <div class="menu-label">菜单名称</div>
@@ -136,7 +136,7 @@
                 <div class="weixin-menu-detail" v-if="selectedMenuLevel()==2">
                     <div class="menu-input-group" style="border-bottom: 2px #e8e8e8 solid;">
                         <div class="menu-name">{{menu.button[selectedMenuIndex].sub_button[selectedSubMenuIndex].name}}</div>
-                        <div class="menu-del" @click="delMenu">删除子菜单</div>
+                        <div class="menu-del" @click="delMenu(menu.button[selectedMenuIndex].sub_button[selectedSubMenuIndex].buttonId,2);">删除子菜单</div>
                     </div>
                     <div class="menu-input-group">
                         <div class="menu-label">子菜单名称</div>
@@ -392,6 +392,7 @@
                                 this.menu.button.push(res);
                                 this.selectedMenuIndex=this.menu.button.length-1;
                                 this.selectedSubMenuIndex='';
+                                util.success("操作成功！");
                             })
 
                         }
@@ -417,36 +418,46 @@
                                 console.log(JSON.stringify(res));
                                 this.menu.button[this.selectedMenuIndex].sub_button.push(res)
                                 this.selectedSubMenuIndex=this.menu.button[this.selectedMenuIndex].sub_button.length-1
+                                util.success("操作成功！");
                             })
 
 
                         }
                     },
                     //删除菜单
-                    delMenu:function(){
-                        if(this.selectedMenuLevel()==1&&confirm('删除后菜单下设置的内容将被删除')){
-                            if(this.selectedMenuIndex===0){
-                                this.menu.button.splice(this.selectedMenuIndex, 1);
-                                this.selectedMenuIndex = 0;
-                            }else{
-                                this.menu.button.splice(this.selectedMenuIndex, 1);
-                                this.selectedMenuIndex -=1;
-                            }
-                            if(this.menu.button.length==0){
-                                this.selectedMenuIndex = ''
-                            }
-                        }else if(this.selectedMenuLevel()==2){
-                            if(this.selectedSubMenuIndex===0){
-                                this.menu.button[this.selectedMenuIndex].sub_button.splice(this.selectedSubMenuIndex, 1);
-                                this.selectedSubMenuIndex = 0;
-                            }else{
-                                this.menu.button[this.selectedMenuIndex].sub_button.splice(this.selectedSubMenuIndex, 1);
-                                this.selectedSubMenuIndex -= 1;
-                            }
-                            if(this.menu.button[this.selectedMenuIndex].sub_button.length==0){
-                                this.selectedSubMenuIndex = ''
-                            }
+                    delMenu:function(buttonId,tier){
+                        if(confirm('删除后菜单下设置的内容将被删除')){
+                            request.post("/admin/wxmenu/delWxmenu",{buttonId:buttonId,tier,tier}).then(res=>{
+                                dodel();
+                            })
                         }
+
+
+                       var dodel = function () {
+                           if(app.selectedMenuLevel()==1){
+                               if(app.selectedMenuIndex===0){
+                                   app.menu.button.splice(app.selectedMenuIndex, 1);
+                                   app.selectedMenuIndex = 0;
+                               }else{
+                                   app.menu.button.splice(app.selectedMenuIndex, 1);
+                                   app.selectedMenuIndex -=1;
+                               }
+                               if(app.menu.button.length==0){
+                                   app.selectedMenuIndex = ''
+                               }
+                           }else if(app.selectedMenuLevel()==2){
+                               if(app.selectedSubMenuIndex===0){
+                                   app.menu.button[app.selectedMenuIndex].sub_button.splice(app.selectedSubMenuIndex, 1);
+                                   app.selectedSubMenuIndex = 0;
+                               }else{
+                                   app.menu.button[app.selectedMenuIndex].sub_button.splice(app.selectedSubMenuIndex, 1);
+                                   app.selectedSubMenuIndex -= 1;
+                               }
+                               if(app.menu.button[app.selectedMenuIndex].sub_button.length==0){
+                                   app.selectedSubMenuIndex = ''
+                               }
+                           }
+                       }
                     },
                     //检查菜单名称长度
                     checkMenuName:function(val){
@@ -550,34 +561,14 @@
 
             $('#btn-save').click(function(){
                 request.post("/admin/wxmenu/saveButton",JSON.stringify(app.menu.button),'json').then(res=>{
-                    console.log(res)
+                    util.success("操作成功！");
                 })
             })
 
             //发布菜单
             $('#btn-create').click(function(){
-                var layerId = layer.load(2);
-                $.ajax({
-                    type: 'post',
-                    timeout: 20000,
-                    url:'/admin/wxmp/updateMenu',
-                    data:{
-                        "menu":JSON.stringify(app.menu)
-                    },
-                    async: true,
-                    dataType: 'json',
-                    success: function (res) {
-                        layer.close(layerId);
-                        if (res.errcode == 0) {
-                            layer.msg('发布自定义菜单成功')
-                        }else{
-                            layer.msg('发布自定义菜单失败：'+res.errmsg)
-                        }
-                    },
-                    error:function(){
-                        layer.close(layerId);
-                        layer.msg('网络错误')
-                    }
+                request.post("/admin/wxmenu/updateMenu",{list:JSON.stringify(app.menu.button),menu:JSON.stringify(app.menu)}).then(res=>{
+                    util.success("发布成功！");
                 })
             })
             //清空菜单

@@ -16,13 +16,12 @@
 <body>
         <div class="content" style="width:900px;margin:60px auto 0px;">
             <div id="app-menu">
-
                 <!-- 预览窗 -->
                 <div class="weixin-preview">
                     <div class="weixin-hd">
                         <div class="weixin-title">{{weixinTitle}}</div>
                     </div>
-                    {{menu}}
+
                     <div class="weixin-bd">
                         <ul class="weixin-menu" id="weixin-menu" >
                             <li v-for="(btn,i) in menu.button" class="menu-item" :class="{current:selectedMenuIndex===i&&selectedMenuLevel()==1}" @click="selectedMenu(i,$event)">
@@ -33,7 +32,7 @@
                                 <ul class="weixin-sub-menu" v-show="selectedMenuIndex===i">
                                     <li v-for="(sub,i2) in btn.sub_button" class="menu-sub-item" :class="{current:selectedSubMenuIndex===i2&&selectedMenuLevel()==2}"  @click.stop="selectedSubMenu(i2,$event)">
                                         <div class="menu-item-title">
-                                            <span>{{sub.name}}</span>
+                                            <span>{{sub.name}}{{sub.buttonIndex}}</span>
                                         </div>
                                     </li>
                                     <li v-if="btn.sub_button.length<5" class="menu-sub-item" @click.stop="addMenu(2)">
@@ -231,7 +230,8 @@
 
 
             <div class="weixin-btn-group">
-                <div id="btn-create" class="btn btn-success">发布</div>
+                <div id="btn-save" class="btn btn-success">保存</div>
+                <div id="btn-create" class="btn btn-success">保存并发布</div>
                 <div id="btn-clear" class="btn btn-danger">清空</div>
             </div>
         </div>
@@ -303,16 +303,11 @@
                 methods: {
                     getMenu:function(){
                         var _this=this
-                        $.ajax({
-                            type: 'GET',
-                            timeout: 20000,
-                            url:getMenuAPI,
-                            async: false,
-                            dataType: 'json',
-                            success: function (res) {
-                                if (res.errcode == 0) {
-                                    _this.menu=res.data.menu
-                                }
+                        request.fetch("/admin/wxmenu/getWxmenuDetail").then(res=>{
+                            console.log(JSON.stringify(res))
+                            if(res.length>0){
+                                _this.menu.button = res;
+                                _this.selectedMenuIndex = 0;
                             }
                         })
                     },
@@ -563,6 +558,12 @@
                         })
                     }
                 }
+            })
+
+            $('#btn-save').click(function(){
+                request.post("/admin/wxmenu/saveButton",JSON.stringify(app.menu.button),'json').then(res=>{
+                    console.log(res)
+                })
             })
 
             //发布菜单

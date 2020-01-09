@@ -17,5 +17,10 @@ import java.util.List;
 @SpringBootTest
 public class SweetApplicationTests {
 
+    @Test
+    public void test(){
+
+    }
+
 
 }

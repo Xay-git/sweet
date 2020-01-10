@@ -100,7 +100,6 @@ public class UserController {
     @ResponseBody
     @Transactional
     public ResultBean editUser(User user,String roleAssign){
-        String username = user.getUserName().toLowerCase();
 
         if(StringUtil.isEmpty(user.getUserId())){
             userService.addUser(user);
@@ -109,7 +108,6 @@ public class UserController {
                 throw new ServiceException("不可以冻结管理员！");
             }
             String userName = user.getUserName().toLowerCase();
-
             User temp = userService.findByUserName(userName);
             if((temp!=null)&&!temp.getUserId().equals(user.getUserId())){
                 throw new ServiceException("该用户名已被占用！");

@@ -136,9 +136,9 @@
 
         <!-- wx-tools -->
         <dependency>
-            <groupId>com.soecode.wx-tools</groupId>
-            <artifactId>wx-tools</artifactId>
-            <version>${wxtools.version}</version>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-mp</artifactId>
+            <version>3.6.0</version>
         </dependency>
 
         <!-- commons-lang3 -->

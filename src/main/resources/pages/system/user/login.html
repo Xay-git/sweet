@@ -55,8 +55,9 @@ layout("/common/_container.html"){
 
 
 <script>
-  if (window != top)
+  if (window != top){
     top.location.href = location.href;
+  }
 
   var vm = new Vue({
     el: '#app',

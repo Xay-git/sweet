@@ -73,7 +73,7 @@ public class RoleController {
     @RequestMapping("/editRole")
     @ResponseBody
     public ResultBean editRole(Role role){
-        roleService.updateById(role);
+        roleService.saveOrUpdate(role);
         return ResultBean.success(role);
     }
 

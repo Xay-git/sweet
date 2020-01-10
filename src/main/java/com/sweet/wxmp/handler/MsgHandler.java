@@ -2,6 +2,7 @@ package com.sweet.wxmp.handler;
 
 
 import cn.hutool.json.JSONUtil;
+import com.sweet.core.util.RedisUtil;
 import com.sweet.modular.wxmenu.service.WxmenuService;
 import com.sweet.wxmp.builder.TextBuilder;
 import me.chanjar.weixin.common.api.WxConsts;
@@ -27,6 +28,9 @@ public class MsgHandler extends AbstractHandler {
     @Autowired
     WxmenuService wxmenuService;
 
+    @Autowired
+    RedisUtil redisUtil;
+
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
                                     Map<String, Object> context, WxMpService weixinService,
@@ -36,7 +40,7 @@ public class MsgHandler extends AbstractHandler {
         //回复自定义文本
         if(wxMessage.getEvent().equals(WxConsts.EventType.CLICK)){
             String buttonId = wxMessage.getEventKey();
-            String content = wxmenuService.getById(buttonId).getContent();
+            String content = String.valueOf(redisUtil.get("text:"+buttonId));
             return new TextBuilder().build(content, wxMessage, weixinService);
 
         }

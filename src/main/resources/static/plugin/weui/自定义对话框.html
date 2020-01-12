@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+		.weui-custom-pop{
+			position: fixed;
+			opacity: 0;
+		    z-index: -1;
+		    width: 80%;
+		    max-width: 300px;
+		    top: 50%;
+		    left: 50%;
+		    -webkit-transform: scale(0.9) translate(-50%, -50%);
+            transform: scale(0.9) translate(-50%, -50%);
+		    background-color: #FFFFFF;
+		    text-align: center;
+		    border-radius: 3px;
+		    overflow: hidden;
+		    -webkit-transition-duration: .2s;
+    		transition-duration: .2s;
+    		-webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+		}
+		.weui-custom-ft{
+			position: relative;
+		    line-height: 48px;
+		    font-size: 18px;
+		    display: -webkit-box;
+		    display: -webkit-flex;
+		    display: flex;
+		    border-top:1px solid #D5D5D6;
+		}
+		.weui-custom-ft a{
+			display: block;
+		    -webkit-box-flex: 1;
+		    -webkit-flex: 1;
+		    flex: 1;
+		    color: #3CC51F;
+		    text-decoration: none;
+		    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		    position: relative;
+		    border-right:1px solid #D5D5D6;
+		}
+		.weui-custom-pop .weui-custom-bd{
+			margin:15px 0;
+		}
+		.weui-custom-pop .weui-input{
+			width: 90%;
+			padding:5px;
+			border:1px solid #57b9f8;
+			border-radius: 5px;
+		}
+		.weui-custom-pop .weui-custom-hd{
+			color:#333;
+			padding:15px 0 0 0;
+		}
+		.weui-custom-pop .weui-custom-hd span{
+			color:#74c3f9;
+		}
+		.weui-dialog--visible{
+			opacity: 1;
+		    visibility: visible;
+		    z-index: 5000;
+		    -webkit-transform: scale(1) translate(-50%, -50%);
+		    transform: scale(1) translate(-50%, -50%);
+		}
+
+		.weui-custom-pop .close{
+			width: 24px;
+			height: 24px;
+			background:url(images/icon22.png) no-repeat;
+			background-size: 24px;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+		}
+	</style>
+</head>
+<body>
+
+    <a href="javascript:;" id="i0" class="weui-btn weui-btn_primary">自定义弹出层</a>
+
+     <div class="weui-mask"></div>
+     <div class="weui-custom-pop">
+        <div class="close qx"></div>
+     	<div class="weui-custom-hd">该二维码无法识别<br/>请重新扫描或<span>输入ID号</span></div>
+     	<div class="weui-custom-bd">
+     		<input type="tel" class="weui-input" placeholder="请输入用户ID">
+     	</div>
+     	<div class="weui-custom-ft">
+     		<a href="javascript:;">重新扫描</a>
+     		<a href="javascript:;">搜索ID</a>
+     	</div>
+     </div>
+    
+   
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+	<script>
+		$('.qx').click(function(){
+			$('.weui-mask').removeClass('weui-mask--visible');
+			$('.weui-custom-pop').removeClass('weui-dialog--visible');
+		});
+
+		$('#i0').click(function(){
+			$('.weui-mask').addClass('weui-mask--visible');
+			$('.weui-custom-pop').addClass('weui-dialog--visible');
+		});
+	</script>
+</body>
+</html>

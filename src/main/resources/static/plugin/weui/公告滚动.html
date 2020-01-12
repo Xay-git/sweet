@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+
+     #scrollDiv{height:40px;line-height:40px;overflow:hidden; background:url(images/icon23.png) no-repeat 10px center; background-size: 24px; border-bottom:1px solid #ccc; padding-left: 44px;}
+     #scrollDiv li{height:40px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+</style>
+</head>
+<body>
+
+<div id="scrollDiv">
+  <ul>
+    <li>这是公告标题的第一行这是公告标题的第一行</li>
+    <li>这是公告标题的<a href="">第二行</a></li>
+    <li>这是公告标题的<a href="">第三行</a></li>
+  </ul>
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+<script>
+	   function AutoScroll(obj){
+				$(obj).find("ul:first").animate({
+						marginTop:"-40px"
+				},500,function(){
+						$(this).css({marginTop:"0px"}).find("li:first").appendTo(this);
+				});
+		}
+		$(document).ready(function(){
+				setInterval('AutoScroll("#scrollDiv")',2500);
+		});
+</script>
+
+
+</body>
+</html>

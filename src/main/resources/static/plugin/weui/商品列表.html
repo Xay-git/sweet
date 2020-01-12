@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架-商品列表</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .product-list .weui-flex__item{
+    width: 50%;
+    float: left;
+    -webkit-box-sizing: border-box;
+    margin-bottom:4px;
+    }
+    .product-list .placeholder{
+      background:#fff;
+    }
+    .product-list .weui-flex__item img{
+        width: 100%;
+    }
+    .product-list .weui-flex__item:nth-child(2n+1){
+      padding-right: 2px;
+    }
+    .product-list .weui-flex__item:nth-child(2n){
+      padding-left: 2px;
+    }
+    .product-content-box{
+      padding:5px;
+    }
+    .product-content-box h3{
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+    }
+    .product-content-box .money{
+      display: -webkit-box;
+    }
+    .product-content-box .money .money-l,.product-content-box .money .money-r{
+      display:block;
+      font-family: 'Arial';
+    }
+    .product-content-box .money .money-l{
+      -webkit-box-flex:1;
+      color:#f00;
+    }
+    .product-content-box .money .big-price,.product-content-box .money .small-price{
+      font-weight: bold;
+    }
+    .product-content-box .money .money-r{
+      color:#848689;
+      font-size: 12px;
+      text-decoration:line-through;
+      margin-top: 4px;
+
+    }
+    .product-list .img{
+      display: block;
+        position: relative;
+        width: 100%;
+        font-size: 0px;
+        overflow: hidden;
+        padding-bottom: 100%;
+    }
+    .product-list .img img{
+      width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+    }
+  </style>
+</head>
+<body style="background:#f3f3f3;">
+    <div class="product-list clear">
+      <div class="weui-flex__item">
+        <a href="">
+        	<div class="placeholder">
+        	    <div class="img">
+        	    	<img src="images/temp/6.jpg" alt="">
+        	    </div>
+	      		<div class="product-content-box">
+	      			<h3>恋百如时尚秋冬长袖针织裙恋百如时尚秋冬长袖针织裙</h3>
+	      			<div class="money">
+	      			    <span class="money-l">¥<span class="big-price">199</span><span class="small-price">.00</span></span>
+	      			    <span class="money-r">¥<span class="">199</span><span class="">.00</span></span>
+	      			</div>
+	      		</div>
+	      	</div>
+        </a>
+      </div>
+      <div class="weui-flex__item">
+        <a href="">
+        	<div class="placeholder">
+        	    <div class="img">
+        	    	<img src="images/temp/7.jpg" alt="">
+        	    </div>
+	      		<div class="product-content-box">
+	      			<h3>卡希纳长袖针织蕾丝连衣裙</h3>
+	      			<div class="money">
+	      			    <span class="money-l">¥<span class="big-price">199</span><span class="small-price">.00</span></span>
+	      			    <span class="money-r">¥<span class="">199</span><span class="">.00</span></span>
+	      			</div>
+	      		</div>
+	      	</div>
+        </a>
+      </div>
+      <div class="weui-flex__item">
+        <a href="">
+        	<div class="placeholder">
+        	    <div class="img">
+        	    	<img src="images/temp/8.jpg" alt="">
+        	    </div>
+	      		<div class="product-content-box">
+	      			<h3>绮丝娜蕾丝针织长袖女装</h3>
+	      			<div class="money">
+	      			    <span class="money-l">¥<span class="big-price">199</span><span class="small-price">.00</span></span>
+	      			    <span class="money-r">¥<span class="">199</span><span class="">.00</span></span>
+	      			</div>
+	      		</div>
+	      	</div>
+        </a>
+      </div>
+      <div class="weui-flex__item">
+        <a href="">
+        	<div class="placeholder">
+        	    <div class="img">
+        	    	<img src="images/temp/9.jpg" alt="">
+        	    </div>
+	      		<div class="product-content-box">
+	      			<h3>薇拉风秋冬中长款女春秋裙</h3>
+	      			<div class="money">
+	      			    <span class="money-l">¥<span class="big-price">199</span><span class="small-price">.00</span></span>
+	      			    <span class="money-r">¥<span class="">199</span><span class="">.00</span></span>
+	      			</div>
+	      		</div>
+	      	</div>
+        </a>
+      </div> 
+      <div class="weui-flex__item">
+        <a href="">
+        	<div class="placeholder">
+        	    <div class="img">
+        	    	<img src="images/temp/1.jpg" alt="">
+        	    </div>
+	      		<div class="product-content-box">
+	      			<h3>恋百如时尚秋冬长袖针织裙</h3>
+	      			<div class="money">
+	      			    <span class="money-l">¥<span class="big-price">199</span><span class="small-price">.00</span></span>
+	      			    <span class="money-r">¥<span class="">199</span><span class="">.00</span></span>
+	      			</div>
+	      		</div>
+	      	</div>
+        </a>
+      </div>
+      <div class="weui-flex__item">
+        <a href="">
+        	<div class="placeholder">
+        	    <div class="img">
+        	    	<img src="images/temp/2.jpg" alt="">
+        	    </div>
+	      		<div class="product-content-box">
+	      			<h3>卡希纳长袖针织蕾丝连衣裙</h3>
+	      			<div class="money">
+	      			    <span class="money-l">¥<span class="big-price">199</span><span class="small-price">.00</span></span>
+	      			    <span class="money-r">¥<span class="">199</span><span class="">.00</span></span>
+	      			</div>
+	      		</div>
+	      	</div>
+        </a>
+      </div>
+      <div class="weui-flex__item">
+        <a href="">
+        	<div class="placeholder">
+        	    <div class="img">
+        	    	<img src="images/temp/3.jpg" alt="">
+        	    </div>
+	      		<div class="product-content-box">
+	      			<h3>绮丝娜蕾丝针织长袖女装</h3>
+	      			<div class="money">
+	      			    <span class="money-l">¥<span class="big-price">199</span><span class="small-price">.00</span></span>
+	      			    <span class="money-r">¥<span class="">199</span><span class="">.00</span></span>
+	      			</div>
+	      		</div>
+	      	</div>
+        </a>
+      </div>
+      <div class="weui-flex__item">
+        <a href="">
+        	<div class="placeholder">
+        	    <div class="img">
+        	    	<img src="images/temp/4.jpg" alt="">
+        	    </div>
+	      		<div class="product-content-box">
+	      			<h3>薇拉风秋冬中长款女春秋裙</h3>
+	      			<div class="money">
+	      			    <span class="money-l">¥<span class="big-price">199</span><span class="small-price">.00</span></span>
+	      			    <span class="money-r">¥<span class="">199</span><span class="">.00</span></span>
+	      			</div>
+	      		</div>
+	      	</div>
+        </a>
+      </div>  
+    </div>
+
+    <div class="weui-loadmore">
+        <i class="weui-loading"></i>
+        <span class="weui-loadmore__tips">正在加载</span>
+    </div>
+    
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+</body>
+</html>

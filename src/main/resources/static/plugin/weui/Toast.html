@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架-Toast</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div style="padding:10px;">
+    	<a href="javascript:;" id="i1" class="weui-btn weui-btn_primary">显示 Toast 成功</a>
+    	<a href="javascript:;" id="i2" class="weui-btn weui-btn_primary">显示 Toast 取消</a>
+    	<a href="javascript:;" id="i3" class="weui-btn weui-btn_primary">显示 Toast 禁止</a>
+    	<a href="javascript:;" id="i4" class="weui-btn weui-btn_primary">显示 Toast 纯文本</a>
+    	<a href="javascript:;" id="i5" class="weui-btn weui-btn_primary">显示 Loading</a>
+
+    	<a href="javascript:;" id="i6" class="weui-btn weui-btn_warn">显示成功</a>
+    	<a href="javascript:;" id="i7" class="weui-btn weui-btn_warn">显示失败</a>
+    	<a href="javascript:;" id="i8" class="weui-btn weui-btn_warn">显示警告</a>
+    </div>
+    
+   
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+    <script>
+    	$(document).on("click", "#i1", function() {
+	        $.toast("操作成功!");
+	    });
+
+	    $(document).on("click", "#i2", function() {
+	        $.toast("取消操作", "cancel");
+	    });
+
+	    $(document).on("click", "#i3", function() {
+	        $.toast("禁止操作", "forbidden");
+	    });
+
+	    $(document).on("click", "#i4", function() {
+	        $.toast("纯文本", "text");
+	    });
+
+	    $(document).on("click", "#i5", function() {
+	    	$.showLoading();
+	        setTimeout(function() {
+	          $.hideLoading();
+	        }, 2000)
+	    });
+
+	    $(document).on("click", "#i6", function() {
+	        $.toptip('操作成功', 'success');
+	    });
+	    $(document).on("click", "#i7", function() {
+	        $.toptip('操作失败', 'error');
+	    });
+	    $(document).on("click", "#i8", function() {
+	        $.toptip('警告', 'warning');
+	    });
+
+
+
+        $.toast.prototype.defaults.duration = 1000;
+
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架-对话框</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div style="padding:20px 10px;">
+        <a href="javascript:;" id="i0" class="weui-btn weui-btn_primary">Toast</a>
+    	<a href="javascript:;" id="i1" class="weui-btn weui-btn_primary">显示Alert</a>
+    	<a href="javascript:;" id="i2" class="weui-btn weui-btn_primary">显示 Confirm</a>
+    	<a href="javascript:;" id="i3" class="weui-btn weui-btn_primary">显示 Prompt</a>
+    	<a href="javascript:;" id="i4" class="weui-btn weui-btn_primary">显示登录弹窗</a>
+    	<a href="javascript:;" id="i5" class="weui-btn weui-btn_primary">显示自定义对话框</a>
+
+    	<a href="javascript:;" id="i6" class="weui-btn weui-btn_warn">显示 ActionSheet</a>
+    	<a href="javascript:;" id="i7" class="weui-btn weui-btn_warn">自定义背景色</a>
+    </div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+	<script src="js/fastclick.js"></script>
+	<script>
+	    // Toast
+	    $(document).on("click", "#i0", function() {
+	        $.toast("操作成功!",'text',800,function(){
+	        	//提示完成后执行方法
+	        });
+	    });
+	    // 显示Alert
+		$(document).on("click", "#i1", function() {
+	        $.alert("操作提示！", "警告");
+	    });
+	    // 显示 Confirm
+	    $(document).on("click", "#i2", function() {
+	        $.confirm("您确定要删除该文件吗?", "确认删除?", function() {
+	          $.toast("文件已经删除!");
+	        }, function() {
+	          //取消操作
+	        });
+        });
+        // 显示 Prompt
+        $(document).on("click", "#i3", function() {
+	        $.prompt({
+	          title: "输入姓名",
+	          text: "名字不能超过6个字符",
+	          onOK: function(text) {
+	            $.alert("您的名字是:"+text, "输入成功");
+	          },
+	          onCancel: function() {
+	            // 取消操作
+	          },
+	          input: '请输入您的名称'
+	        });
+        });
+        // 显示登录弹窗
+        $(document).on('click', '#i4', function() {
+	        $.login({
+	          title: '登录',
+	          text: '请输入用户名和密码',
+	          onOK: function (username, password) {
+	            console.log(username, password);
+	            $.toast('登录成功!');
+	          },
+	          onCancel: function () {
+	            $.toast('取消登录!', 'cancel');
+	          }
+	        });
+        });
+        //显示自定义对话框
+        $(document).on("click", "#i5", function() {
+	        $.modal({
+	          title: "Hello",
+	          text: "我是自定义的modal",
+	          buttons: [
+	            { text: "支付宝", onClick: function(){ $.alert("你选择了支付宝"); } },
+	            { text: "微信支付", onClick: function(){ $.toast("你选择了微信支付"); } },
+	            { text: "取消", className: "default"},
+	          ]
+	        });
+        });
+
+        // 显示 ActionSheet
+        $(document).on("click", "#i6", function() {
+	        $.actions({
+	          title: "选择操作",
+	          onClose: function() {
+	            console.log("close");
+	          },
+	          actions: [
+	            {
+	              text: "发布",
+	              className: "color-primary",
+	              onClick: function() {
+	                $.alert("发布成功");
+	              }
+	            },
+	            {
+	              text: "编辑",
+	              className: "color-warning",
+	              onClick: function() {
+	                $.alert("你选择了“编辑”");
+	              }
+	            },
+	            {
+	              text: "删除",
+	              className: 'color-danger',
+	              onClick: function() {
+	                $.alert("你选择了“删除”");
+	              }
+	            }
+	          ]
+	        });
+        });
+        //自定义背景色
+        $(document).on("click", "#i7", function() {
+        $.actions({
+          actions: [
+            {
+              text: "发布",
+              className: "bg-primary",
+            },
+            {
+              text: "编辑",
+              className: "bg-warning",
+            },
+            {
+              text: "删除",
+              className: 'bg-danger',
+            }
+          ]
+        });
+      });
+
+	</script>
+	<script>
+		$(function() {
+		    FastClick.attach(document.body);
+		  });
+	</script>
+</body>
+</html>

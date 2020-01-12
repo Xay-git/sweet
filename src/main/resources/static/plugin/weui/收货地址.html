@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+	html,body{ background:#f4f4f4; }
+	.weui-cells{ font-size: 15px; }
+	</style>
+</head>
+<body>
+
+    <div style="padding-bottom:68px;">
+        <div class="site-operation weui-cells_checkbox">
+        	<div class="weui-cell b-top ">
+			    <label class="weui-cell__hd weui-check__label" for="s13">
+			    	<input type="radio" class="weui-check" name="checkbox1" id="s13" checked="checked">
+					<i class="weui-icon-checked"></i>
+			    </label>
+			    <div class="weui-cell__bd">
+			        <div class="name">小官<span>常用地址</span></div>
+			        <div class="site">广东省深圳市宝安区留仙一路高新奇二期1号楼3层伴游人</div>
+			        <div class="phone">13728936116</div>
+			    </div>
+			    <div class="weui-cell__ft compile"><i></i></div>
+		    </div>
+		    <div class="weui-cell b-top">
+			    <label class="weui-cell__hd weui-check__label" for="s14">
+			    	<input type="radio" class="weui-check" name="checkbox1" id="s14">
+					<i class="weui-icon-checked"></i>
+			    </label>
+			    <div class="weui-cell__bd">
+			        <div class="name">小明</div>
+			        <div class="site">广东省深圳市宝安区坪洲地铁站B出口</div>
+			        <div class="phone">13728936116</div>
+			    </div>
+			    <div class="weui-cell__ft compile"><i></i></div>
+		    </div>
+		    <div class="weui-cell b-top">
+			    <label class="weui-cell__hd weui-check__label" for="s15">
+			    	<input type="radio" class="weui-check" name="checkbox1" id="s15">
+					<i class="weui-icon-checked"></i>
+			    </label>
+			    <div class="weui-cell__bd">
+			        <div class="name">小红</div>
+			        <div class="site">广东省深圳市宝安区留仙一路高新奇二期1号楼3B09</div>
+			        <div class="phone">13728936116</div>
+			    </div>
+			    <div class="weui-cell__ft compile"><i></i></div>
+		    </div>
+        </div>
+		                   
+    </div>
+
+    <div class="weui-flex weui-fixed-btm p10">
+	  <a href="新添地址.html" class="weui-btn weui-btn_primary">新添地址</a>
+	</div>
+    
+   
+    
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+	<script src="js/fastclick.js"></script>
+
+	<script>
+	     $(function() {
+	        FastClick.attach(document.body);
+	    });
+		 $(document).on("click", ".delete", function() {
+	        $.confirm("您确定要删除该地址吗?", "确认删除?", function() {
+	          $.toast("删除成功!",1000);
+	        }, function() {
+	          //取消操作
+	        });
+        });
+
+	</script>
+</body>
+</html>

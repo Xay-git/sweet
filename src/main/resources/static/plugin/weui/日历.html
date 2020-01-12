@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架-日历</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="weui_cells weui_cells_form">
+	    <div class="weui-cell">
+		    <div class="weui-cell__hd"><label for="" class="weui-label">日期2</label></div>
+		    <div class="weui-cell__bd">
+		      <input class="weui-input" type="text" id="date" placeholder="请选择日期" value="">
+		    </div>
+	    </div>
+	    <div class="weui-cell">
+		    <div class="weui-cell__hd"><label for="" class="weui-label">中文日期</label></div>
+		    <div class="weui-cell__bd">
+		      <input type="text" class="weui-input" id='date2' placeholder="请选择日期" />
+		    </div>
+	    </div>
+
+
+      <div class="weui-cell">
+        <div class="weui-cell__hd"><label for="" class="weui-label">日期</label></div>
+        <div class="weui-cell__bd">
+          <input type="text" class="weui-input" id='time5' placeholder="请选择日期" />
+        </div>
+      </div>
+
+
+	    <div class="weui-cell">
+		    <div class="weui-cell__hd"><label for="" class="weui-label">日期时间</label></div>
+		    <div class="weui-cell__bd">
+		      <input type="text" class="weui-input" id='time' placeholder="请选择日期时间" />
+		    </div>
+	    </div>
+	    <div class="weui-cell">
+		    <div class="weui-cell__hd"><label for="" class="weui-label">无分钟</label></div>
+		    <div class="weui-cell__bd">
+		      <input type="text" class="weui-input" id='time2' placeholder="请选择时间" />
+		    </div>
+	    </div>
+	    <div class="weui-cell">
+		    <div class="weui-cell__hd"><label for="" class="weui-label">上午下午</label></div>
+		    <div class="weui-cell__bd">
+		      <input type="text" class="weui-input" id='time3' placeholder="请选择时间" />
+		    </div>
+	    </div>
+	    <div class="weui-cell">
+		    <div class="weui-cell__hd"><label for="" class="weui-label">定制时间</label></div>
+		    <div class="weui-cell__bd">
+		      <input class="weui-input" id="time4" type="text" readonly="">
+		    </div>
+	    </div>
+	    <div class="weui-cell">
+		    <div class="weui-cell__hd"><label for="" class="weui-label">自定义格式</label></div>
+		    <div class="weui-cell__bd">
+		      <input class="weui-input" id="time-format" type="text"  readonly="">
+		    </div>
+	    </div>
+	</div>
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+  <script src="js/fastclick.js"></script>
+	<script>
+      $("#date").calendar({
+        onChange: function (p, values, displayValues) {
+          console.log(values, displayValues);
+        }
+      });
+      $("#date2").calendar({
+        value: ['2016-12-12'],
+        dateFormat: 'yyyy年mm月dd日',  // 自定义格式的时候，不能通过 input 的value属性赋值 '2016年12月12日' 来定义初始值，这样会导致无法解析初始值而报错。只能通过js中设置 value 的形式来赋值，并且需要按标准形式赋值（yyyy-mm-dd 或者时间戳)
+        onChange: function (p, values, displayValues) {
+          console.log(values, displayValues);
+        }
+      });
+      $("#date-multiple").calendar({
+        multiple: true,
+        onChange: function (p, values, displayValues) {
+          console.log(values, displayValues);
+        }
+      });
+
+
+      $("#time5").datetimePicker({
+        times: function () {},
+        onChange: function (picker, values, displayValues) {
+          console.log(values);
+        },
+      });
+
+
+
+      $("#time").datetimePicker({
+        title: '出发时间',
+        min: "1990-12-12",
+        max: "2022-12-12 12:12",
+        onChange: function (picker, values, displayValues) {
+          console.log(values);
+        }
+      });
+      $("#time2").datetimePicker({
+        times: function () {
+          return [
+            {
+              values: (function () {
+                var hours = [];
+                for (var i=0; i<24; i++) hours.push(i > 9 ? i : '0'+i);
+                return hours;
+              })()
+            },
+            {
+              divider: true,  // 这是一个分隔符
+              content: '时'
+            }
+          ];
+        },
+        onChange: function (picker, values, displayValues) {
+          console.log(values);
+        },
+      });
+      $("#time3").datetimePicker({
+        times: function () {
+          return [
+            {
+              values: ['上午', '下午']
+            }
+          ];
+        },
+        value: '2012-12-12 上午',
+        onChange: function (picker, values, displayValues) {
+          console.log(values);
+        }
+      });
+      $("#time4").datetimePicker({
+        times: function () {
+          return [
+            {
+              values: ['上午8点', '下午2点', '晚上8点']
+            }
+          ];
+        },
+        max: '2013-12-12',
+        onChange: function (picker, values, displayValues) {
+          console.log(values);
+        }
+      });
+
+      $("#time-format").datetimePicker({
+        title: '自定义格式',
+        yearSplit: '年',
+        monthSplit: '月',
+        dateSplit: '日',
+        times: function () {
+          return [  // 自定义的时间
+            {
+              values: (function () {
+                var hours = [];
+                for (var i=0; i<24; i++) hours.push(i > 9 ? i : '0'+i);
+                return hours;
+              })()
+            },
+            {
+              divider: true,  // 这是一个分隔符
+              content: '时'
+            },
+            {
+              values: (function () {
+                var minutes = [];
+                for (var i=0; i<59; i++) minutes.push(i > 9 ? i : '0'+i);
+                return minutes;
+              })()
+            },
+            {
+              divider: true,  // 这是一个分隔符
+              content: '分'
+            }
+          ];
+        },
+        onChange: function (picker, values, displayValues) {
+          console.log(values);
+        }
+      });
+      $("#time-inline").datetimePicker({
+        container: '#time-container',
+        onChange: function (picker, values, displayValues) {
+          console.log(values);
+        }
+      })
+    
+</script>
+
+<script>
+    $(function() {
+        FastClick.attach(document.body);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架-幻灯片</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+	   .swiper-wrapper img{ width: 100%; }
+	</style>
+</head>
+<body>
+    <div class="swiper-container">
+	  <div class="swiper-wrapper">
+	    <div class="swiper-slide"><img src="images/temp/1.jpg" alt=""></div>
+	    <div class="swiper-slide"><img src="images/temp/2.jpg" alt=""></div>
+	    <div class="swiper-slide"><img src="images/temp/3.jpg" alt=""></div>
+	  </div>
+	  <div class="swiper-pagination"></div>
+	</div>
+    
+   
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<script> 
+	var mySwiper = new Swiper('.swiper-container', {
+		autoplay: 3000,//可选选项，自动滑动
+		speed:500,  //滑动速度
+		pagination : '.swiper-pagination', // 分页器
+		paginationType : 'bullets', //fraction 数字分页坐标  bullets 加点页坐标
+		loop:true, // 连续循环
+		autoplayDisableOnInteraction : false, // 滑动后继续滑动
+		//autoHeight: true, //高度随内容变化
+	})
+	</script>
+	
+
+</body>
+</html>

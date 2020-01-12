@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架-Select</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="weui-cell">
+	    <div class="weui-cell__hd"><label for="" class="weui-label">职业</label></div>
+	    <div class="weui-cell__bd">
+	      <input class="weui-input" type="text" id="job" placeholder="选择职业" value="">
+	    </div>
+    </div>
+
+    <div class="weui-cell">
+	    <div class="weui-cell__hd"><label for="" class="weui-label">手机</label></div>
+	    <div class="weui-cell__bd">
+	      <input class="weui-input" type="text" id="mobile" placeholder="选择手机型号" value="">
+	    </div>
+    </div>
+
+    <div class="weui-cell">
+	    <div class="weui-cell__hd"><label for="" class="weui-label">爱好</label></div>
+	    <div class="weui-cell__bd">
+	      <input class="weui-input" type="text" id="in" placeholder="选择爱好，可多选" value="">
+	    </div>
+    </div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+	<script src="js/fastclick.js"></script>
+
+	<script>
+
+	$(function() {
+		FastClick.attach(document.body);
+    });
+
+
+	$("#job").select({
+	  title: "选择职业",
+	  items: ["法官", "医生", "猎人", "学生", "记者", "其他"]
+	});
+
+	$("#mobile").select({
+	  title: "选择手机",
+	  items: [
+	    {
+	      title: "iPhone 3GS",
+	      value: "001",
+	    },
+	    {
+	      title: "iPhone 5",
+	      value: "002",
+	    },
+	    {
+	      title: "iPhone 5S",
+	      value: "003",
+	    },
+	    {
+	      title: "iPhone 6",
+	      value: "004",
+	    },
+	    {
+	      title: "iPhone 6S",
+	      value: "005",
+	    },
+	    {
+	      title: "iPhone 6P",
+	      value: "006",
+	    },
+	    {
+	      title: "iPhone 6SP",
+	      value: "007",
+	    },
+	    {
+	      title: "iPhone SE",
+	      value: "008",
+	    },
+	    {
+	      title: "iPhone 7",
+	      value: "009"
+	    }
+	  ]
+	});
+	$("#in").select({
+	  title: "您的爱好",
+	  multi: true,
+	  items: [
+	    {
+	      title: "画画",
+	      value: 1
+	    },
+	    {
+	      title: "打球",
+	      value: 2
+	    },
+	    {
+	      title: "唱歌",
+	      value: 3
+	    },
+	    {
+	      title: "游泳",
+	      value: 4
+	    },
+	  ]
+	});
+	</script>
+</body>
+</html>

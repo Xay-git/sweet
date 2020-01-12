@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架-滑动列表</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+    <link rel="stylesheet" href="css/style.css">
+	<style>
+    .swiper-container {
+        width: 100%;
+        height: 40px;
+        line-height: 39px;
+        margin: 20px auto;
+        box-shadow: 0px 1px 1px 1px #e4e4e4;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        width: auto;
+        height: auto;
+    }
+    .swiper-container .swiper-slide.on{
+    	color:#1AAD19;
+    	border-bottom:1px solid #1AAD19;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide on">全部商品</div>
+            <div class="swiper-slide">男装</div>
+            <div class="swiper-slide">女装</div>
+            <div class="swiper-slide">童装</div>
+            <div class="swiper-slide">鞋</div>
+            <div class="swiper-slide">创意</div>
+            <div class="swiper-slide">女装</div>
+            <div class="swiper-slide">童装</div>
+        </div>
+        <!-- Add Scrollbar -->
+        <!-- <div class="swiper-scrollbar" style="display: none;"></div> -->
+    </div>
+   
+   
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+	<script src="js/swiper.min.js"></script>
+	 <script>
+    var swiper = new Swiper('.swiper-container', {
+        // scrollbar: '.swiper-scrollbar',
+        scrollbarHide: true,      
+        slidesPerView: 'auto',    //可以设置为number或者 'auto'则自动根据slides的宽度来设定数量。
+        centeredSlides: false,     //设定为true时，活动块会居中，而不是默认状态下的居左。
+        spaceBetween: 30,         // 类别之间距离
+        grabCursor: true,
+        slidesOffsetBefore : 10,  //设定slide与左边框的预设偏移量（单位px）。
+        slidesOffsetAfter : 10,   //设定slide与右边框的预设偏移量（单位px）。
+    });
+    </script>
+</body>
+</html>

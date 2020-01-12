@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<style>
+        .top{ width: 63px; height: 63px; background:url(images/top.png) no-repeat; background-size:63px 63px; position:fixed; right: 10px; bottom:50px; display: none;  cursor: pointer;}
+	</style>
+</head>
+<body>
+    
+    <div style="height:1000px;">往下拉</div>
+    <div class="top"></div>
+    
+
+	<script src="js/jquery.min.js"></script>
+    <script src="js/jquery-weui.min.js"></script>
+    <script>
+
+$(window,document).bind('scroll',function(){
+    if($(this).scrollTop() > 120){
+            $('.top').fadeIn('slow');
+        }else{
+        $('.top').fadeOut('slow');
+        }
+    });
+	
+    $(".top").bind("click",function(){
+        $("html,body").animate({"scrollTop":0});
+    });
+    </script>
+</body>
+</html>

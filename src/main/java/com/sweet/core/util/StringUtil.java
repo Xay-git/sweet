@@ -24,8 +24,8 @@ public class StringUtil {
 	public static String test(){
 		return StringUtil.getUUID();
 	}
-	
-	
+
+
 	/**
 	 * 验证是否为Email格式
 	 * @param email
@@ -35,16 +35,16 @@ public class StringUtil {
 	 * @date Sep 7, 2013 12:06:34 PM
 	 */
 	public static boolean isEmail(String email){
-        Pattern pattern = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");//复杂匹配   
-        Matcher matcher = pattern.matcher(email);
-        if (matcher.matches()){
-            return true;
-        }
-        return false;
-    }
-	
+		Pattern pattern = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");//复杂匹配
+		Matcher matcher = pattern.matcher(email);
+		if (matcher.matches()){
+			return true;
+		}
+		return false;
+	}
+
 	/**
-	 * 
+	 *
 	 * @param param
 	 * @return
 	 */
@@ -75,7 +75,7 @@ public class StringUtil {
 	}
 	/**
 	 * 功能描述：阿拉伯数字转汉字<BR>
-	 * 
+	 *
 	 * @param a
 	 * @return
 	 * @author:李栋梁<BR>
@@ -108,7 +108,7 @@ public class StringUtil {
 
 	/**
 	 * 功能描述：取得32位UUID<BR>
-	 * 
+	 *
 	 * @return
 	 * @author:李栋梁<BR>
 	 *            时间：Feb 20, 2009 11:04:36 PM<BR>
@@ -181,7 +181,7 @@ public class StringUtil {
 
 	/**
 	 * 功能描述：电话号码用××代替<BR>
-	 * 
+	 *
 	 * @param photo
 	 * @return
 	 * @author:李栋梁<BR>
@@ -200,7 +200,7 @@ public class StringUtil {
 
 	/**
 	 * 去掉字符串中的回车换行符
-	 * 
+	 *
 	 * @param str
 	 * @return
 	 */
@@ -231,7 +231,7 @@ public class StringUtil {
 
 	/**
 	 * 功能描述：浮点型判断
-	 * 
+	 *
 	 * @param str
 	 * @return
 	 * @author 胡晓<BR>
@@ -246,7 +246,7 @@ public class StringUtil {
 
 	/**
 	 * 功能描述：整型判断
-	 * 
+	 *
 	 * @param str
 	 * @return
 	 * @author 胡晓<BR>
@@ -260,7 +260,7 @@ public class StringUtil {
 
 	/**
 	 * 功能描述：获取子字符串的个数
-	 * 
+	 *
 	 * @return
 	 * @author 胡晓<BR>
 	 *         时间：2009-7-16<BR>
@@ -279,7 +279,7 @@ public class StringUtil {
 		}
 		return count;
 	}
-	
+
 	/**
 	 * 功能描述：接受一个List<String>，如果有任何一个为空，则返回true，否则返回false
 	 * @param list
@@ -295,8 +295,8 @@ public class StringUtil {
 		}
 		return false;
 	}
-	
-	
+
+
 	/**
 	 * 如果IsNull，就返回defalut
 	 * @param str
@@ -312,7 +312,7 @@ public class StringUtil {
 		}
 		return str;
 	}
-	
+
 	/**
 	 * 功能描述：都不为空，则返回true
 	 * @param list
@@ -323,10 +323,10 @@ public class StringUtil {
 	public static boolean isNotBlank(String... list){
 		return !isBlank(list);
 	}
-	
 
 
-	
+
+
 	/**
 	 * 功能描述：截取指定长度字符串，一个汉字占两个字节，字符和数字占用一个<BR>
 	 * @param value
@@ -337,7 +337,7 @@ public class StringUtil {
 	 * 时间：Sep 12, 2009 3:53:36 PM<BR>
 	 */
 	public static String subStr(String value,int length,boolean flag){
-		if (StringUtils.isBlank(value) || value.getBytes().length <= length) 
+		if (StringUtils.isBlank(value) || value.getBytes().length <= length)
 			return value;
 		for (int i = 0; i <= value.length(); i++) {
 			if (value.substring(0, i).getBytes().length > length) {
@@ -351,10 +351,10 @@ public class StringUtil {
 	/**
 	 * 清除一个时间格式字符串中的"-" ":"和空格，返回一个格式化的String<br>
 	 * 例如：将一个 2010-11-13 12:00 转换为 201011131200 <br>
-	 * 
+	 *
 	 * 作者：<a href="mailto:winhunter@163.com">郝世博</a><br>
 	 * 时间：2010-12-08 18:02
-	 * 
+	 *
 	 * @param date
 	 * @return
 	 */
@@ -380,7 +380,7 @@ public class StringUtil {
 		}
 		return  Double.valueOf(new DecimalFormat(str).format(value));
 	}
-	
+
 	public static  String decode(String str){
 		String string = "";
 		if(StringUtil.isNotBlank(str)){
@@ -392,7 +392,7 @@ public class StringUtil {
 		}
 		return  string;
 	}
-	
+
 	public static  String decode_utf(String str){
 		String string = "";
 		if(StringUtil.isNotBlank(str)){
@@ -404,14 +404,14 @@ public class StringUtil {
 		}
 		return  string;
 	}
-	
+
 	public static String decode_Iso_utf(String str) throws UnsupportedEncodingException{
 		if(StringUtil.isBlank(str)){
 			return str;
 		}
 		return new String(str.getBytes("ISO-8859-1"),"GBK");
 	}
-	
+
 	/**
 	 *  将2010-1-1 转为 20100101.
 	 * @author <a href="mailto:winhunter@163.com">郝世博</a>
@@ -429,7 +429,7 @@ public class StringUtil {
 		}
 		return dateBuf.toString();
 	}
-	
+
 	/**
 	 *  将一个字符串根据给定的长度分隔成N个字符串的数组.
 	 * @author <a href="mailto:winhunter@163.com">郝世博</a>
@@ -446,8 +446,8 @@ public class StringUtil {
 		}
 		return array;
 	}
-	
-	
+
+
 	/**
 	 * 根据一个字符数组组成一个由指定字符分隔的字符串.
 	 * @author <a href="mailto:winhunter@163.com">郝世博</a>
@@ -463,7 +463,7 @@ public class StringUtil {
 		}
 		return buf.toString();
 	}
-	
+
 
 	/**
 	 *  将一个字符串中的空格和换行转行成html代码.
@@ -484,7 +484,7 @@ public class StringUtil {
 		}
 		return retStr;
 	}
-	
+
 	/**
 	 *  .
 	 * @author <a href="mailto:winhunter@163.com">郝世博</a>
@@ -492,7 +492,7 @@ public class StringUtil {
 	 */
 	public static String num2Weekstr(int num){
 		String result = "";
-		 switch (num) {
+		switch (num) {
 			case 1:
 				result = "一";
 				break;
@@ -517,9 +517,9 @@ public class StringUtil {
 			default:
 				break;
 		}
-		 return result;
+		return result;
 	}
-	
+
 	/**
 	 *  将字符串或路径中的 \ 转为  /.
 	 * @author <a href="mailto:winhunter@163.com">郝世博</a>
@@ -537,7 +537,7 @@ public class StringUtil {
 			}
 			buf.append(tmp);
 		}
-	
+
 		return buf.toString();
 	}
 
@@ -566,10 +566,10 @@ public class StringUtil {
 		return yzm;
 	}
 	public  static String trim(String str) {
-		 if(StringUtil.isBlank(str)){
-			 return str;
-		 }
-		 return str.trim();
+		if(StringUtil.isBlank(str)){
+			return str;
+		}
+		return str.trim();
 	}
 	public static String[]  split(String str, String regex) {
 		return str.split(regex);
@@ -603,15 +603,15 @@ public class StringUtil {
 	public static String getProjectPath() {
 		return StringUtil.class.getResource("/").getPath().substring(1).split("WEB-INF")[0];
 	}
-	
-	
+
+
 	public static String getStringValue(String inStr,int pos){
 		String retStr="";
 		if(inStr!=null&!"".equals(inStr)){
 			String[] tempS=inStr.split(",");
-			 retStr= tempS[pos];
+			retStr= tempS[pos];
 		}
-		
+
 		return retStr;
 	}
 	public static boolean isEmpty(String str){
@@ -619,6 +619,13 @@ public class StringUtil {
 			return true;
 		}
 		return false;
+	}
+
+	public static boolean isNotEmpty(String str){
+		if(null==str||str.trim().equals("")||"null".equals(str)){
+			return false;
+		}
+		return true;
 	}
 	/**
 	 * 分割字符串中间加字符
@@ -635,11 +642,11 @@ public class StringUtil {
 			}
 			inStr = sb.toString();
 		}
-		
+
 		return inStr;
-		
+
 	}
-	
+
 	/**
 	 * 判断是否为空
 	 */
@@ -650,8 +657,8 @@ public class StringUtil {
 		}
 		return b;
 	}
-	
-	
+
+
 	public static boolean notEmptyNum(String str) {
 		boolean b = false;
 		if(null != str && !"".equals(str.trim()) && StringUtils.isNumeric(str)) {
@@ -659,7 +666,7 @@ public class StringUtil {
 		}
 		return b;
 	}
-	
+
 	/**
 	 * 获取图片长和宽
 	 * @param url 图片链接
@@ -667,14 +674,14 @@ public class StringUtil {
 	 */
 	public static int[] getImgSize(String url) {
 		int[] result = new int[2];
-		
-		File picture = new File(url);  
-        BufferedImage sourceImg;
+
+		File picture = new File(url);
+		BufferedImage sourceImg;
 		try {
 			sourceImg = ImageIO.read(new FileInputStream(picture));
 			int width = sourceImg.getWidth();
 			int height = sourceImg.getHeight();
-			System.out.println(width);  
+			System.out.println(width);
 			System.out.println(height);
 			result[0] = width;
 			result[1] = height;
@@ -686,49 +693,49 @@ public class StringUtil {
 		return null;
 	}
 
-	    public static String findLetter(String str) {
-	        if(str == null || str.length() == 0) {
-	            return str;
-	        }
-	        char[] chs = str.toCharArray();
-	        int k = 0;
-	        for(int i = 0; i < chs.length; i++) {
-	            if(!isAsciiLetter(chs[i])) {
-	                break;
-	            }
-	            k++;
-	        }
-	        return new String(chs, 0, k);
-	}
-	    private static boolean isAsciiLetter(char c) {
-	        return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
-	    }
-	    
-		/**
-		 * 首字母大写
-		 * 
-		 * @author yez 时间： 2017年4月17日<br>
-		 * @param name
-		 * @param toUpper true 大写首字母，false小写
-		 * @return String
-		 */
-		public static String captureName(String name,boolean toUpper) {
-			// name = name.substring(0, 1).toUpperCase() + name.substring(1);
-			// return name;
-			char[] cs = name.toCharArray();
-			int captureNum=cs[0];
-			if(captureNum>=97&&captureNum<=122){
-				if(toUpper){
-					cs[0] -= 32;
-				}
-			}else if(captureNum>=65&&captureNum<=90){
-				if(!toUpper){
-					cs[0]+=32;
-				}
-			}
-			return String.valueOf(cs);
-
+	public static String findLetter(String str) {
+		if(str == null || str.length() == 0) {
+			return str;
 		}
+		char[] chs = str.toCharArray();
+		int k = 0;
+		for(int i = 0; i < chs.length; i++) {
+			if(!isAsciiLetter(chs[i])) {
+				break;
+			}
+			k++;
+		}
+		return new String(chs, 0, k);
+	}
+	private static boolean isAsciiLetter(char c) {
+		return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+	}
+
+	/**
+	 * 首字母大写
+	 *
+	 * @author yez 时间： 2017年4月17日<br>
+	 * @param name
+	 * @param toUpper true 大写首字母，false小写
+	 * @return String
+	 */
+	public static String captureName(String name,boolean toUpper) {
+		// name = name.substring(0, 1).toUpperCase() + name.substring(1);
+		// return name;
+		char[] cs = name.toCharArray();
+		int captureNum=cs[0];
+		if(captureNum>=97&&captureNum<=122){
+			if(toUpper){
+				cs[0] -= 32;
+			}
+		}else if(captureNum>=65&&captureNum<=90){
+			if(!toUpper){
+				cs[0]+=32;
+			}
+		}
+		return String.valueOf(cs);
+
+	}
 	/**
 	 * 将"_"转成驼峰(user_id:userId)
 	 * @param param

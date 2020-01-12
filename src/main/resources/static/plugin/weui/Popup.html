@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架-Popup</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="javascript:;" class="weui-btn weui-btn_primary open-popup" id="abc">显示全屏(默认)Popup</a>
+
+
+    <a href="javascript:;" class="weui-btn weui-btn_primary open-popup" data-target="#half2">显示底部的Popup</a>
+
+
+    <div id="half" class="weui-popup__container">
+	  <div class="weui-popup__overlay"></div>
+	  <div class="weui-popup__modal">
+	    你的内容放在这里...<a href="javascript:;" class="picker-button" id="aaa">关闭</a>
+	  </div>
+	</div>
+
+
+    <div id="half2" class="weui-popup__container popup-bottom">
+	  <div class="weui-popup__overlay close-popup"></div>
+	  <div class="weui-popup__modal" style="height: 80%;">
+        <div class="toolbar">
+          <div class="toolbar-inner">
+            <a href="javascript:;" class="picker-button close-popup">关闭</a>
+            <h1 class="title">标题</h1>
+          </div>
+        </div>
+        <div class="modal-content" >
+          内容区域。。。3
+        </div>
+      </div>
+	</div>
+    
+   
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+	<script src="js/fastclick.js"></script>
+	<script>
+	    $(document).on("click", "#abc", function() {
+	       $("#half").popup();
+	    });
+
+	    $(document).on("click", "#aaa", function() {
+	        $.closePopup("#half");
+	        $.toast("绑定成功!",1000);
+	    });
+
+	    
+		$(function() {
+		    FastClick.attach(document.body);
+		  });
+	</script>
+</body>
+</html>

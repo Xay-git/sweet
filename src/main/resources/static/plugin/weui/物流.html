@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+		.weui-logistics{ border-left: 1px solid #a5a5a5; padding:20px 10px 20px 15px; margin:0 10px; color:#a5a5a5;}
+		.weui-logistics .weui-logistics-li{ position: relative; border-bottom: 1px solid #e3e3e3; padding:10px 0; font-size: 15px;}
+		.weui-logistics .weui-logistics-li:before{ content: " "; width: 16px; height: 16px; background:#a5a5a5; border-radius: 50%; display: inline-block; position: absolute; left: -23px; top: 12px;}
+		.weui-logistics .weui-logistics-li.cur:before{ background:#e3313d; }
+		.weui-logistics .weui-logistics-li.cur{ color: #e3313d; }
+		.weui-logistics .weui-logistics-li span{ font-size: 13px; }
+		.weui-logistics .weui-logistics-li p{ line-height: 20px; }
+	</style>
+</head>
+<body>
+
+   <div class="weui-logistics">
+   	  <div class="weui-logistics-li cur"><p>快递上门取件</p><span>2016-01-03 15:20:03</span></div>
+   	  <div class="weui-logistics-li"><p>商品运往南京航空站</p><span>2016-01-03 16:30:03</span></div>
+   	  <div class="weui-logistics-li"><p>商品派发到深圳分公司</p><span>2016-01-03 16:30:03</span></div>
+   	  <div class="weui-logistics-li"><p>商品派发到深圳分公司宝安分区站</p><span>2016-01-03 16:30:03</span></div>
+   	  <div class="weui-logistics-li"><p>快递人员送件中，请保持电话畅通，以便联系快递人员送件中，请保持电话畅通，以便联系</p><span>2016-01-03 16:30:03</span></div>
+   </div>
+    
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+</body>
+</html>

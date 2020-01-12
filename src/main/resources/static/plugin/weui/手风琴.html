@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+	    .accordion li{ border-bottom:1px solid #ececec; }
+	    .accordion .accordion-tit{position: relative;}
+	    .accordion .accordion-tit:after {
+		    content: " ";
+		    display: inline-block;
+		    -webkit-transform: rotate(135deg);
+		    transform: rotate(135deg);
+		    height: 6px;
+		    width: 6px;
+		    border-width: 2px 2px 0 0;
+		    border-color: #c8c8cd;
+		    border-style: solid;
+		    position: absolute;
+		    right: 15px;
+		    top: 50%;
+		    margin-top: -3px;
+		}
+		.accordion .weui-cells{ margin-top: 0; display: none; background:#f2f2f2;}
+		.accordion li.cur{ border-bottom:none; }
+		.accordion li.cur .accordion-tit:after{
+			-webkit-transform: rotate(-45deg);
+		    transform: rotate(-45deg);
+		    margin-top: 0;
+		}
+        .accordion li.cur .weui-cells{ display: block; }
+	</style>
+</head>
+<body>
+
+   <ul class="accordion">
+   	<li>
+   	    <div class="accordion-tit">
+   	    	<div class="weui-cell">
+			    <div class="weui-cell__hd"><img src="images/icon19.png" width="30" height="30"></div>
+			    <div class="weui-cell__bd">
+			      <p>我的好友（2/2）</p>
+			    </div>
+			  </div>
+   	    </div>
+   		<div class="weui-cells">
+		  <div class="weui-cell">
+		    <div class="weui-cell__hd"><img src="images/icon2.png" width="20" height="20"></div>
+		    <div class="weui-cell__bd">
+		      <p>标题文字</p>
+		    </div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__hd"><img src="images/icon1.png" width="20" height="20"></div>
+		    <div class="weui-cell__bd">
+		      <p>标题文字</p>
+		    </div>
+		    <div class="weui-cell__ft">说明文字</div>
+		  </div>
+		  <a class="weui-cell weui-cell_access" href="javascript:;">
+		    <div class="weui-cell__hd"><img src="images/icon2.png" width="20" height="20"></div>
+		    <div class="weui-cell__bd">
+		      <p>数据统计</p>
+		    </div>
+		    <div class="weui-cell__ft">
+		    </div>
+		  </a>
+		</div>
+   	</li>
+   	<li>
+   	    <div class="accordion-tit">
+   	    	<div class="weui-cell">
+			    <div class="weui-cell__bd">
+			      <p>我的好友（2/2）</p>
+			    </div>
+			  </div>
+   	    </div>
+   		<div class="weui-cells">
+		  <div class="weui-cell">
+		    <div class="weui-cell__hd"><img src="images/icon2.png" width="20" height="20"></div>
+		    <div class="weui-cell__bd">
+		      <p>标题文字</p>
+		    </div>
+		  </div>
+		  <div class="weui-cell">
+		    <div class="weui-cell__hd"><img src="images/icon2.png" width="20" height="20"></div>
+		    <div class="weui-cell__bd">
+		      <p>标题文字</p>
+		    </div>
+		  </div>
+		</div>
+   	</li>
+   	
+   </ul>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+	<script>
+		$('.accordion-tit').click(function(){
+		   $parent = $(this).parent('li');
+		   if($parent.hasClass('cur')){
+                $parent.removeClass('cur');
+                $parent.siblings().removeClass('cur');
+            }else{
+                $parent.addClass('cur');
+                $parent.siblings().removeClass('cur');
+            }
+		  });
+	</script>
+</body>
+</html>

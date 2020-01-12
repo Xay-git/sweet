@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dodou-移动框架</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<style>
+	    body{ background:#eee; }
+		.type-ul{ padding:5px 0 0 5px; list-style: none;}
+        .type-ul li{ padding:5px 0; width:calc(100% / 4 - 5px); background:#fff; float: left; margin-right: 5px; margin-bottom:5px; text-align: center; }
+        .type-ul-price li{ position: relative; }
+
+        .type-inline li{ background:#fff; float: left; border-radius: 15px; font-size: 13px; padding:5px 30px 5px 10px; margin:0 0 5px 5px;}
+        .type-inline li:after{ content:""; display:inline-block; width: 18px; height: 18px; background:url(images/icon28.png) no-repeat; background-size: 18px; margin-left: 5px; position: absolute; top: 50%; -webkit-transform:translate(0,-50%);}
+        
+        .type-block li{ background:#fff; position: relative; padding:10px; margin-bottom:1px;}
+        .type-block li:after{ content:""; display:inline-block; width: 18px; height: 18px; background:url(images/icon28.png) no-repeat; background-size: 18px; margin-left: 5px; position: absolute; top: 50%; right: 10px; -webkit-transform:translate(0,-50%);}
+
+        .type-calc li{ position: relative;  width:calc(100% / 3 - 5px);}
+        .type-calc li:after{ content:""; display:inline-block; width: 18px; height: 18px; background:url(images/icon28.png) no-repeat; background-size: 18px; margin-left: 5px; position: absolute; top: 50%;right: 5px; -webkit-transform:translate(0,-50%);}
+
+	</style>
+</head>
+<body>
+    
+    <ul class="type-ul clear">
+    	<li>海尔</li>
+    	<li>风冷</li>
+    	<li>美的</li>
+    	<li>西门子</li>
+    	<li>容声</li>
+    	<li>美菱</li>
+    	<li>海信</li>
+    	<li>三星</li>
+    </ul>
+    <br/>
+    <ul class="type-ul-price type-inline clear">
+    	<li>海尔</li>
+    	<li>西门子</li>
+    </ul>
+	<br/>
+    <ul class="type-ul-price type-block">
+    	<li>海尔</li>
+    	<li>西门子</li>
+    </ul>
+    <br/>
+    <ul class="type-ul type-calc clear">
+    	<li>海尔</li>
+    	<li>风冷</li>
+    	<li>美的</li>
+    	<li>西门子</li>
+    	<li>容声</li>
+    	<li>美菱</li>
+    	<li>海信</li>
+    	<li>三星</li>
+    </ul>
+   
+    
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+</body>
+</html>

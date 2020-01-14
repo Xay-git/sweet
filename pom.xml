@@ -28,10 +28,12 @@
         <beetl.version>3.0.11.RELEASE</beetl.version>
         <shiro.version>1.4.0</shiro.version>
         <shiroredis.version>3.2.3</shiroredis.version>
-        <wxtools.version>2.1.4-RELEASE</wxtools.version>
+        <weixin-java-mp.version>3.6.0</weixin-java-mp.version>
         <hutool.version>5.0.6</hutool.version>
         <p6spy.version>3.7.0</p6spy.version>
-        <ip2region.version>1.7</ip2region.version>
+        <pinyin4j.version>2.5.0</pinyin4j.version>
+        <fastjson.version>1.2.62</fastjson.version>
+        <jjwt.version>0.9.0</jjwt.version>
     </properties>
 
     <dependencies>
@@ -70,6 +72,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
+        </dependency>
+
+
+        <!-- commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.9</version>
         </dependency>
 
         <!--myql数据库驱动,可根据自己需要自行删减-->
@@ -134,19 +144,13 @@
             <version>${shiroredis.version}</version>
         </dependency>
 
-        <!-- wx-tools -->
+        <!-- weixin-java-mp -->
         <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-mp</artifactId>
-            <version>3.6.0</version>
+            <version>${weixin-java-mp.version}</version>
         </dependency>
 
-        <!-- commons-lang3 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.9</version>
-        </dependency>
 
         <!-- 工具集 -->
         <dependency>
@@ -166,24 +170,22 @@
         <dependency>
             <groupId>com.belerweb</groupId>
             <artifactId>pinyin4j</artifactId>
-            <version>2.5.0</version>
+            <version>${pinyin4j.version}</version>
         </dependency>
 
         <!-- fastjson -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.62</version>
+            <version>${fastjson.version}</version>
         </dependency>
 
         <!--jwt token-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.9.0</version>
+            <version>${jjwt.version}</version>
         </dependency>
-
-
 
     </dependencies>
 

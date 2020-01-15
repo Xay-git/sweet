@@ -40,15 +40,6 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private UserMapper userMapper;
-
-    @Autowired
-    private DeptService deptService;
-
-    @Autowired
-    private BaseService baseService;
-
-    @Autowired
     private RoleService roleService;
 
     @RequestMapping("")
@@ -83,7 +74,7 @@ public class UserController {
     @RequestMapping("/editPassword")
     @ResponseBody
     public ResultBean editPassword(String userId,String oldPsw,String newPsw){
-        User user = userMapper.selectById(userId);
+        User user = userService.getById(userId);
         String userName = user.getUserName();
 
         String psw = user.getPassword();
@@ -152,51 +143,6 @@ public class UserController {
        return ResultBean.success(user);
     }
 
-    @RequestMapping("/navTree")
-    @ResponseBody
-    public ResultBean navTree(){
-        User user = ShiroKit.getUser();
-        List<layMenu> list= userService.findNavByUserName(user.getUserName());
-        return ResultBean.success(list);
-    }
-
-    /**
-     * 获得机构下的用户列表
-     * @param user
-     * @return
-     */
-    @RequestMapping("/getUserList")
-    @ResponseBody
-    public LayuiPageInfo getUserList(User user){
-        LayuiPageInfo layuiPageInfo = userService.findPageBySpec(user);
-        return layuiPageInfo;
-    }
-
-    /**
-     * 获得机构下的用户列表
-     * @param user
-     * @return
-     */
-    @RequestMapping("/getAdminUser")
-    @ResponseBody
-    public ResultBean getUserList(){
-        String deptId = ShiroKit.getUser().getDeptId();
-        List<User> list =  userService.getAdminUser(deptId);
-        return ResultBean.success(list);
-    }
-
-    /**
-     * 获得角色多选
-     * @param menu
-     * @return
-     */
-    @RequestMapping("/getXmSelect")
-    @ResponseBody
-    public ResultBean getXmSelect(){
-        List<XmSelect> list = roleService.getXmSelect();
-        return ResultBean.success(list);
-    }
-
     /**
      * 删除用户
      * @param user
@@ -207,6 +153,19 @@ public class UserController {
     public ResultBean delUser(User user){
         userService.removeById(user);
         return ResultBean.success();
+    }
+
+
+    /**
+     * 根据机构id获得机构下的用户列表
+     * @param user
+     * @return
+     */
+    @RequestMapping("/getUserList")
+    @ResponseBody
+    public LayuiPageInfo getUserList(User user){
+        LayuiPageInfo layuiPageInfo = userService.findPageBySpec(user);
+        return layuiPageInfo;
     }
 
 }

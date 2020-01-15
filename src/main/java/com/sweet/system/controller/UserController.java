@@ -3,6 +3,7 @@ import com.sweet.core.exception.ServiceException;
 import com.sweet.core.model.ResultBean;
 import com.sweet.core.model.system.LayuiPageInfo;
 import com.sweet.core.model.system.layMenu;
+import com.sweet.core.model.system.layTree;
 import com.sweet.core.shiro.ShiroKit;
 import com.sweet.core.util.MD5Utils;
 import com.sweet.core.util.StringUtil;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.sweet.core.exception.enums.SystemExceptionEnum.ACCOUNT_ALREADY_EXCEPTION;
@@ -43,6 +45,12 @@ public class UserController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private DeptService deptService;
+
+    @Autowired
+    private BaseService baseService;
 
     @RequestMapping("")
     public String userList() {
@@ -168,6 +176,33 @@ public class UserController {
     public LayuiPageInfo getUserList(User user){
         LayuiPageInfo layuiPageInfo = userService.findPageBySpec(user);
         return layuiPageInfo;
+    }
+
+    @RequestMapping("/deptTree")
+    @ResponseBody
+    public ResultBean tree(){
+        ArrayList<layTree> trees = deptService.deptTree();
+        ArrayList<layTree> cloneTree = (ArrayList<layTree>) trees.clone();
+        ArrayList<layTree> newtrees = new ArrayList<layTree>();
+
+        //创建父级节点
+        newtrees.add(new layTree().createParent());
+
+        if(cloneTree.size()>0){
+            newtrees = baseService.coverLayuiTree(newtrees,cloneTree);
+        }
+        return ResultBean.success(newtrees);
+    }
+
+    /**
+     * 获得
+     * @param deptId
+     * @return
+     */
+    @RequestMapping("/deptList")
+    @ResponseBody
+    public ResultBean list(){
+        return ResultBean.success(deptService.list());
     }
 
 }

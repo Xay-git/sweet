@@ -29,8 +29,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.sweet.core.SystemConst.DEFALT_AVATAR;
-import static com.sweet.core.SystemConst.USER_NORMAL;
+import static com.sweet.core.SystemConst.*;
 import static com.sweet.core.exception.enums.SystemExceptionEnum.ACCOUNT_ALREADY_EXCEPTION;
 
 /**
@@ -70,9 +69,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new ServiceException(ACCOUNT_ALREADY_EXCEPTION);
         }
         user.setUserName(username.toLowerCase());
-        user.setPassword(MD5Utils.encrypt(username, User.DEFAULT_PASSWORD));
+        user.setPassword(MD5Utils.encrypt(DEFAULT_PASSWORD));
         user.setAccountStatus(USER_NORMAL);
-        user.setUserType(1);
+        user.setUserType(ADMIN_USER);
         save(user);
         return user;
     }

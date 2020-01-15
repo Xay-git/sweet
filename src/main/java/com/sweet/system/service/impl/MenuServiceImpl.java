@@ -2,7 +2,6 @@ package com.sweet.system.service.impl;
 
 import com.sweet.core.SystemConst;
 import com.sweet.core.model.system.layTree;
-import com.sweet.core.sysconst.*;
 import com.sweet.system.entity.Menu;
 import com.sweet.system.mapper.MenuMapper;
 import com.sweet.system.model.MenuResult;
@@ -12,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+
+import static com.sweet.core.SystemConst.MENU;
 
 
 /**
@@ -113,7 +114,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         Menu menu = new Menu();
         menu.setMenuName("未命名");
         menu.setParentId(menuId);
-        menu.setType(SystemConst.MENU);
+        menu.setType(MENU);
         this.save(menu);
         return menu;
     }

@@ -31,13 +31,21 @@ public class GlobalController {
 
     /**
      * 跳转到404页面
-     *
-     * @author fengshuonan
      */
     @RequestMapping(path = "/error")
     public String errorPage() {
         return "/error/404";
     }
+
+    /**
+     * 跳转到未授权页面
+     */
+    @RequestMapping("unauthorized")
+    public String unauthorized() {
+        return "/error/unauthorized";
+    }
+
+
 
 
 }

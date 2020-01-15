@@ -105,15 +105,4 @@ public class MenuController {
         return ResultBean.success(trees);
     }
 
-    /**
-     * 获得菜单树 配置权限
-     * @return
-     */
-    @RequestMapping("/tree")
-    @ResponseBody
-    public ResultBean tree(){
-        List<layTree> trees = menuService.getMenuTree();
-        return ResultBean.success(trees);
-    }
-
 }

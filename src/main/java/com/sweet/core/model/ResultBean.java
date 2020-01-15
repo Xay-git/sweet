@@ -1,5 +1,7 @@
 package com.sweet.core.model;
 
+import com.sweet.core.exception.enums.BizExceptionEnum;
+import com.sweet.core.exception.enums.SystemExceptionEnum;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -46,6 +48,10 @@ public class ResultBean<T> implements Serializable {
 
 	public static ResultError error(String message) {
 		return new ResultError(message);
+	}
+
+	public static ResultError error(SystemExceptionEnum exceptionEnum) {
+		return  new ResultError( exceptionEnum.getCode(), exceptionEnum.getMessage(), null);
 	}
 
 	public static ResultError error(Integer code, String message) {

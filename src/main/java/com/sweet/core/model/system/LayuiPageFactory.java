@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class LayuiPageFactory {
 
+    private static final int defaultLimit = 999999;
+
     /**
      * 获取layui table的分页参数
      *
@@ -36,7 +38,7 @@ public class LayuiPageFactory {
         int limit;
         String lim  = request.getParameter("limit");
         if(StringUtils.isEmpty(lim)){
-            limit = 99999;
+            limit = defaultLimit;
         }else{
             limit = Integer.valueOf(lim);
         }

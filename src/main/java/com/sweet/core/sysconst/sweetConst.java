@@ -1,1 +1,0 @@
-package com.sweet.core;public interface sweetConst {    public final Integer USER_NORMAL = 1;    public final Integer USER_FREEZE = 0;    public final Integer MENU = 0;    public final Integer PERMISSION = 1;    String DEFALT_AVATAR = "/common/images/avatar/default.png";}

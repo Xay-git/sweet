@@ -1,7 +1,8 @@
 package com.sweet.system.service.impl;
 
+import com.sweet.core.SystemConst;
 import com.sweet.core.model.system.layTree;
-import com.sweet.core.sweetConst;
+import com.sweet.core.sysconst.*;
 import com.sweet.system.entity.Menu;
 import com.sweet.system.mapper.MenuMapper;
 import com.sweet.system.model.MenuResult;
@@ -112,7 +113,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         Menu menu = new Menu();
         menu.setMenuName("未命名");
         menu.setParentId(menuId);
-        menu.setType(sweetConst.MENU);
+        menu.setType(SystemConst.MENU);
         this.save(menu);
         return menu;
     }

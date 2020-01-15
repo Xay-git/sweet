@@ -7,7 +7,6 @@ import com.sweet.core.model.system.LayuiPageFactory;
 import com.sweet.core.model.system.LayuiPageInfo;
 import com.sweet.core.model.system.layMenu;
 import com.sweet.core.shiro.ShiroKit;
-import com.sweet.core.sweetConst;
 import com.sweet.core.util.MD5Utils;
 import com.sweet.core.util.RedisUtil;
 import com.sweet.core.util.StringUtil;
@@ -29,6 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static com.sweet.core.SystemConst.DEFALT_AVATAR;
+import static com.sweet.core.SystemConst.USER_NORMAL;
 
 /**
  * <p>
@@ -68,7 +70,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         user.setUserName(username.toLowerCase());
         user.setPassword(MD5Utils.encrypt(username, User.DEFAULT_PASSWORD));
-        user.setAccountStatus(sweetConst.USER_NORMAL);
+        user.setAccountStatus(USER_NORMAL);
         user.setUserType(1);
         save(user);
         return user;
@@ -90,9 +92,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public User findUserById(String id) {
         User user = baseMapper.findByUserId(id);
         if(StringUtil.isEmpty(user.getAvatar())){
-            user.setAvatarPath(sweetConst.DEFALT_AVATAR);
+            user.setAvatarPath(DEFALT_AVATAR);
         }
-            user.setPassword(null);
         return user;
     }
 

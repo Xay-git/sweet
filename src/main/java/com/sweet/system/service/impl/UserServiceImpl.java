@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 
 import static com.sweet.core.SystemConst.DEFALT_AVATAR;
 import static com.sweet.core.SystemConst.USER_NORMAL;
+import static com.sweet.core.exception.enums.SystemExceptionEnum.ACCOUNT_ALREADY_EXCEPTION;
 
 /**
  * <p>
@@ -66,7 +67,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String username = user.getUserName();
         User tempUser = findByUserName(username);
         if(tempUser!=null){
-            throw new ServiceException("该用户名已被占用");
+            throw new ServiceException(ACCOUNT_ALREADY_EXCEPTION);
         }
         user.setUserName(username.toLowerCase());
         user.setPassword(MD5Utils.encrypt(username, User.DEFAULT_PASSWORD));

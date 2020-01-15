@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+import static com.sweet.core.exception.enums.SystemExceptionEnum.ACCOUNT_ALREADY_EXCEPTION;
+
 /**
  * <p>
  *  前端控制器
@@ -103,7 +105,7 @@ public class UserController {
             String userName = user.getUserName().toLowerCase();
             User temp = userService.findByUserName(userName);
             if((temp!=null)&&!temp.getUserId().equals(user.getUserId())){
-                throw new ServiceException("该用户名已被占用！");
+                throw new ServiceException(ACCOUNT_ALREADY_EXCEPTION);
             }
             userService.updateById(user);
             if(user.getUserId().equals(ShiroKit.getUser().getUserId())){

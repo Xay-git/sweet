@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.sweet.core.SystemConst.ADMIN_USER;
 import static com.sweet.core.exception.enums.SystemExceptionEnum.ACCOUNT_ALREADY_EXCEPTION;
 
 /**
@@ -107,6 +108,7 @@ public class UserController {
     @ResponseBody
     @Transactional
     public ResultBean editUser(User user,String roleAssign){
+        user.setUserType(ADMIN_USER);
         if(StringUtil.isEmpty(user.getUserId())){
             userService.addUser(user);
         }else{

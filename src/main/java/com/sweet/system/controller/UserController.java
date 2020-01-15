@@ -1,6 +1,4 @@
 package com.sweet.system.controller;
-
-
 import com.sweet.core.exception.ServiceException;
 import com.sweet.core.model.ResultBean;
 import com.sweet.core.model.system.LayuiPageInfo;
@@ -63,17 +61,25 @@ public class UserController {
         return "/system/user/user_edit";
     }
 
-    @RequestMapping("/user_info")
-    public String user_info(Model model) {
-        model.addAttribute("shiroUser",ShiroKit.getUser());
-        return "/system/user/user_info";
-    }
 
     @RequestMapping("/user_password")
     public String user_password() {
         return "/system/user/user_password";
     }
 
+    @RequestMapping("/user_info")
+    public String user_info(Model model) {
+        model.addAttribute("shiroUser",ShiroKit.getUser());
+        return "/system/user/user_info";
+    }
+
+    /**
+     * 修改密码
+     * @param userId
+     * @param oldPsw
+     * @param newPsw
+     * @return
+     */
     @RequestMapping("/editPassword")
     @ResponseBody
     public ResultBean editPassword(String userId,String oldPsw,String newPsw){
@@ -100,13 +106,9 @@ public class UserController {
     @ResponseBody
     @Transactional
     public ResultBean editUser(User user,String roleAssign){
-
         if(StringUtil.isEmpty(user.getUserId())){
             userService.addUser(user);
         }else{
-            if((user.getAccountStatus()==0)&&ShiroKit.hasRole("admin")){
-                throw new ServiceException("不可以冻结管理员！");
-            }
             String userName = user.getUserName().toLowerCase();
             User temp = userService.findByUserName(userName);
             if((temp!=null)&&!temp.getUserId().equals(user.getUserId())){
@@ -124,7 +126,7 @@ public class UserController {
     }
 
     /**
-     * 充值密码
+     * 重置密码
      * @param userId
      * @return
      */
@@ -146,11 +148,9 @@ public class UserController {
     @ResponseBody
     public ResultBean getUser(String userId){
        User user = userService.findUserById(userId);
-       user.setPassword(null);
        user.setRoleIds(userService.getRoleByUserId(userId));
        return ResultBean.success(user);
     }
-
 
     @RequestMapping("/navTree")
     @ResponseBody
@@ -173,6 +173,19 @@ public class UserController {
     }
 
     /**
+     * 获得机构下的用户列表
+     * @param user
+     * @return
+     */
+    @RequestMapping("/getAdminUser")
+    @ResponseBody
+    public ResultBean getUserList(){
+        String deptId = ShiroKit.getUser().getDeptId();
+        List<User> list =  userService.getAdminUser(deptId);
+        return ResultBean.success(list);
+    }
+
+    /**
      * 获得角色多选
      * @param menu
      * @return
@@ -184,6 +197,11 @@ public class UserController {
         return ResultBean.success(list);
     }
 
+    /**
+     * 删除用户
+     * @param user
+     * @return
+     */
     @RequestMapping("/delUser")
     @ResponseBody
     public ResultBean delUser(User user){

@@ -4,6 +4,7 @@ import com.sweet.core.model.system.LayuiPageInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sweet.core.model.system.layMenu;
 import com.sweet.system.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Set;
@@ -35,5 +36,8 @@ public interface UserService extends IService<User> {
     Set<String> getUserMenu(String userName);
 
     List<layMenu> findNavByUserName(String userName);
+
+    List<User> getAdminUser(String deptId);
+
 
 }

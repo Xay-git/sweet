@@ -29,7 +29,10 @@ public interface UserMapper extends BaseMapper<User> {
     Integer deleteRoleAssignById(@Param("userId")String userId);
 
     @Select("select rid from t_user_role where uid = #{userId} ")
-    List<String> getRoleByUserId(String userId);
+    List<String> getRoleByUserId(@Param("userId")String userId);
+
+    @Select("select * from t_user where dept_id = #{deptId} and user_type = 1")
+    List<User> getAdminUser(@Param("deptId")String deptId);
 
 
 

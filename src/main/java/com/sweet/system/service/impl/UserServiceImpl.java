@@ -69,6 +69,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setUserName(username.toLowerCase());
         user.setPassword(MD5Utils.encrypt(username, User.DEFAULT_PASSWORD));
         user.setAccountStatus(sweetConst.USER_NORMAL);
+        user.setUserType(1);
         save(user);
         return user;
     }
@@ -159,7 +160,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return newtrees;
     }
 
-
+    @Override
+    public List<User> getAdminUser(String deptId) {
+        return baseMapper.getAdminUser(deptId);
+    }
 
 
     public ArrayList<layMenu> coverMenu(ArrayList<layMenu> trees, ArrayList<layMenu> tempTrees){

@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.sweet.core.SystemConst.ADMIN_USER;
+import static com.sweet.core.SystemConst.DEFAULT_PASSWORD;
 import static com.sweet.core.exception.enums.SystemExceptionEnum.ACCOUNT_ALREADY_EXCEPTION;
 
 /**
@@ -117,6 +118,7 @@ public class UserController {
             if((temp!=null)&&!temp.getUserId().equals(user.getUserId())){
                 throw new ServiceException(ACCOUNT_ALREADY_EXCEPTION);
             }
+            user.setPassword(MD5Utils.encrypt(userName,DEFAULT_PASSWORD));
             userService.updateById(user);
             if(user.getUserId().equals(ShiroKit.getUser().getUserId())){
                 ShiroKit.updateUser(user);

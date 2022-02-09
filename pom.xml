@@ -26,7 +26,7 @@
         <mybatisplusgenerator.version>3.1.1</mybatisplusgenerator.version>
         <swagger2.version>2.9.2</swagger2.version>
         <beetl.version>3.0.11.RELEASE</beetl.version>
-        <shiro.version>1.4.0</shiro.version>
+        <shiro.version>1.7.1</shiro.version>
         <shiroredis.version>3.2.3</shiroredis.version>
         <weixin-java-mp.version>3.6.0</weixin-java-mp.version>
         <hutool.version>5.0.6</hutool.version>
